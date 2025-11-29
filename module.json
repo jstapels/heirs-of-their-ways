@@ -1,0 +1,44 @@
+{
+  "id": "heirs-of-their-ways",
+  "title": "Heirs Of Their Ways",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "description": "<p>A module that contains all the contents and details of the Heirs of their Ways campaign.</p>",
+  "authors": [
+    {
+      "name": "Jason Stapels",
+      "email": "jstapels@gmail.com",
+      "discord": "jstapels",
+      "flags": {}
+    }
+  ],
+  "flags": {
+    "canUpload": true
+  },
+  "packs": [
+    {
+      "name": "heirs-pack",
+      "label": "Heirs Pack",
+      "path": "packs/heirs-pack",
+      "type": "Adventure",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "dnd5e",
+      "flags": {}
+    }
+  ],
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {}
+      }
+    ]
+  }
+}
