@@ -1,0 +1,78 @@
+# Example Weapon - Template for creating weapons
+# Delete this file when you add your first real item
+#
+# This shows the structure for a simple weapon
+# For more complex items, export from FoundryVTT and use as template
+
+name: Example Longsword
+type: weapon
+
+# Item icon
+img: icons/svg/sword.svg
+
+# System data
+system:
+  # Description with enrichers
+  description:
+    value: >-
+      <p>A standard longsword.</p>
+      <p><strong>Attack:</strong> [[/attack +2]] to hit</p>
+      <p><strong>Damage:</strong> [[/damage 1d8 slashing]] (one-handed) or
+      [[/damage 1d10 slashing]] (two-handed)</p>
+
+  # Item rarity and identification
+  rarity: common
+  identified: true
+  attunement: none
+
+  # Quantity and weight
+  quantity: 1
+  weight:
+    value: 3
+    units: lb
+
+  # Price
+  price:
+    value: 15
+    denomination: gp
+
+  # Weapon properties
+  activation:
+    type: action
+    cost: 1
+
+  range:
+    value: 5
+    units: ft
+
+  # Damage
+  damage:
+    base:
+      number: 1
+      denomination: 8
+      types: [slashing]
+      custom: {}
+      scaling: {}
+    versatile:
+      number: 1
+      denomination: 10
+
+  # Proficiency
+  proficient: null
+
+  # Weapon properties
+  properties:
+    - ver  # Versatile
+
+  # Weapon category
+  type:
+    value: martialM
+    baseItem: longsword
+
+# Ownership
+ownership:
+  default: 0
+
+sort: 0
+
+flags: {}

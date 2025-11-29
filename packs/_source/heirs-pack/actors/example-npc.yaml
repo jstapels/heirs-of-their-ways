@@ -1,0 +1,61 @@
+# Example NPC - Template for creating new NPCs
+# Delete this file when you add your first real NPC
+#
+# This shows the structure for a simple NPC with basic stats and a weapon
+# For more complex NPCs, export from FoundryVTT and use as template
+
+name: Example Villager
+type: npc
+
+# Token image path (relative to FoundryVTT data directory)
+img: icons/svg/mystery-man.svg
+
+# System-specific data for DND5e
+system:
+  # Ability scores
+  abilities:
+    str: {value: 10, proficient: 0}
+    dex: {value: 10, proficient: 0}
+    con: {value: 10, proficient: 0}
+    int: {value: 10, proficient: 0}
+    wis: {value: 10, proficient: 0}
+    cha: {value: 10, proficient: 0}
+
+  # Attributes (HP, AC, etc.)
+  attributes:
+    hp:
+      value: 4
+      max: 4
+      formula: 1d8
+    ac: {value: 10}
+    movement:
+      walk: 30
+      units: ft
+
+  # Details
+  details:
+    biography:
+      value: <p>A typical villager from Millhaven.</p>
+    cr: 0
+    source:
+      custom: Heirs Campaign
+    type:
+      value: humanoid
+      subtype: human
+    alignment: N
+
+  # Traits
+  traits:
+    size: med
+    languages:
+      value: [common]
+
+# Ownership (0 = none, 2 = observer, 3 = owner)
+ownership:
+  default: 0
+
+# Sort order in compendium
+sort: 0
+
+# Flags (optional metadata)
+flags: {}
