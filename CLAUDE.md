@@ -17,11 +17,33 @@
 heirs-of-their-ways/
 ├── .git/                  # Git version control
 ├── .gitattributes        # Git attributes configuration
-├── README.md             # Basic project description
+├── README.md             # Project overview and user guide
 ├── module.json           # FoundryVTT module manifest (CRITICAL)
 ├── CLAUDE.md             # This file - AI assistant guide
-└── packs/                # Compendium packs (to be created)
-    └── heirs-pack/       # Main adventure pack directory
+├── docs/                 # Documentation
+│   ├── ENRICHERS.md     # Complete text enrichers reference
+│   └── WORKFLOW.md      # Development workflow guide
+├── campaign-notes/       # Markdown source notes
+│   ├── README.md        # Campaign notes guide
+│   ├── adventures/      # Adventure outlines and sessions
+│   ├── npcs/           # NPC descriptions and backgrounds
+│   ├── locations/      # Location descriptions
+│   ├── items/          # Custom item descriptions
+│   └── lore/           # World lore and background
+├── source-data/         # JSON exports for version control
+│   ├── README.md       # Source data guide
+│   ├── actors/         # NPC/creature JSON files
+│   ├── items/          # Item JSON files
+│   ├── journals/       # Journal entry JSON files
+│   ├── scenes/         # Scene JSON files
+│   └── tables/         # Roll table JSON files
+├── assets/              # Media assets
+│   ├── maps/           # Map images for scenes
+│   ├── tokens/         # Token artwork
+│   ├── images/         # Other images
+│   └── sounds/         # Audio files
+└── packs/               # Compendium packs (LevelDB)
+    └── heirs-pack/     # Main adventure pack
 ```
 
 ### Critical Files
@@ -35,6 +57,41 @@ This is the **most important file** in the repository. It serves as the module m
 - System relationships and dependencies
 
 **NEVER** modify `module.json` without careful consideration. Changes here affect how FoundryVTT loads and displays the module.
+
+### Documentation Files
+
+The repository includes comprehensive documentation to guide development:
+
+#### `docs/ENRICHERS.md`
+Complete reference for FoundryVTT v13 and DnD5e v5.2 text enrichers:
+- Core enrichers: @UUID, @Embed, inline rolls
+- DnD5e enrichers: @Check, @Damage, @Save, @Attack, @Item, [[lookup]], &Reference
+- Syntax examples and best practices
+- **Always consult this when creating journal entries**
+
+#### `docs/WORKFLOW.md`
+Development workflow guide covering:
+- Directory structure and purpose
+- Phase-by-phase development process
+- Common tasks with step-by-step instructions
+- Best practices for naming, organization, and version control
+- **Read this to understand the development workflow**
+
+#### `campaign-notes/README.md`
+Guide for writing campaign notes in markdown:
+- Format and structure guidelines
+- Using enrichers in notes
+- Linking related content
+- Example files for NPCs, adventures, items
+- **Follow this when creating campaign content**
+
+#### `source-data/README.md`
+Guide for JSON exports and imports:
+- Exporting from FoundryVTT
+- Importing to FoundryVTT
+- JSON structure overview
+- Version control best practices
+- **Reference this when working with JSON data**
 
 ## FoundryVTT Module Concepts
 
