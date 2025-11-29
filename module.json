@@ -29,7 +29,6 @@
         "ASSISTANT": "OWNER"
       },
       "system": "dnd5e",
-      "folder": "Heirs",
       "flags": {}
     },
     {
@@ -42,7 +41,6 @@
         "ASSISTANT": "OWNER"
       },
       "system": "dnd5e",
-      "folder": "Heirs",
       "flags": {}
     },
     {
@@ -55,7 +53,6 @@
         "ASSISTANT": "OWNER"
       },
       "system": "dnd5e",
-      "folder": "Heirs",
       "flags": {}
     },
     {
@@ -68,7 +65,6 @@
         "ASSISTANT": "OWNER"
       },
       "system": "dnd5e",
-      "folder": "Heirs",
       "flags": {}
     },
     {
@@ -81,7 +77,6 @@
         "ASSISTANT": "OWNER"
       },
       "system": "dnd5e",
-      "folder": "Heirs",
       "flags": {}
     },
     {
@@ -94,7 +89,6 @@
         "ASSISTANT": "OWNER"
       },
       "system": "dnd5e",
-      "folder": "Heirs",
       "flags": {}
     },
     {
@@ -107,8 +101,24 @@
         "ASSISTANT": "OWNER"
       },
       "system": "dnd5e",
-      "folder": "Heirs",
       "flags": {}
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Heirs",
+      "sorting": "a",
+      "color": "#8b4513",
+      "packs": [
+        "heirs-actors",
+        "heirs-items",
+        "heirs-features",
+        "heirs-journals",
+        "heirs-tables",
+        "heirs-scenes",
+        "heirs-adventures"
+      ],
+      "folders": []
     }
   ],
   "relationships": {
