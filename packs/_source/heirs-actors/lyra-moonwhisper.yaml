@@ -1,0 +1,114 @@
+# Lyra Moonwhisper - Elven Sage
+# A mysterious elf who knows of the ancient prophecies
+name: Lyra Moonwhisper
+type: npc
+img: icons/environment/people/commoner-woman.webp
+
+system:
+  abilities:
+    str:
+      value: 8
+      proficient: 0
+    dex:
+      value: 16
+      proficient: 1  # Proficient in Dexterity saves
+    con:
+      value: 10
+      proficient: 0
+    int:
+      value: 18
+      proficient: 1  # Proficient in Intelligence saves
+    wis:
+      value: 15
+      proficient: 0
+    cha:
+      value: 14
+      proficient: 0
+
+  attributes:
+    hp:
+      value: 40
+      max: 40
+      formula: 9d8
+    ac:
+      value: 13
+      flat: 13
+      calc: flat
+    movement:
+      walk: 30
+      units: ft
+
+  details:
+    cr: 2
+    source:
+      custom: Heirs Campaign
+    type:
+      value: humanoid
+      subtype: elf
+    alignment: ng  # Neutral Good
+    biography:
+      value: >-
+        <p>Lyra is an elven sage who has studied the ancient prophecies for
+        centuries. She arrived in town seemingly by chance, but those who know
+        her recognize that she rarely does anything without purpose.</p>
+        <p>Her knowledge of history and magic is vast, and she speaks in riddles
+        that often reveal their meaning only after events have unfolded.</p>
+
+  traits:
+    size: med
+    di:
+      value: []
+    dr:
+      value: []
+    dv:
+      value: []
+    ci:
+      value: []
+    languages:
+      value:
+        - common
+        - elvish
+        - draconic
+        - sylvan
+
+  # Skills
+  skills:
+    arc:
+      value: 2  # Arcana
+      ability: int
+    his:
+      value: 2  # History
+      ability: int
+    inv:
+      value: 2  # Investigation
+      ability: int
+    nat:
+      value: 1  # Nature
+      ability: int
+    per:
+      value: 1  # Perception
+      ability: wis
+
+  # Spellcasting
+  spells:
+    spell1:
+      value: 4
+      max: 4
+    spell2:
+      value: 3
+      max: 3
+    spell3:
+      value: 3
+      max: 3
+    spell4:
+      value: 2
+      max: 2
+
+  spellcasting:
+    ability: int
+    level: 9
+
+ownership:
+  default: 0
+
+sort: 300000

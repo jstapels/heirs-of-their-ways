@@ -1,0 +1,58 @@
+# Dawnblade - Legendary Longsword
+# A weapon of light forged by ancient heroes
+name: Dawnblade
+type: weapon
+img: icons/weapons/swords/sword-guard-blue.webp
+
+system:
+  description:
+    value: >-
+      <p>This elegant longsword gleams with an inner radiance, as if forged from
+      captured sunlight. The blade is etched with ancient runes that glow faintly
+      in darkness.</p>
+      <p><strong>Radiant Strike:</strong> Once per day, you can channel the blade's
+      power to make a devastating attack. On a hit, the target takes an extra
+      [[/damage 4d8 radiant]] damage and must succeed on a [[/save con 15]] or be
+      @UUID[Compendium.dnd5e.rules.JournalEntry.NizgRXLNUqtdlC1s.JournalEntryPage.VhK29QEvifI9PcGM]{Blinded}
+      until the end of your next turn.</p>
+      <p><strong>Light:</strong> The blade can emit bright light in a 20-foot radius
+      and dim light for an additional 20 feet. You can toggle this on or off as a
+      bonus action.</p>
+
+  # Weapon properties
+  weaponType: simpleM
+  baseItem: longsword
+  rarity: legendary
+  identified: true
+  attunement: required
+
+  # Combat stats
+  activation:
+    type: action
+    cost: 1
+
+  damage:
+    base:
+      number: 1
+      denomination: 8
+      bonus: "3"
+      types:
+        - slashing
+    versatile: "1d10 + 3"
+
+  proficient: 1
+  properties:
+    - ver  # Versatile
+    - mgc  # Magical
+
+  # Weight and value
+  weight:
+    value: 3
+  price:
+    value: 50000
+    denomination: gp
+
+ownership:
+  default: 0
+
+sort: 100000

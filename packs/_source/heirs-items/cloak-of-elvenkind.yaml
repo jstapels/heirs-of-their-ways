@@ -1,0 +1,41 @@
+# Cloak of Elvenkind
+# Wondrous item for stealth
+name: Cloak of Elvenkind
+type: equipment
+img: icons/equipment/back/cloak-layered-green.webp
+
+system:
+  description:
+    value: >-
+      <p>While you wear this cloak with its hood up, Wisdom (Perception) checks
+      made to see you have disadvantage, and you have advantage on Dexterity
+      (Stealth) checks made to hide, as the cloak's color shifts to camouflage you.</p>
+      <p>Pulling the hood up or down requires an action.</p>
+
+  # Equipment properties
+  type:
+    value: clothing
+    baseItem: ""
+
+  rarity: uncommon
+  identified: true
+  attunement: required
+  equipped: false
+
+  # Armor properties
+  armor:
+    type: clothing
+    value: 10
+    dex: null
+
+  # Weight and value
+  weight:
+    value: 1
+  price:
+    value: 5000
+    denomination: gp
+
+ownership:
+  default: 0
+
+sort: 300000
