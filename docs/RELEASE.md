@@ -24,21 +24,34 @@ This project follows [Semantic Versioning](https://semver.org/):
 
 ### 1. Create Pull Request
 
-When you create a pull request, add a version label to control how the version number is bumped:
+When you create a pull request, add labels to control the release behavior:
 
-**PR Labels:**
+**Version Labels:**
 - `version:major` - Bump major version (1.0.0 → 2.0.0)
 - `version:minor` - Bump minor version (1.0.0 → 1.1.0)
 - `version:patch` - Bump patch version (1.0.0 → 1.0.1) **[DEFAULT]**
 
-**Example:**
+**Special Labels:**
+- `skip-release` - Merge to main WITHOUT creating a release ⚠️
+
+**Example (with release):**
 ```
 1. Create feature branch: git checkout -b feature/chapter-2
 2. Make changes and commit
 3. Push and create PR
 4. Add label: version:minor (if adding new chapter)
 5. Get PR approved
-6. Merge to main
+6. Merge to main → Automatic release!
+```
+
+**Example (without release):**
+```
+1. Create feature branch: git checkout -b docs/update-readme
+2. Make changes and commit
+3. Push and create PR
+4. Add label: skip-release
+5. Get PR approved
+6. Merge to main → No release created
 ```
 
 ### 2. Automatic Build on Merge
@@ -247,8 +260,15 @@ The `.github/workflows/release.yml` workflow:
 - Bug fixes
 - Typo corrections
 - Small content tweaks
-- Documentation updates
 - Minor balance adjustments
+
+**Use `skip-release` for:**
+- Documentation-only changes
+- README/SETUP updates
+- Workflow changes (.github/)
+- Development tool updates
+- Changes that don't affect module functionality
+- Work-in-progress that needs to be in main but isn't ready for release
 
 ### PR Titles and Descriptions
 
