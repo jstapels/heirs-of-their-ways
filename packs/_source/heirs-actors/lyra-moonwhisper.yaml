@@ -1,8 +1,10 @@
 # Lyra Moonwhisper - Elven Sage
 # A mysterious elf who knows of the ancient prophecies
+_id: LyraMoonwhisp001
 name: Lyra Moonwhisper
 type: npc
 img: icons/environment/people/commoner-woman.webp
+folder: SampleActorsF0ld
 
 system:
   abilities:

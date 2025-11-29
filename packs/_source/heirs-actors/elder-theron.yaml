@@ -1,8 +1,10 @@
 # Elder Theron - Village Priest
 # A wise spiritual leader who guides the party at the start of their journey
+_id: ElderTheron00001
 name: Elder Theron
 type: npc
 img: icons/environment/people/cleric-grey.webp
+folder: SampleActorsF0ld
 
 system:
   abilities:

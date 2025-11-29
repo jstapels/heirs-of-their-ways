@@ -1,8 +1,10 @@
 # Dawnblade - Legendary Longsword
 # A weapon of light forged by ancient heroes
+_id: Dawnblade000001
 name: Dawnblade
 type: weapon
 img: icons/weapons/swords/sword-guard-blue.webp
+folder: SampleItemsF0ld1
 
 system:
   description:

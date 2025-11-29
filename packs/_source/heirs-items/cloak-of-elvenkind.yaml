@@ -1,8 +1,10 @@
 # Cloak of Elvenkind
 # Wondrous item for stealth
+_id: CloakElvenkind1
 name: Cloak of Elvenkind
 type: equipment
 img: icons/equipment/back/cloak-layered-green.webp
+folder: SampleItemsF0ld1
 
 system:
   description:

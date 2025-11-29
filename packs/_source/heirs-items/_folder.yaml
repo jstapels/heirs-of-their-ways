@@ -1,0 +1,9 @@
+name: Sample
+type: Item
+_id: SampleItemsF0ld1
+description: 'Sample items for the Heirs of Their Ways campaign'
+folder: null
+sorting: a
+sort: 100000
+color: '#8b3d8b'
+flags: {}

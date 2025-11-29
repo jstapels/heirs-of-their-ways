@@ -1,8 +1,10 @@
 # Captain Aldric - Guard Captain
 # Leader of the town guard, a skilled warrior and tactician
+_id: CaptainAldric001
 name: Captain Aldric
 type: npc
 img: icons/environment/people/guard.webp
+folder: SampleActorsF0ld
 
 system:
   abilities:

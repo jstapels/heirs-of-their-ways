@@ -1,8 +1,10 @@
 # Potion of Greater Healing
 # Standard healing potion for the campaign
+_id: PotionGrtrHeal1
 name: Potion of Greater Healing
 type: consumable
 img: icons/consumables/potions/potion-flask-corked-blue.webp
+folder: SampleItemsF0ld1
 
 system:
   description:

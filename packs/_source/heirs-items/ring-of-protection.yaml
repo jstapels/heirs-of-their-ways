@@ -1,8 +1,10 @@
 # Ring of Protection
 # Classic defensive magic item
+_id: RingProtection1
 name: Ring of Protection
 type: equipment
 img: icons/equipment/finger/ring-band-simple-gold.webp
+folder: SampleItemsF0ld1
 
 system:
   description:
