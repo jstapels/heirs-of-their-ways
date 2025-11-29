@@ -1,0 +1,165 @@
+name: Release Module
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: 'Version bump type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check if release should be skipped
+        id: check_skip
+        run: |
+          SKIP_RELEASE="false"
+
+          # Check if triggered by workflow dispatch
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Manual trigger - proceeding with release"
+          else
+            # Get the merged PR number from the commit message
+            PR_NUMBER=$(git log -1 --pretty=%B | grep -oP '(?<=Merge pull request #)\d+' | head -1)
+
+            if [ -n "$PR_NUMBER" ]; then
+              echo "Found PR #$PR_NUMBER"
+
+              # Get PR labels using GitHub API
+              LABELS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                "https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER" | \
+                jq -r '.labels[].name')
+
+              echo "PR Labels: $LABELS"
+
+              # Check for skip-release label
+              if echo "$LABELS" | grep -q "skip-release"; then
+                SKIP_RELEASE="true"
+                echo "⏭️  skip-release label found - skipping release"
+              fi
+            fi
+          fi
+
+          echo "skip_release=$SKIP_RELEASE" >> $GITHUB_OUTPUT
+
+      - name: Detect version bump type from PR labels
+        if: steps.check_skip.outputs.skip_release != 'true'
+        id: detect_bump
+        run: |
+          # Default to patch
+          BUMP_TYPE="patch"
+
+          # Check if triggered by workflow dispatch
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            BUMP_TYPE="${{ github.event.inputs.version_bump }}"
+            echo "Manual trigger: using $BUMP_TYPE from input"
+          else
+            # Get the merged PR number from the commit message
+            PR_NUMBER=$(git log -1 --pretty=%B | grep -oP '(?<=Merge pull request #)\d+' | head -1)
+
+            if [ -n "$PR_NUMBER" ]; then
+              echo "Found PR #$PR_NUMBER"
+
+              # Get PR labels using GitHub API
+              LABELS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                "https://api.github.com/repos/${{ github.repository }}/pulls/$PR_NUMBER" | \
+                jq -r '.labels[].name')
+
+              echo "PR Labels: $LABELS"
+
+              # Check for version bump labels
+              if echo "$LABELS" | grep -q "version:major"; then
+                BUMP_TYPE="major"
+              elif echo "$LABELS" | grep -q "version:minor"; then
+                BUMP_TYPE="minor"
+              elif echo "$LABELS" | grep -q "version:patch"; then
+                BUMP_TYPE="patch"
+              fi
+            else
+              echo "No PR found, using default: patch"
+            fi
+          fi
+
+          echo "bump_type=$BUMP_TYPE" >> $GITHUB_OUTPUT
+          echo "Using version bump type: $BUMP_TYPE"
+
+      - name: Bump version
+        if: steps.check_skip.outputs.skip_release != 'true'
+        id: bump_version
+        run: |
+          node utils/bump-version.mjs ${{ steps.detect_bump.outputs.bump_type }}
+
+      - name: Build compendium packs
+        if: steps.check_skip.outputs.skip_release != 'true'
+        run: npm run build:packs
+
+      - name: Build release
+        if: steps.check_skip.outputs.skip_release != 'true'
+        run: node utils/build-release.mjs
+
+      - name: Commit version bump
+        if: steps.check_skip.outputs.skip_release != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add module.json package.json
+          git commit -m "chore: bump version to ${{ steps.bump_version.outputs.version }}" || echo "No changes to commit"
+          git push
+
+      - name: Create GitHub Release
+        if: steps.check_skip.outputs.skip_release != 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.bump_version.outputs.tag }}
+          name: Release ${{ steps.bump_version.outputs.version }}
+          body_path: dist/release-notes.md
+          draft: false
+          prerelease: false
+          files: |
+            dist/heirs-of-their-ways.zip
+            dist/module.json
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload build artifacts
+        if: steps.check_skip.outputs.skip_release != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-artifacts
+          path: |
+            dist/*.zip
+            dist/module.json
+            dist/release-notes.md
+          retention-days: 30
+
+      - name: Skip release notification
+        if: steps.check_skip.outputs.skip_release == 'true'
+        run: |
+          echo "⏭️  Release skipped due to skip-release label"
+          echo "Changes merged to main without creating a release"

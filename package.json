@@ -10,7 +10,12 @@
     "build:pack": "node utils/packs.mjs compile",
     "extract:packs": "node utils/packs.mjs extract",
     "extract:pack": "node utils/packs.mjs extract",
-    "clean:packs": "node utils/packs.mjs clean"
+    "clean:packs": "node utils/packs.mjs clean",
+    "version:patch": "node utils/bump-version.mjs patch",
+    "version:minor": "node utils/bump-version.mjs minor",
+    "version:major": "node utils/bump-version.mjs major",
+    "build:release": "npm run build:packs && node utils/build-release.mjs",
+    "release": "npm run build:release"
   },
   "repository": {
     "type": "git",
@@ -26,6 +31,7 @@
   "license": "MIT",
   "devDependencies": {
     "@foundryvtt/foundryvtt-cli": "^3.0.2",
+    "archiver": "^7.0.1",
     "fancy-log": "^2.0.0",
     "js-yaml": "^4.1.0",
     "yargs": "^17.7.2"

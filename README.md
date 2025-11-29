@@ -18,10 +18,20 @@ This module packages campaign-specific content for use with Foundry Virtual Tabl
 
 ### For FoundryVTT
 
+Install directly from the module browser or use the manifest URL:
+
+**Manifest URL:**
+```
+https://github.com/jstapels/heirs-of-their-ways/releases/latest/download/module.json
+```
+
+**Steps:**
 1. Open FoundryVTT and navigate to Add-on Modules
 2. Click "Install Module"
-3. Enter the manifest URL: `[URL will be added when published]`
+3. Paste the manifest URL above
 4. Click Install
+
+The module will automatically update when new releases are published.
 
 ### For Development
 
@@ -84,23 +94,35 @@ heirs-of-their-ways/
 
 ## Development
 
-This module is developed using a hybrid workflow combining markdown notes, Claude AI assistance, and FoundryVTT's native tools.
+This module uses a modern development workflow with YAML sources and automated releases.
 
 ### Workflow
 
-1. **Write** campaign notes in markdown (`campaign-notes/`)
-2. **Generate** JSON using Claude Code or export from Foundry
-3. **Import** JSON into FoundryVTT for testing
-4. **Organize** content in compendium packs
-5. **Version control** with Git
+1. **Edit** YAML files in `packs/_source/heirs-pack/`
+2. **Build** compendium packs with `npm run build:packs`
+3. **Test** in FoundryVTT
+4. **Commit** changes with descriptive messages
+5. **Create PR** with appropriate version label
+6. **Merge** to trigger automatic release
 
 See [docs/WORKFLOW.md](docs/WORKFLOW.md) for detailed development workflow.
+
+### Automated Releases
+
+When a PR is merged to `main`, GitHub Actions automatically:
+- Bumps version based on PR labels (`version:major`, `version:minor`, `version:patch`)
+- Builds compendium packs from YAML sources
+- Creates release zip and manifest
+- Publishes GitHub Release
+
+See [docs/RELEASE.md](docs/RELEASE.md) for complete release process documentation.
 
 ### For Contributors
 
 - Read [CLAUDE.md](CLAUDE.md) for AI-assisted development guidelines
 - Check [docs/ENRICHERS.md](docs/ENRICHERS.md) for text enricher syntax
 - Follow the workflow in [docs/WORKFLOW.md](docs/WORKFLOW.md)
+- Review [docs/RELEASE.md](docs/RELEASE.md) before creating PRs
 
 ## Requirements
 

@@ -10,6 +10,10 @@ package-lock.json
 packs/*/
 !packs/_source/
 
+# Build output
+dist/
+*.zip
+
 # OS
 .DS_Store
 Thumbs.db
