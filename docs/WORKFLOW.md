@@ -7,33 +7,111 @@ This guide explains the workflow for developing content for the Heirs of Their W
 ```
 heirs-of-their-ways/
 ├── module.json                    # FoundryVTT module manifest
+├── package.json                   # NPM configuration for build scripts
 ├── CLAUDE.md                      # AI assistant guide
 ├── README.md                      # Project overview
 ├── docs/                          # Documentation
 │   ├── ENRICHERS.md              # Text enrichers reference
 │   └── WORKFLOW.md               # This file
+├── utils/                         # Build utilities
+│   └── packs.mjs                 # Pack compilation script
 ├── campaign-notes/                # Markdown notes for campaign content
 │   ├── adventures/               # Adventure outlines and session notes
 │   ├── npcs/                     # NPC descriptions and backgrounds
 │   ├── locations/                # Location descriptions
 │   ├── items/                    # Custom item descriptions
 │   └── lore/                     # World lore and background
-├── source-data/                   # JSON exports from Foundry
+├── source-data/                   # JSON exports (legacy/backup)
 │   ├── actors/                   # NPC/creature JSON files
 │   ├── items/                    # Item JSON files
 │   ├── journals/                 # Journal entry JSON files
 │   ├── scenes/                   # Scene JSON files
 │   └── tables/                   # Roll table JSON files
+├── packs/                         # Compendium packs
+│   ├── _source/                  # YAML source files (edit these!)
+│   │   └── heirs-pack/          # Main campaign pack sources
+│   │       ├── actors/          # NPC YAML files
+│   │       ├── items/           # Item YAML files
+│   │       ├── journals/        # Journal YAML files
+│   │       ├── scenes/          # Scene YAML files
+│   │       └── tables/          # Table YAML files
+│   └── heirs-pack/               # Compiled LevelDB (generated)
 ├── assets/                        # Media assets
 │   ├── maps/                     # Map images for scenes
 │   ├── tokens/                   # Token artwork
 │   ├── images/                   # Other images
 │   └── sounds/                   # Audio files
-└── packs/                         # Compendium packs (LevelDB)
-    └── heirs-pack/               # Main adventure pack
+└── node_modules/                  # NPM dependencies (auto-generated)
 ```
 
 ## Workflow Overview
+
+This module uses a **modern YAML-based build system** for managing compendium content. There are two primary workflows:
+
+### Recommended Workflow: YAML Source Files
+
+**Best for:** Version control, collaboration, and maintainability
+
+1. Edit YAML files in `packs/_source/heirs-pack/`
+2. Run `npm run build:packs` to compile to LevelDB
+3. Test in FoundryVTT
+4. Commit YAML sources to git
+
+### Alternative Workflow: Direct FoundryVTT Editing
+
+**Best for:** Complex content requiring visual editing
+
+1. Create/edit content in FoundryVTT UI
+2. Run `npm run extract:packs` to generate YAML sources
+3. Commit YAML sources to git
+4. Share with collaborators
+
+---
+
+## YAML Build System
+
+### Quick Start
+
+```bash
+# First time setup
+npm install
+
+# Edit YAML files in packs/_source/heirs-pack/
+# (actors, items, journals, scenes, tables)
+
+# Build the compendium packs
+npm run build:packs
+
+# Refresh FoundryVTT (F5) to see changes
+```
+
+### Build Commands
+
+```bash
+npm run build:packs              # Compile all YAML → LevelDB
+npm run build:packs -- heirs-pack  # Compile specific pack
+
+npm run extract:packs            # Extract all LevelDB → YAML
+npm run extract:packs -- heirs-pack # Extract specific pack
+
+npm run clean:packs              # Standardize YAML formatting
+```
+
+### Why YAML?
+
+- **Human-readable** - Easy to edit in any text editor
+- **Version control** - Git can show meaningful diffs
+- **Comments** - Document your content inline
+- **Merge-friendly** - Avoid binary LevelDB merge conflicts
+- **Industry standard** - Same approach as official dnd5e system
+
+See [packs/_source/README.md](../packs/_source/README.md) for complete YAML documentation.
+
+---
+
+## Traditional Workflow (Legacy)
+
+The following workflow uses the `source-data/` directory for JSON exports. This is maintained for compatibility but **YAML sources are recommended** for new content.
 
 ### Phase 1: Planning and Note-Taking
 

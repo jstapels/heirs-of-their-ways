@@ -1,0 +1,88 @@
+# Example Journal Entry - Template for creating journals
+# Delete this file when you add your first real journal
+#
+# Journals in FoundryVTT v13+ use a page-based structure
+# Each journal can have multiple pages with different content types
+
+name: Example Adventure
+folder: null
+
+# Journal pages
+pages:
+  # First page - Synopsis
+  - name: Synopsis
+    type: text
+
+    # Page title configuration
+    title:
+      show: true
+      level: 1
+
+    # Text content (HTML with enrichers)
+    text:
+      format: 1  # HTML format
+      content: >-
+        <h1>Adventure Title</h1>
+
+        <p>The adventurers arrive in the village and meet the local priest.</p>
+
+        <p>This adventure introduces them to the main conflict.</p>
+
+    # Image for page
+    src: null
+
+    # Sort order
+    sort: 100000
+
+  # Second page - Act 1
+  - name: Act 1
+    type: text
+    title:
+      show: true
+      level: 2
+    text:
+      format: 1
+      content: >-
+        <h2>Act 1: The Beginning</h2>
+
+        <p>Players arrive and meet @UUID[Actor.abc123]{the village elder}.</p>
+
+        <h3>Encounter: Bandits</h3>
+
+        <p>Three bandits attack!</p>
+
+        <p><strong>Initiative:</strong> [[/roll 1d20+2]]</p>
+
+        <p><strong>Tactics:</strong> They demand a [[/check cha 12]] to negotiate.</p>
+
+        <p><strong>Treasure:</strong> 25gp and a @UUID[Item.xyz789]{magic amulet}</p>
+
+    sort: 200000
+
+  # Third page - Rewards
+  - name: Rewards
+    type: text
+    title:
+      show: true
+      level: 2
+    text:
+      format: 1
+      content: >-
+        <h2>Chapter Rewards</h2>
+
+        <ul>
+        <li>100 gp from the village elder</li>
+        <li>@UUID[Item.xyz789]{Magic Amulet}</li>
+        <li>Village reputation increased</li>
+        <li>500 XP per character</li>
+        </ul>
+
+    sort: 300000
+
+# Ownership (2 = OBSERVER means players can read)
+ownership:
+  default: 2
+
+sort: 0
+
+flags: {}

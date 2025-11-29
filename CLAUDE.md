@@ -93,6 +93,37 @@ Guide for JSON exports and imports:
 - Version control best practices
 - **Reference this when working with JSON data**
 
+#### `packs/_source/README.md`
+Guide for YAML pack source files:
+- Modern YAML-based build system
+- Creating and editing YAML sources
+- Build commands and workflow
+- YAML format examples and templates
+- **Use this for managing compendium content**
+
+### Build System
+
+This module uses a **YAML-based pack compilation system** (following the official dnd5e system approach):
+
+- **Source Files**: YAML files in `packs/_source/heirs-pack/`
+- **Compiled Output**: LevelDB databases in `packs/heirs-pack/`
+- **Build Tool**: `utils/packs.mjs` with `@foundryvtt/foundryvtt-cli`
+
+**Key Commands:**
+```bash
+npm install                # Install dependencies (first time)
+npm run build:packs        # Compile YAML → LevelDB
+npm run extract:packs      # Extract LevelDB → YAML
+npm run clean:packs        # Standardize YAML formatting
+```
+
+**Why YAML?**
+- Human-readable and editable
+- Git-friendly with meaningful diffs
+- Supports comments for documentation
+- Same approach as official dnd5e system
+- Avoids binary merge conflicts
+
 ## FoundryVTT Module Concepts
 
 ### Compendium Packs
