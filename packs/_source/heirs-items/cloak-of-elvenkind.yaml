@@ -37,6 +37,41 @@ system:
     value: 5000
     denomination: gp
 
+effects:
+  - _id: CloakElvenEffect
+    name: Elvenkind Stealth
+    img: icons/equipment/back/cloak-layered-green.webp
+    type: base
+    system: {}
+    changes:
+      - key: flags.dnd5e.advantage.ability.check.ste
+        mode: 5
+        value: '1'
+        priority: null
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    origin: null
+    transfer: true
+    flags: {}
+    tint: '#ffffff'
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      coreVersion: '13.344'
+      systemId: dnd5e
+      systemVersion: 4.0.0
+      createdTime: null
+      modifiedTime: null
+      lastModifiedBy: null
+    _key: '!items.effects!CloakElvenkind1.CloakElvenEffect'
+
 ownership:
   default: 0
 

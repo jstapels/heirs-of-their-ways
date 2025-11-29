@@ -22,30 +22,208 @@ system:
       bonus action.</p>
 
   # Weapon properties
-  weaponType: simpleM
-  baseItem: longsword
+  type:
+    value: martialM
+    baseItem: longsword
   rarity: legendary
   identified: true
   attunement: required
+  proficient: null
 
-  # Combat stats
-  activation:
-    type: action
-    cost: 1
+  # Properties
+  properties:
+    - ver  # Versatile
+    - mgc  # Magical
 
+  # Damage
   damage:
     base:
       number: 1
       denomination: 8
-      bonus: "3"
+      bonus: '3'
       types:
         - slashing
-    versatile: "1d10 + 3"
+      custom:
+        enabled: false
+        formula: ''
+      scaling:
+        mode: ''
+        number: null
+        formula: ''
+    versatile:
+      number: 1
+      denomination: 10
+      bonus: '3'
+      types:
+        - slashing
+      custom:
+        enabled: false
+        formula: ''
+      scaling:
+        mode: ''
+        number: null
+        formula: ''
 
-  proficient: 1
-  properties:
-    - ver  # Versatile
-    - mgc  # Magical
+  # Range
+  range:
+    value: null
+    long: null
+    units: ft
+    reach: null
+
+  # Magic bonus
+  magicalBonus: 3
+
+  # Activities
+  activities:
+    dnd5eactivity000:
+      _id: dnd5eactivity000
+      type: attack
+      name: Attack
+      activation:
+        type: action
+        value: 1
+        condition: ''
+        override: false
+      consumption:
+        targets: []
+        scaling:
+          allowed: false
+          max: ''
+        spellSlot: true
+      description:
+        chatFlavor: ''
+      duration:
+        concentration: false
+        value: ''
+        units: ''
+        special: ''
+        override: false
+      effects: []
+      range:
+        value: '5'
+        units: ft
+        special: ''
+        override: false
+      target:
+        template:
+          count: ''
+          contiguous: false
+          type: ''
+          size: ''
+          width: ''
+          height: ''
+          units: ft
+        affects:
+          count: ''
+          type: ''
+          choice: false
+          special: ''
+        prompt: true
+        override: false
+      attack:
+        ability: ''
+        bonus: ''
+        critical:
+          threshold: null
+        flat: false
+        type:
+          value: melee
+          classification: weapon
+      damage:
+        critical:
+          bonus: ''
+        includeBase: true
+        parts: []
+      uses:
+        spent: 0
+        recovery: []
+      sort: 0
+    radiantstrike001:
+      _id: radiantstrike001
+      type: save
+      name: Radiant Strike
+      activation:
+        type: action
+        value: 1
+        condition: 'Once per day'
+        override: false
+      consumption:
+        targets:
+          - type: itemUses
+            value: '1'
+            scaling: {}
+        scaling:
+          allowed: false
+          max: ''
+        spellSlot: false
+      description:
+        chatFlavor: 'Devastating radiant power'
+      duration:
+        concentration: false
+        value: '1'
+        units: turn
+        special: ''
+        override: false
+      effects: []
+      range:
+        value: '5'
+        units: ft
+        special: ''
+        override: false
+      target:
+        template:
+          count: ''
+          contiguous: false
+          type: ''
+          size: ''
+          width: ''
+          height: ''
+          units: ft
+        affects:
+          count: '1'
+          type: creature
+          choice: false
+          special: ''
+        prompt: true
+        override: false
+      damage:
+        critical:
+          bonus: ''
+        onSave: half
+        parts:
+          - number: 4
+            denomination: 8
+            bonus: ''
+            types:
+              - radiant
+            custom:
+              enabled: false
+              formula: ''
+            scaling:
+              mode: ''
+              number: null
+              formula: ''
+      save:
+        ability: con
+        dc:
+          calculation: ''
+          formula: '15'
+      uses:
+        spent: 0
+        max: '1'
+        recovery:
+          - period: lr
+            type: recoverAll
+      sort: 1
+
+  # Uses (for Radiant Strike)
+  uses:
+    max: '1'
+    recovery:
+      - period: lr
+        type: recoverAll
+    spent: 0
 
   # Weight and value
   weight:

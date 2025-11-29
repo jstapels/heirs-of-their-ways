@@ -28,6 +28,45 @@ system:
     value: 3500
     denomination: gp
 
+effects:
+  - _id: RingProtEffect1
+    name: Protection
+    img: icons/equipment/finger/ring-band-simple-gold.webp
+    type: base
+    system: {}
+    changes:
+      - key: system.attributes.ac.bonus
+        mode: 2
+        value: '+1'
+        priority: null
+      - key: system.bonuses.abilities.save
+        mode: 2
+        value: '+1'
+        priority: null
+    disabled: false
+    duration:
+      startTime: null
+      seconds: null
+      combat: null
+      rounds: null
+      turns: null
+      startRound: null
+      startTurn: null
+    origin: null
+    transfer: true
+    flags: {}
+    tint: '#ffffff'
+    _stats:
+      compendiumSource: null
+      duplicateSource: null
+      coreVersion: '13.344'
+      systemId: dnd5e
+      systemVersion: 4.0.0
+      createdTime: null
+      modifiedTime: null
+      lastModifiedBy: null
+    _key: '!items.effects!RingProtection1.RingProtEffect1'
+
 ownership:
   default: 0
 

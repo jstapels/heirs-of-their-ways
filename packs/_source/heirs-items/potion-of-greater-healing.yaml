@@ -20,20 +20,78 @@ system:
     per: charges
     autoDestroy: true
 
-  # Activation
-  activation:
-    type: action
-    cost: 1
-
-  # Healing
-  damage:
-    parts:
-      - - 4d4 + 4
-        - healing
-
   # Item properties
   rarity: uncommon
   identified: true
+  properties:
+    - mgc
+
+  # Activities
+  activities:
+    dnd5eactivity000:
+      _id: dnd5eactivity000
+      type: heal
+      activation:
+        type: action
+        value: 1
+        condition: ''
+        override: false
+      consumption:
+        targets:
+          - type: itemUses
+            value: '1'
+            scaling: {}
+        scaling:
+          allowed: false
+          max: ''
+        spellSlot: true
+      description:
+        chatFlavor: ''
+      duration:
+        concentration: false
+        value: ''
+        units: inst
+        special: ''
+        override: false
+      effects: []
+      range:
+        value: ''
+        units: touch
+        special: ''
+        override: false
+      target:
+        template:
+          count: ''
+          contiguous: false
+          type: ''
+          size: ''
+          width: ''
+          height: ''
+          units: ft
+        affects:
+          count: '1'
+          type: creature
+          choice: false
+          special: ''
+        prompt: true
+        override: false
+      healing:
+        number: 4
+        denomination: 4
+        bonus: '4'
+        types:
+          - healing
+        custom:
+          enabled: false
+          formula: ''
+        scaling:
+          mode: whole
+          number: null
+          formula: ''
+      uses:
+        spent: 0
+        recovery: []
+      sort: 0
 
   # Weight and value
   weight:
