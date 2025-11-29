@@ -32,6 +32,8 @@ const INCLUDE_PATTERNS = [
   "SETUP.md",
   "packs/**/*",
   "assets/**/*",
+  "scripts/**/*",
+  "lang/**/*",
   "!packs/_source/**",  // Exclude source files
   "!**/.gitkeep"
 ];
@@ -119,6 +121,16 @@ async function createReleaseZip(version) {
     // Add assets directory
     if (fs.existsSync("assets")) {
       archive.directory("assets", `${MODULE_ID}/assets`);
+    }
+
+    // Add scripts directory
+    if (fs.existsSync("scripts")) {
+      archive.directory("scripts", `${MODULE_ID}/scripts`);
+    }
+
+    // Add lang directory
+    if (fs.existsSync("lang")) {
+      archive.directory("lang", `${MODULE_ID}/lang`);
     }
 
     archive.finalize();
