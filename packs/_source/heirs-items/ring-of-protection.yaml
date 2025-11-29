@@ -1,0 +1,32 @@
+# Ring of Protection
+# Classic defensive magic item
+name: Ring of Protection
+type: equipment
+img: icons/equipment/finger/ring-band-simple-gold.webp
+
+system:
+  description:
+    value: >-
+      <p>You gain a +1 bonus to AC and saving throws while wearing this ring.</p>
+
+  # Equipment properties
+  type:
+    value: trinket
+    baseItem: ""
+
+  rarity: rare
+  identified: true
+  attunement: required
+  equipped: false
+
+  # Weight and value
+  weight:
+    value: 0
+  price:
+    value: 3500
+    denomination: gp
+
+ownership:
+  default: 0
+
+sort: 400000
