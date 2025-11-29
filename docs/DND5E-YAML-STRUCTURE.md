@@ -42,12 +42,17 @@ _stats:                  # Metadata (auto-generated)
   createdTime: 1725037083672
   modifiedTime: 1725992478305
   lastModifiedBy: dnd5ebuilder0000
-_key: '!items!UniqueIdentifier16'  # Database key
+_key: '!items!UniqueIdentifier16'  # Database key (REQUIRED - see below)
 ```
 
 ### Key Field Guidelines
 
 - **_id**: Must be unique across the entire pack. Use 16-character alphanumeric strings
+- **_key**: **REQUIRED** - Database key that follows a specific pattern:
+  - Actors: `_key: '!actors!{_id}'`
+  - Items (weapons, equipment, consumables, spells, feats, backgrounds): `_key: '!items!{_id}'`
+  - Folders: `_key: '!folders!{_id}'`
+  - Example: If `_id: CaptainAldric001`, then `_key: '!actors!CaptainAldric001'`
 - **type**: Determines document structure. Common types:
   - `npc` - Monsters and NPCs
   - `weapon` - Melee and ranged weapons
@@ -75,6 +80,7 @@ sort: 0                  # Sort order
 color: '#3d8b3d'        # Folder color (hex)
 description: ''          # Optional description
 flags: {}
+_key: '!folders!UniqueFolderID16'  # REQUIRED
 _stats:
   systemId: dnd5e
   systemVersion: 4.0.0
@@ -82,7 +88,6 @@ _stats:
   createdTime: 1701908182383
   modifiedTime: 1701908224846
   lastModifiedBy: dnd5ebuilder0000
-_key: '!folders!UniqueFolderID16'
 ```
 
 **Folder Colors:**
@@ -1021,6 +1026,7 @@ system:
 ownership:
   default: 0
 sort: 0
+_key: '!actors!UniqueID16Chars'
 ```
 
 ### Simple Magic Item
@@ -1046,6 +1052,7 @@ system:
 ownership:
   default: 0
 sort: 0
+_key: '!items!UniqueID16Chars'
 ```
 
 ### Simple Spell
@@ -1073,6 +1080,7 @@ system:
 ownership:
   default: 0
 sort: 0
+_key: '!items!UniqueID16Chars'
 ```
 
 ---
@@ -1080,13 +1088,17 @@ sort: 0
 ## Best Practices
 
 1. **Unique IDs**: Always use unique 16-character alphanumeric IDs
-2. **Folders**: Organize content in folders for easier navigation
-3. **Descriptions**: Use HTML formatting and enrichers (see ENRICHERS.md)
-4. **Images**: Use system icons (`icons/*`) when possible for consistency
-5. **Source**: Set `source.custom` for campaign-specific content
-6. **Testing**: Build and test in Foundry after creating new content
-7. **Version Control**: Use descriptive filenames (lowercase-with-hyphens.yaml)
-8. **Comments**: Add YAML comments (`#`) to document complex structures
+2. **Database Keys**: **ALWAYS** include the `_key` field with the correct pattern:
+   - `_key: '!actors!{_id}'` for actors
+   - `_key: '!items!{_id}'` for items (weapons, equipment, spells, feats, etc.)
+   - `_key: '!folders!{_id}'` for folders
+3. **Folders**: Organize content in folders for easier navigation
+4. **Descriptions**: Use HTML formatting and enrichers (see ENRICHERS.md)
+5. **Images**: Use system icons (`icons/*`) when possible for consistency
+6. **Source**: Set `source.custom` for campaign-specific content
+7. **Testing**: Build and test in Foundry after creating new content
+8. **Version Control**: Use descriptive filenames (lowercase-with-hyphens.yaml)
+9. **Comments**: Add YAML comments (`#`) to document complex structures
 
 ---
 
