@@ -18,6 +18,16 @@
   "flags": {
     "canUpload": true
   },
+  "esmodules": [
+    "scripts/calendar.js"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
   "packs": [
     {
       "name": "heirs-actors",

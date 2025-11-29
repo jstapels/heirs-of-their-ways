@@ -1,0 +1,65 @@
+{
+  "HEIRS": {
+    "CALENDAR": {
+      "Aevir": {
+        "Month": {
+          "Frostmoot": "Frostmoot",
+          "FrostmootAbbr": "Fro",
+          "Snowstride": "Snowstride",
+          "SnowstrideAbbr": "Sno",
+          "Thawmarch": "Thawmarch",
+          "ThawmarchAbbr": "Tha",
+          "Bloomtide": "Bloomtide",
+          "BloomtideAbbr": "Blo",
+          "Greenspan": "Greenspan",
+          "GreenspanAbbr": "Gre",
+          "Sunchase": "Sunchase",
+          "SunchaseAbbr": "Sun",
+          "Highsun": "Highsun",
+          "HighsunAbbr": "Hig",
+          "Ambercrest": "Ambercrest",
+          "AmbercrestAbbr": "Amb",
+          "Harvestfall": "Harvestfall",
+          "HarvestfallAbbr": "Har",
+          "Windrise": "Windrise",
+          "WindriseAbbr": "Win",
+          "Duskhollow": "Duskhollow",
+          "DuskhollowAbbr": "Dus",
+          "Nightveil": "Nightveil",
+          "NightveilAbbr": "Nig"
+        },
+        "Day": {
+          "Luminday": "Luminday",
+          "LumindayAbbr": "Lum",
+          "Terraday": "Terraday",
+          "TerradayAbbr": "Ter",
+          "Aquaday": "Aquaday",
+          "AquadayAbbr": "Aqu",
+          "Emberday": "Emberday",
+          "EmberdayAbbr": "Emb",
+          "Aerisday": "Aerisday",
+          "AerisdayAbbr": "Aer",
+          "Verdeday": "Verdeday",
+          "VerdedayAbbr": "Ver",
+          "Solarday": "Solarday",
+          "SolardayAbbr": "Sol",
+          "Lunarday": "Lunarday",
+          "LunardayAbbr": "Lun",
+          "Stellarday": "Stellarday",
+          "StellardayAbbr": "Ste",
+          "Spiritday": "Spiritday",
+          "SpiritdayAbbr": "Spi"
+        },
+        "Season": {
+          "Spring": "Spring",
+          "Summer": "Summer",
+          "Fall": "Fall",
+          "Winter": "Winter"
+        },
+        "Festival": {
+          "Midsummer": "Midsummer"
+        }
+      }
+    }
+  }
+}
