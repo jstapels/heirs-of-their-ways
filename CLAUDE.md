@@ -124,6 +124,30 @@ npm run clean:packs        # Standardize YAML formatting
 - Same approach as official dnd5e system
 - Avoids binary merge conflicts
 
+### Automated Release System
+
+This module uses **GitHub Actions for automated releases**:
+
+- **Trigger**: Merging PR to main branch
+- **Version Management**: Based on PR labels (`version:major`, `version:minor`, `version:patch`)
+- **Build Process**: Compiles YAML, creates zip, updates URLs
+- **Distribution**: GitHub Releases with downloadable assets
+
+**Release Scripts:**
+```bash
+npm run version:patch      # Bump patch version
+npm run version:minor      # Bump minor version
+npm run version:major      # Bump major version
+npm run build:release      # Build release package
+```
+
+**When creating PRs:**
+- Add `version:patch` label for bug fixes (default)
+- Add `version:minor` label for new features/chapters
+- Add `version:major` label for breaking changes
+
+See [docs/RELEASE.md](docs/RELEASE.md) for complete release documentation.
+
 ## FoundryVTT Module Concepts
 
 ### Compendium Packs
