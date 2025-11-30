@@ -3,7 +3,13 @@
  * Registers the custom Aevir calendar with the DnD5e system
  */
 
-Hooks.once('init', () => {
+Hooks.on('dnd5e.setupCalendar', () => {
+  // Verify CONFIG.DND5E.calendar exists
+  if (!CONFIG?.DND5E?.calendar?.calendars) {
+    console.error("Heirs of Their Ways | DnD5e calendar configuration not found");
+    return;
+  }
+
   // Add the Aevir calendar to the DnD5e calendar configuration
   CONFIG.DND5E.calendar.calendars.push({
     value: "aevir",
