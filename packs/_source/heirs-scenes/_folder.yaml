@@ -1,0 +1,10 @@
+name: Campaign Locations
+type: Scene
+_id: CampaignLocsF0ld
+description: 'Maps and scenes for key campaign locations'
+folder: null
+sorting: a
+sort: 100000
+color: '#3d6b8b'
+flags: {}
+_key: '!folders!CampaignLocsF0ld'

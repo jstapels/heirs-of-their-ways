@@ -1,0 +1,246 @@
+name: DM Quick Reference
+type: base
+_id: DMQuickRefJrnl01
+folder: CampaignLoreF0ld
+sort: 300000
+ownership:
+  default: 0
+flags: {}
+
+pages:
+  - name: Common DCs
+    type: text
+    _id: CommonDCsPage01
+    _key: '!journal.pages!DMQuickRefJrnl01.CommonDCsPage01'
+    sort: 100000
+    ownership:
+      default: -1
+    title:
+      show: true
+      level: 1
+    text:
+      content: >-
+        <h2>Difficulty Classes</h2>
+        <table>
+          <thead>
+            <tr><th>Task Difficulty</th><th>DC</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Very Easy</td><td>5</td></tr>
+            <tr><td>Easy</td><td>10</td></tr>
+            <tr><td>Medium</td><td>15</td></tr>
+            <tr><td>Hard</td><td>20</td></tr>
+            <tr><td>Very Hard</td><td>25</td></tr>
+            <tr><td>Nearly Impossible</td><td>30</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Common Skill Checks</h2>
+        <ul>
+          <li>[[/check perception 15]]{Perception DC 15} - Notice hidden details</li>
+          <li>[[/check investigation 12]]{Investigation DC 12} - Search for clues</li>
+          <li>[[/check insight 13]]{Insight DC 13} - Read intentions</li>
+          <li>[[/check athletics 15]]{Athletics DC 15} - Climb difficult surface</li>
+          <li>[[/check stealth 14]]{Stealth DC 14} - Move quietly</li>
+          <li>[[/check arcana 15]]{Arcana DC 15} - Identify magical effect</li>
+        </ul>
+
+        <h2>Common Saving Throws</h2>
+        <ul>
+          <li>[[/save con 10]]{Constitution DC 10} - Resist mild poison</li>
+          <li>[[/save con 15]]{Constitution DC 15} - Resist harsh conditions</li>
+          <li>[[/save wis 13]]{Wisdom DC 13} - Resist fear effect</li>
+          <li>[[/save dex 15]]{Dexterity DC 15} - Avoid trap</li>
+        </ul>
+      format: 1
+      markdown: ""
+    image: {}
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    flags: {}
+
+  - name: Conditions
+    type: text
+    _id: ConditionsPage02
+    _key: '!journal.pages!DMQuickRefJrnl01.ConditionsPage02'
+    sort: 200000
+    ownership:
+      default: -1
+    title:
+      show: true
+      level: 1
+    text:
+      content: >-
+        <h2>Condition Quick Reference</h2>
+
+        <p><strong>&Reference[blinded]</strong> - Can't see, auto-fails sight checks,
+        attacks against have advantage, attacks have disadvantage</p>
+
+        <p><strong>&Reference[charmed]</strong> - Can't attack charmer,
+        charmer has advantage on social checks</p>
+
+        <p><strong>&Reference[deafened]</strong> - Can't hear, auto-fails hearing checks</p>
+
+        <p><strong>&Reference[frightened]</strong> - Disadvantage on checks/attacks
+        while source visible, can't willingly move closer</p>
+
+        <p><strong>&Reference[grappled]</strong> - Speed becomes 0, ends if grappler
+        incapacitated or moved out of reach</p>
+
+        <p><strong>&Reference[incapacitated]</strong> - Can't take actions or reactions</p>
+
+        <p><strong>&Reference[invisible]</strong> - Impossible to see without magic,
+        attacks against have disadvantage, attacks have advantage</p>
+
+        <p><strong>&Reference[paralyzed]</strong> - Incapacitated, can't move or speak,
+        auto-fails Str/Dex saves, attacks have advantage, crits within 5ft</p>
+
+        <p><strong>&Reference[poisoned]</strong> - Disadvantage on attacks and checks</p>
+
+        <p><strong>&Reference[prone]</strong> - Disadvantage on attacks, attacks within
+        5ft have advantage, ranged attacks have disadvantage</p>
+
+        <p><strong>&Reference[restrained]</strong> - Speed 0, attacks have disadvantage,
+        attacks against have advantage, disadvantage on Dex saves</p>
+
+        <p><strong>&Reference[stunned]</strong> - Incapacitated, can't move, can speak
+        falteringly, auto-fails Str/Dex saves, attacks have advantage</p>
+
+        <p><strong>&Reference[unconscious]</strong> - Incapacitated, can't move or speak,
+        drops held items, falls prone, auto-fails Str/Dex saves, crits within 5ft</p>
+      format: 1
+      markdown: ""
+    image: {}
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    flags: {}
+
+  - name: Combat Actions
+    type: text
+    _id: CombatActionsP03
+    _key: '!journal.pages!DMQuickRefJrnl01.CombatActionsP03'
+    sort: 300000
+    ownership:
+      default: -1
+    title:
+      show: true
+      level: 1
+    text:
+      content: >-
+        <h2>Actions in Combat</h2>
+
+        <h3>Standard Actions</h3>
+        <ul>
+          <li><strong>Attack</strong> - Make one melee or ranged attack (or more with Extra Attack)</li>
+          <li><strong>Cast a Spell</strong> - Cast a spell with casting time of 1 action</li>
+          <li><strong>Dash</strong> - Gain extra movement equal to your speed</li>
+          <li><strong>Disengage</strong> - Movement doesn't provoke opportunity attacks</li>
+          <li><strong>Dodge</strong> - Attacks against you have disadvantage, advantage on Dex saves</li>
+          <li><strong>Help</strong> - Give ally advantage on next check or attack</li>
+          <li><strong>Hide</strong> - Make a Stealth check to become hidden</li>
+          <li><strong>Ready</strong> - Prepare an action to trigger on specific condition</li>
+          <li><strong>Search</strong> - Make a Perception or Investigation check</li>
+          <li><strong>Use an Object</strong> - Interact with a second object (first is free)</li>
+        </ul>
+
+        <h3>Bonus Actions</h3>
+        <p>Only if a feature specifically grants one. Common examples:</p>
+        <ul>
+          <li>Two-weapon fighting (offhand attack)</li>
+          <li>Cunning Action (Rogue)</li>
+          <li>Bonus action spells</li>
+          <li>Class features</li>
+        </ul>
+
+        <h3>Reactions</h3>
+        <ul>
+          <li><strong>Opportunity Attack</strong> - When enemy leaves your reach</li>
+          <li>Reaction spells (Shield, Counterspell)</li>
+          <li>Class features</li>
+        </ul>
+
+        <h3>Free Actions</h3>
+        <ul>
+          <li>Speak briefly</li>
+          <li>Interact with one object (draw weapon, open door)</li>
+          <li>Drop an item</li>
+        </ul>
+      format: 1
+      markdown: ""
+    image: {}
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    flags: {}
+
+  - name: Cover & Light
+    type: text
+    _id: CoverLightPge04
+    _key: '!journal.pages!DMQuickRefJrnl01.CoverLightPge04'
+    sort: 400000
+    ownership:
+      default: -1
+    title:
+      show: true
+      level: 1
+    text:
+      content: >-
+        <h2>Cover</h2>
+        <table>
+          <thead>
+            <tr><th>Cover Type</th><th>Benefit</th><th>Examples</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Half Cover</td><td>+2 AC and Dex saves</td><td>Low wall, furniture, another creature</td></tr>
+            <tr><td>Three-Quarters Cover</td><td>+5 AC and Dex saves</td><td>Arrow slit, tree trunk</td></tr>
+            <tr><td>Total Cover</td><td>Can't be targeted directly</td><td>Completely behind obstacle</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Light</h2>
+        <table>
+          <thead>
+            <tr><th>Light Level</th><th>Effect</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Bright Light</td><td>Normal vision</td></tr>
+            <tr><td>Dim Light</td><td>Lightly obscured, disadvantage on Perception</td></tr>
+            <tr><td>Darkness</td><td>Heavily obscured, effectively blinded</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Light Sources</h2>
+        <ul>
+          <li><strong>Candle:</strong> 5ft bright, 5ft dim</li>
+          <li><strong>Torch:</strong> 20ft bright, 20ft dim</li>
+          <li><strong>Lantern (hooded):</strong> 30ft bright, 30ft dim (can reduce to 5ft)</li>
+          <li><strong>Lantern (bullseye):</strong> 60ft cone bright, 60ft dim</li>
+          <li><strong>Light cantrip:</strong> 20ft bright, 20ft dim</li>
+          <li><strong>Daylight spell:</strong> 60ft bright, 60ft dim</li>
+        </ul>
+      format: 1
+      markdown: ""
+    image: {}
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    flags: {}
+
+_stats:
+  systemId: dnd5e
+  systemVersion: 5.0.0
+  coreVersion: '13.344'
+  createdTime: 1734100000000
+  modifiedTime: 1734100000000
+  lastModifiedBy: dnd5ebuilder0000
+_key: '!journal!DMQuickRefJrnl01'

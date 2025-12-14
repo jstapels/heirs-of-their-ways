@@ -1,0 +1,213 @@
+name: Random Road Encounters
+type: base
+_id: RoadEncountersTbl
+folder: RandomTablesF0ld
+sort: 100000
+img: icons/environment/wilderness/terrain-road-straight.webp
+description: >-
+  <p>Roll on this table when the party travels along roads between settlements.
+  Use [[/r 1d20]] to determine the encounter.</p>
+
+formula: 1d20
+replacement: true
+displayRoll: true
+
+results:
+  - _id: RoadEnc00001Res
+    _key: '!tables.results!RoadEncountersTbl.RoadEnc00001Res'
+    range:
+      - 1
+      - 2
+    text: >-
+      <p><strong>Merchant Caravan:</strong> A group of 2d4 merchants with wagons
+      traveling in the opposite direction. They may have goods to trade or news
+      from distant towns.</p>
+    type: 0
+    documentCollection: ""
+    documentId: null
+    img: icons/containers/wagon/wagon-covered-green.webp
+    weight: 1
+    drawn: false
+    flags: {}
+
+  - _id: RoadEnc00002Res
+    _key: '!tables.results!RoadEncountersTbl.RoadEnc00002Res'
+    range:
+      - 3
+      - 4
+    text: >-
+      <p><strong>Traveling Pilgrims:</strong> A group of 1d6+2 pilgrims heading
+      to a distant shrine. They are peaceful and may offer blessings or share
+      rumors about the road ahead.</p>
+    type: 0
+    documentCollection: ""
+    documentId: null
+    img: icons/environment/people/cleric-grey.webp
+    weight: 1
+    drawn: false
+    flags: {}
+
+  - _id: RoadEnc00003Res
+    _key: '!tables.results!RoadEncountersTbl.RoadEnc00003Res'
+    range:
+      - 5
+      - 6
+    text: >-
+      <p><strong>Patrol Guards:</strong> A patrol of 2d4 soldiers from the
+      nearest settlement. They may ask about suspicious activity or warn of
+      dangers ahead.</p>
+    type: 0
+    documentCollection: ""
+    documentId: null
+    img: icons/environment/people/guard.webp
+    weight: 1
+    drawn: false
+    flags: {}
+
+  - _id: RoadEnc00004Res
+    _key: '!tables.results!RoadEncountersTbl.RoadEnc00004Res'
+    range:
+      - 7
+      - 8
+    text: >-
+      <p><strong>Broken Wagon:</strong> An overturned wagon blocks part of the
+      road. Investigation reveals whether it was an accident or an ambush.
+      [[/check investigation 12]]{Investigation DC 12}</p>
+    type: 0
+    documentCollection: ""
+    documentId: null
+    img: icons/containers/wagon/wagon-wheel-broken.webp
+    weight: 1
+    drawn: false
+    flags: {}
+
+  - _id: RoadEnc00005Res
+    _key: '!tables.results!RoadEncountersTbl.RoadEnc00005Res'
+    range:
+      - 9
+      - 10
+    text: >-
+      <p><strong>Wandering Monster:</strong> A creature has wandered onto the
+      road. Roll on an appropriate encounter table or choose: wolves, giant
+      spiders, or stirges.</p>
+    type: 0
+    documentCollection: ""
+    documentId: null
+    img: icons/creatures/mammals/wolf-howl-moon-purple.webp
+    weight: 1
+    drawn: false
+    flags: {}
+
+  - _id: RoadEnc00006Res
+    _key: '!tables.results!RoadEncountersTbl.RoadEnc00006Res'
+    range:
+      - 11
+      - 12
+    text: >-
+      <p><strong>Traveling Entertainer:</strong> A bard, juggler, or performing
+      troupe offers entertainment in exchange for coin or a meal. They know
+      many stories and rumors.</p>
+    type: 0
+    documentCollection: ""
+    documentId: null
+    img: icons/tools/instruments/lute-gold-brown.webp
+    weight: 1
+    drawn: false
+    flags: {}
+
+  - _id: RoadEnc00007Res
+    _key: '!tables.results!RoadEncountersTbl.RoadEnc00007Res'
+    range:
+      - 13
+      - 14
+    text: >-
+      <p><strong>Roadside Shrine:</strong> A small shrine to a local deity or
+      spirit. Characters who pay respects may receive a minor blessing.
+      [[/check religion 10]]{Religion DC 10} to identify the deity.</p>
+    type: 0
+    documentCollection: ""
+    documentId: null
+    img: icons/environment/settlement/shrine.webp
+    weight: 1
+    drawn: false
+    flags: {}
+
+  - _id: RoadEnc00008Res
+    _key: '!tables.results!RoadEncountersTbl.RoadEnc00008Res'
+    range:
+      - 15
+      - 16
+    text: >-
+      <p><strong>Bandit Ambush:</strong> 2d4 bandits lie in wait. They may
+      demand a toll or attack outright. A [[/check perception 14]]{Perception DC 14}
+      check notices them before they strike.</p>
+    type: 0
+    documentCollection: ""
+    documentId: null
+    img: icons/skills/social/intimidation-impressing.webp
+    weight: 1
+    drawn: false
+    flags: {}
+
+  - _id: RoadEnc00009Res
+    _key: '!tables.results!RoadEncountersTbl.RoadEnc00009Res'
+    range:
+      - 17
+      - 18
+    text: >-
+      <p><strong>Messenger in Haste:</strong> A rider on horseback speeds past,
+      carrying urgent news. They may stop briefly if flagged down, revealing
+      important information about current events.</p>
+    type: 0
+    documentCollection: ""
+    documentId: null
+    img: icons/environment/people/rider.webp
+    weight: 1
+    drawn: false
+    flags: {}
+
+  - _id: RoadEnc00010Res
+    _key: '!tables.results!RoadEncountersTbl.RoadEnc00010Res'
+    range:
+      - 19
+      - 19
+    text: >-
+      <p><strong>Strange Phenomenon:</strong> An unusual magical occurrence:
+      floating lights, a patch of dead vegetation, or whispered voices with no
+      source. [[/check arcana 15]]{Arcana DC 15} to understand it.</p>
+    type: 0
+    documentCollection: ""
+    documentId: null
+    img: icons/magic/light/orbs-hand-purple.webp
+    weight: 1
+    drawn: false
+    flags: {}
+
+  - _id: RoadEnc00011Res
+    _key: '!tables.results!RoadEncountersTbl.RoadEnc00011Res'
+    range:
+      - 20
+      - 20
+    text: >-
+      <p><strong>Mysterious Stranger:</strong> A cloaked figure approaches,
+      offering cryptic advice or a strange bargain. Their true nature is
+      unclear - they could be fey, undead, or something else entirely.</p>
+    type: 0
+    documentCollection: ""
+    documentId: null
+    img: icons/magic/unholy/silhouette-evil-horned-giant.webp
+    weight: 1
+    drawn: false
+    flags: {}
+
+ownership:
+  default: 0
+flags: {}
+_stats:
+  systemId: dnd5e
+  systemVersion: 5.0.0
+  coreVersion: '13.344'
+  createdTime: 1734100000000
+  modifiedTime: 1734100000000
+  lastModifiedBy: dnd5ebuilder0000
+_key: '!tables!RoadEncountersTbl'

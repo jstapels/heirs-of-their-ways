@@ -1,0 +1,10 @@
+name: Custom Features
+type: Item
+_id: CustomFeaturesF0ld
+description: 'Custom class features, feats, and spells for the campaign'
+folder: null
+sorting: a
+sort: 100000
+color: '#6b3d8b'
+flags: {}
+_key: '!folders!CustomFeaturesF0ld'
