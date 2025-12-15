@@ -224,20 +224,20 @@ function protectEnrichers(markdown) {
     const placeholders = { enricher: [], atref: [], ampref: [] };
     let html = markdown;
     html = html.replace(/\[\[([^\]]+)\]\]/g, (m) => {
-        const placeholder = `__ENRICHER_${placeholders.enricher.length}__`;
+        const placeholder = `<<ENRICHER:${placeholders.enricher.length}>>`;
         placeholders.enricher.push(m);
         return placeholder;
     });
     html = html.replace(
         /@(UUID|Embed|Check|Damage|Save|Attack|Item|Reference)\[[^\]]+\]/g,
         (m) => {
-            const placeholder = `__ATREF_${placeholders.atref.length}__`;
+            const placeholder = `<<ATREF:${placeholders.atref.length}>>`;
             placeholders.atref.push(m);
             return placeholder;
         },
     );
     html = html.replace(/&Reference\[[^\]]+\]/g, (m) => {
-        const placeholder = `__AMPREF_${placeholders.ampref.length}__`;
+        const placeholder = `<<AMPREF:${placeholders.ampref.length}>>`;
         placeholders.ampref.push(m);
         return placeholder;
     });
@@ -246,13 +246,13 @@ function protectEnrichers(markdown) {
 
 function restoreEnrichers(html, placeholders) {
     placeholders.enricher.forEach((original, i) => {
-        html = html.replace(`__ENRICHER_${i}__`, original);
+        html = html.replace(`<<ENRICHER:${i}>>`, original);
     });
     placeholders.atref.forEach((original, i) => {
-        html = html.replace(`__ATREF_${i}__`, original);
+        html = html.replace(`<<ATREF:${i}>>`, original);
     });
     placeholders.ampref.forEach((original, i) => {
-        html = html.replace(`__AMPREF_${i}__`, original);
+        html = html.replace(`<<AMPREF:${i}>>`, original);
     });
     return html;
 }

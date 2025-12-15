@@ -96,7 +96,7 @@ The campaign takes place in **1602 YB** (Year of the Bloom).
 ## Upcoming Adventures
 
 ### The Sunken Village of Coral Veil
-*See: adventures/coral-veil.md*
+*See: adventures/coral-veil/adventure.md*
 
 Beneath the massive watering hole north of the Bottomless Goat lies Coral Veil, an ancient sea elf settlement threatened by an aboleth drawn by a Water Aether Orb.
 
