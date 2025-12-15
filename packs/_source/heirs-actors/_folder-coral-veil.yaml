@@ -1,0 +1,10 @@
+name: Coral Veil
+type: Actor
+_id: CoralVeilActFold
+description: 'NPCs and creatures from the Sunken Village of Coral Veil adventure'
+folder: null
+sorting: a
+sort: 200000
+color: '#1e90ff'
+flags: {}
+_key: '!folders!CoralVeilActFold'

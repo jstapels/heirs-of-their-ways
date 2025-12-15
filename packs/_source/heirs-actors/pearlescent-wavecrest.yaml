@@ -1,0 +1,116 @@
+# Pearlescent Wavecrest - Enthralled Lieutenant
+# Thalindra's mother, tragic antagonist
+_id: PearlescentWave1
+name: Pearlescent Wavecrest
+type: npc
+img: icons/environment/people/elf-dark.webp
+folder: CoralVeilActFold
+
+system:
+  abilities:
+    str:
+      value: 16
+      proficient: 0
+    dex:
+      value: 13
+      proficient: 0
+    con:
+      value: 14
+      proficient: 0
+    int:
+      value: 10
+      proficient: 0
+    wis:
+      value: 11
+      proficient: 0
+    cha:
+      value: 10
+      proficient: 0
+
+  attributes:
+    hp:
+      value: 58
+      max: 58
+      formula: 9d8 + 18
+    ac:
+      value: 17
+      flat: 17
+      calc: flat
+    movement:
+      walk: 30
+      swim: 40
+      units: ft
+
+  details:
+    cr: 3
+    source:
+      custom: Coral Veil Adventure (Modified Veteran)
+    type:
+      value: humanoid
+      subtype: elf (sea), enthralled
+    alignment: le  # Lawful Evil (corrupted)
+    biography:
+      value: >-
+        <p>She might have been beautiful once—her features echo Thalindra's elegance. But her
+        eyes are filmed with opalescent mucus, and her movements carry an unsettling fluidity,
+        as if something else wears her body like a suit. When she speaks, her voice harmonizes
+        with Veth'sora's psychic emanations in a deeply wrong way.</p>
+
+        <h3>Background</h3>
+        <p>Thalindra's mother, Elder Coralline's daughter. Among the first villagers taken by
+        the aboleth. Now serves as its primary lieutenant and "voice," translating psychic
+        commands to verbal orders.</p>
+
+        <h3>Combat Modifications</h3>
+        <ul>
+          <li>Base: Veteran stat block</li>
+          <li>Swimming speed 40 ft.</li>
+          <li>Resistance to psychic damage</li>
+          <li>Can cast <em>Command</em> at will (DC 13)</li>
+        </ul>
+
+        <h3>During Combat (Breaking Through)</h3>
+        <p>Her true personality occasionally surfaces:</p>
+        <ul>
+          <li><em>"Run... please run... I can't stop..."</em></li>
+          <li><em>"Tell Thalindra... tell her I tried..."</em></li>
+          <li><em>"The dreams... I can't escape the dreams..."</em></li>
+        </ul>
+
+        <h3>Fate</h3>
+        <ul>
+          <li><strong>Saved (knocked unconscious):</strong> Can be cured, tearful reunion with family</li>
+          <li><strong>Killed:</strong> Last moment of clarity thanking killer for ending her suffering</li>
+        </ul>
+
+  traits:
+    size: med
+    di:
+      value: []
+    dr:
+      value:
+        - psychic
+    dv:
+      value: []
+    ci:
+      value: []
+    languages:
+      value:
+        - common
+        - elvish
+        - aquan
+
+  # Skills
+  skills:
+    ath:
+      value: 2
+      ability: str
+    per:
+      value: 1
+      ability: wis
+
+ownership:
+  default: 0
+
+sort: 400000
+_key: '!actors!PearlescentWave1'

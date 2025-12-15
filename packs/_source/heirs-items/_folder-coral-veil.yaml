@@ -1,0 +1,10 @@
+name: Coral Veil
+type: Item
+_id: CoralVeilItmFold
+description: 'Magic items and treasure from the Sunken Village of Coral Veil adventure'
+folder: null
+sorting: a
+sort: 200000
+color: '#1e90ff'
+flags: {}
+_key: '!folders!CoralVeilItmFold'

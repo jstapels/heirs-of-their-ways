@@ -1,0 +1,758 @@
+# The Sunken Village of Coral Veil - Adventure Journal
+# An underwater adventure to rescue sea elves from an aboleth
+name: "The Sunken Village of Coral Veil"
+type: base
+_id: CoralVeilAdvJrnl
+folder: CampaignLoreF0ld
+sort: 200000
+ownership:
+  default: 0  # GM Only by default
+flags: {}
+
+pages:
+  - name: Overview
+    type: text
+    _id: CoralOverviewPg1
+    _key: '!journal.pages!CoralVeilAdvJrnl.CoralOverviewPg1'
+    sort: 100000
+    ownership:
+      default: -1
+    title:
+      show: true
+      level: 1
+    text:
+      content: >-
+        <h1>The Sunken Village of Coral Veil</h1>
+        <p><em>Adventure for 4 characters of level 6-7, designed for 2-3 sessions</em></p>
+
+        <h2>Overview</h2>
+        <p>Beneath the massive watering hole north of the Bottomless Goat lies <strong>Coral Veil</strong>,
+        an ancient sea elf settlement that has existed in quiet isolation for centuries. The village was
+        founded by sea elves who fled coastal wars of ages past, seeking refuge in this unlikely inland
+        location—a vast underwater cavern system fed by deep aquifers connected to distant seas.</p>
+
+        <p>Several weeks ago, a <strong>Water-aspected Aether Orb</strong> drifted into their territory,
+        carried by deep currents. The orb's elemental resonance has attracted an Aboleth named
+        <strong>Veth'sora</strong>, an ancient creature that has claimed the orb and begun corrupting
+        the village's inhabitants through psychic domination.</p>
+
+        <p>The sea hags Mishko encountered previously are not native to Coral Veil—they arrived in
+        Veth'sora's wake, drawn by psychic emanations and opportunity.</p>
+
+        <h2>Campaign Connections</h2>
+        <ul>
+          <li><strong>Mishko's Earlier Encounter:</strong> Mishko swam into the watering hole previously
+          but encountered sharks and sea hags, preventing deeper exploration</li>
+          <li><strong>Aether Orb Collection:</strong> This is the second orb the party can acquire
+          (Water aspect), following the Necrotic orb from the Bone Mill</li>
+          <li><strong>Varrick's Interest:</strong> Varrick will take notice of the party collecting
+          multiple orbs</li>
+        </ul>
+      format: 1
+      markdown: ""
+    image: {}
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    flags: {}
+
+  - name: Adventure Hook
+    type: text
+    _id: CoralHookPage02
+    _key: '!journal.pages!CoralVeilAdvJrnl.CoralHookPage02'
+    sort: 200000
+    ownership:
+      default: -1
+    title:
+      show: true
+      level: 1
+    text:
+      content: >-
+        <h1>Adventure Hook</h1>
+        <p>The morning after their victory at the Bone Mill, an unusual visitor appears at the
+        Bottomless Goat: a sea elf woman has dragged herself from the watering hole and collapsed
+        on the northern edge of the property.</p>
+
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>The figure lying in the grass is unlike anyone you've seen in Briar Hollow. Her skin
+        carries the blue-green tint of deep water, and delicate fins frame her pointed ears. Gills
+        flutter weakly at her throat as she struggles to breathe the open air. Strange, translucent
+        burns mark her forearms, weeping a viscous fluid that smells of brine and something fouler
+        beneath.</em></p>
+        </blockquote></div>
+
+        <h2>Thalindra Wavecrest</h2>
+        <p>When revived ([[/check wis 12 format=short]] Medicine or any healing magic), Thalindra
+        speaks in halting Common:</p>
+
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>"Please... the Coral Veil... my people... something has come. Something old. It speaks
+        in our minds, makes us forget ourselves. My grandmother... she resisted long enough to send me.
+        The bright stone—it called the horror to us. You must help, or we are lost."</em></p>
+        </blockquote></div>
+
+        <h3>Information Thalindra Can Provide:</h3>
+        <ul>
+          <li>Coral Veil is a village of ~60 sea elves in underwater caverns beneath the watering hole</li>
+          <li>Three weeks ago, a glowing orb drifted in, pulsing with water magic</li>
+          <li>Days later, a creature of nightmare arrived—ancient, three-eyed, with tentacles dripping burning slime</li>
+          <li>The creature resides in the Pearlheart Chamber, where the orb now rests</li>
+          <li>Many villagers are mentally controlled; others hide in outer tunnels</li>
+          <li>Sea hags came afterward as opportunistic scavengers</li>
+          <li>Her grandmother, Elder Coralline, leads resistance efforts</li>
+        </ul>
+
+        <p><strong>Important:</strong> Thalindra cannot survive long out of water. The party's
+        Decanter of Endless Water can keep her comfortable, or she can wait in the shallows.</p>
+      format: 1
+      markdown: ""
+    image: {}
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    flags: {}
+
+  - name: "Part 1: The Descent"
+    type: text
+    _id: CoralPart1Page3
+    _key: '!journal.pages!CoralVeilAdvJrnl.CoralPart1Page3'
+    sort: 300000
+    ownership:
+      default: -1
+    title:
+      show: true
+      level: 1
+    text:
+      content: >-
+        <h1>Part 1: The Descent</h1>
+
+        <h2>Preparing for the Dive</h2>
+        <p>The watering hole is approximately 200 feet deep before opening into the cavern system.</p>
+
+        <h3>Underwater Survival Options:</h3>
+        <ul>
+          <li>Mishko can breathe underwater naturally (Triton) and communicate with sea creatures</li>
+          <li>Thalindra provides <strong>4 Pearls of Water Breathing</strong> (8 hours each, held in mouth)</li>
+          <li>Creative solutions: Decanter of Endless Water for air bubbles, potions, etc.</li>
+        </ul>
+
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>The watering hole stretches before you, its surface deceptively calm. Sunlight penetrates
+        only the first thirty feet before giving way to blue-green twilight. Somewhere far below, in the
+        lightless depths, an entire people await rescue—or doom.</em></p>
+        </blockquote></div>
+
+        <h2>The Descent (Skill Challenge)</h2>
+        <p><strong>Navigation Check:</strong> [[/check wis 13 format=short]] Survival</p>
+        <ul>
+          <li><strong>Success:</strong> Efficient navigation through current channels</li>
+          <li><strong>Failure:</strong> Disoriented, +30 minutes travel time, potentially alerts patrols</li>
+        </ul>
+
+        <h2>Hazard: The Hag's Toll</h2>
+        <p>Approximately 80 feet down, the party enters the sea hags' territory.</p>
+
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>The water grows murky here, thick with sediment and something else—a greasy, unnatural
+        film that clings to your skin. Amid the floating detritus, you spot crude fetishes made of bone
+        and kelp, strung between rocky outcroppings like a grotesque curtain. Beyond them, shadows move
+        with predatory patience.</em></p>
+        </blockquote></div>
+
+        <p><strong>The Three Sea Hags</strong> are opportunists who've been preying on fleeing villagers.</p>
+
+        <h3>Resolution Options:</h3>
+        <table>
+          <thead><tr><th>Method</th><th>Details</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Combat</strong></td><td>Fight viciously, flee at half strength</td></tr>
+            <tr><td><strong>Payment</strong></td><td>Magical item OR "secrets that cut deep" OR future service</td></tr>
+            <tr><td><strong>Intimidation</strong></td><td>[[/check cha 16 format=short]] - Mention Marrow Titan, show necrotic orb</td></tr>
+            <tr><td><strong>Deception</strong></td><td>[[/check cha 15 format=short]] - Claim to serve greater power</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Hag Personalities:</h3>
+        <ul>
+          <li><strong>Murkmaw</strong> (leader): Calculating, speaks in riddles, collects teeth</li>
+          <li><strong>Scabrine:</strong> Impulsive, violent, easily goaded</li>
+          <li><strong>Weeping Nell:</strong> Melancholic, fixated on lost beauty, might be swayed by sympathy</li>
+        </ul>
+      format: 1
+      markdown: ""
+    image: {}
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    flags: {}
+
+  - name: "Part 2: Coral Veil"
+    type: text
+    _id: CoralPart2Page4
+    _key: '!journal.pages!CoralVeilAdvJrnl.CoralPart2Page4'
+    sort: 400000
+    ownership:
+      default: -1
+    title:
+      show: true
+      level: 1
+    text:
+      content: >-
+        <h1>Part 2: Coral Veil</h1>
+
+        <h2>Entering the Village</h2>
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>The tunnel widens suddenly, and you emerge into a space that steals your breath. A vast
+        cavern stretches before you, easily a quarter mile across, its ceiling lost in darkness above.
+        Bioluminescent coral in soft blues, greens, and purples clings to every surface, casting the
+        space in ethereal twilight.</em></p>
+        <p><em>What was once clearly a thriving village now feels like a place holding its breath.
+        Elegant structures carved from living coral and mother-of-pearl stand in concentric rings around
+        a central chamber that pulses with an unsettling, rhythmic glow. The streets are empty—but you
+        sense movement in the shadows, watching.</em></p>
+        </blockquote></div>
+
+        <h3>Village Layout</h3>
+        <table>
+          <thead><tr><th>Ring</th><th>Contents</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Outer Ring</strong></td><td>Abandoned homes, signs of struggle</td></tr>
+            <tr><td><strong>Middle Ring</strong></td><td>Communal buildings, school, healing house—some survivors hiding</td></tr>
+            <tr><td><strong>Inner Ring</strong></td><td>Administrative buildings, elder's chambers</td></tr>
+            <tr><td><strong>Pearlheart Chamber</strong></td><td>Sacred center, now corrupted—aboleth and orb location</td></tr>
+          </tbody>
+        </table>
+
+        <h2>The Survivors</h2>
+        <p>~20 sea elves remain free, hiding in outer tunnels, led by <strong>Elder Coralline</strong>.</p>
+
+        <h3>Key Information from Coralline:</h3>
+        <ul>
+          <li>The aboleth calls itself Veth'sora, claims to be "reclaiming what was always theirs"</li>
+          <li>~30 villagers are enthralled, patrolling inner rings</li>
+          <li>The creature has psychic reach throughout village—it knows intruders arrived</li>
+          <li>Killing the aboleth won't immediately free the enthralled</li>
+          <li>The orb is embedded in the central altar</li>
+        </ul>
+
+        <h3>Coralline's Request:</h3>
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>"I will not ask you to spare all who have fallen. Some... may be beyond saving. But my
+        daughter, Thalindra's mother—Pearlescent—she was among the first taken. She serves now as the
+        creature's voice. If there is any way to bring her back..."</em></p>
+        </blockquote></div>
+      format: 1
+      markdown: ""
+    image: {}
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    flags: {}
+
+  - name: Village Exploration
+    type: text
+    _id: CoralExplorePg5
+    _key: '!journal.pages!CoralVeilAdvJrnl.CoralExplorePg5'
+    sort: 500000
+    ownership:
+      default: -1
+    title:
+      show: true
+      level: 1
+    text:
+      content: >-
+        <h1>Village Exploration</h1>
+
+        <h2>The Healing House</h2>
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>This dome-shaped structure of pale pink coral was once a place of gentle care. Beds of
+        woven kelp line the walls, and shelves hold countless glass vials and ceramic pots. Some have
+        been smashed, their contents clouding the water.</em></p>
+        </blockquote></div>
+
+        <p><strong>Loot:</strong></p>
+        <ul>
+          <li>4 Potions of Healing ([[/damage 2d4+2 healing]])</li>
+          <li>2 Potions of Greater Healing ([[/damage 4d4+4 healing]])</li>
+          <li>1 Potion of Resistance (Psychic)</li>
+          <li>Healer's Kit (8 uses)</li>
+        </ul>
+
+        <h3>Encounter - Healer Orin (Enthralled)</h3>
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>A sea elf man drifts in the corner, eyes glazed with oily sheen. Mucus drips from his gills,
+        movements jerky, unnatural. When he speaks, it is in two voices—his own, frightened and distant,
+        and something deeper that resonates in your skull.</em></p>
+        <p><em>"You should not have come. The Eternal One sees. The Eternal One knows. Leave... please
+        leave... THE ETERNAL ONE HUNGERS."</em></p>
+        </blockquote></div>
+
+        <p><strong>Combat:</strong> Use Scout stats (swim 40 ft.)</p>
+        <p><strong>Non-Combat:</strong> [[/check cha 15 format=short]] Persuasion or [[/check wis 14 format=short]]
+        Insight—appeal to his healer nature to make him hesitate for 1 minute</p>
+
+        <hr>
+
+        <h2>The School</h2>
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>Small desks of carved stone sit in neat rows, each with slate tablet and chalk stylus. Murals
+        on walls depict sea elf history—flight from war, discovery of the cavern, generations of peace. The
+        newest mural, still incomplete, shows a dark shape with three eyes looming over the village.</em></p>
+        </blockquote></div>
+
+        <h3>Discovery - Ripple (Child Survivor)</h3>
+        <p>A young sea elf girl (~10 years old) hides here, clutching a stuffed seahorse toy.</p>
+
+        <p><strong>What Ripple Knows:</strong></p>
+        <ul>
+          <li>There's a "back way" into the Pearlheart Chamber (maintenance tunnel)</li>
+          <li>Her father is an enthralled guard; she's been watching him</li>
+          <li>The creature "talks in dreams"—even free sea elves have nightmares</li>
+        </ul>
+
+        <p><strong>Ripple's Secret:</strong> She has a <strong>Ring of Water Walking</strong> and will give
+        it to the party if they promise to save her father.</p>
+
+        <hr>
+
+        <h2>The Armory</h2>
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>This building bears marks of fierce struggle—doors torn from hinges, walls cracked, dark
+        stains on the floor. Weapon racks line the walls, most empty, but some equipment remains.</em></p>
+        </blockquote></div>
+
+        <p><strong>Loot:</strong></p>
+        <ul>
+          <li>2 Coral Tridents +1 (extra [[/damage 1d6 cold]] when submerged)</li>
+          <li>1 Net of Entangling ([[/save str 13 format=short]] to escape)</li>
+          <li>Cloak of the Manta Ray</li>
+        </ul>
+
+        <hr>
+
+        <h2>Encounter: Village Patrol</h2>
+        <p>4 Enthralled Sea Elves (Guard stats, swim 40 ft.) led by <strong>Sergeant Kelvar</strong>.</p>
+
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>They move with eerie synchronization, eyes empty, movements puppet-like. The lead warrior,
+        broad-shouldered with a scarred face, raises his trident: "The Eternal One demands your submission.
+        Kneel, and know peace. Resist, and know only suffering."</em></p>
+        </blockquote></div>
+
+        <p><strong>Notes:</strong> Enthralled fight to incapacitate (aboleth wants new thralls).
+        Kelvar can be saved if defeated non-lethally.</p>
+      format: 1
+      markdown: ""
+    image: {}
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    flags: {}
+
+  - name: "Part 3: The Pearlheart Chamber"
+    type: text
+    _id: CoralPart3Page6
+    _key: '!journal.pages!CoralVeilAdvJrnl.CoralPart3Page6'
+    sort: 600000
+    ownership:
+      default: -1
+    title:
+      show: true
+      level: 1
+    text:
+      content: >-
+        <h1>Part 3: The Pearlheart Chamber</h1>
+
+        <h2>Approaches</h2>
+        <table>
+          <thead><tr><th>Option</th><th>Details</th></tr></thead>
+          <tbody>
+            <tr><td><strong>A: Front Entrance</strong></td><td>6 enthralled + 2 Hunter Sharks; direct but allows retreat</td></tr>
+            <tr><td><strong>B: Ripple's Tunnel</strong></td><td>[[/check dex 14 format=short]] group Stealth; single file; advantage on initiative</td></tr>
+            <tr><td><strong>C: Distraction</strong></td><td>Coralline draws away half guards; risk of survivor casualties</td></tr>
+          </tbody>
+        </table>
+
+        <h2>The Chamber</h2>
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>The Pearlheart Chamber takes your breath away despite the horror that has claimed it. A dome
+        of living coral rises a hundred feet overhead, every surface covered in luminescent organisms pulsing
+        in slow, hypnotic rhythm. At the center, a great altar of mother-of-pearl cradles an orb the size of
+        a human head—it swirls with captured ocean currents, blues and greens dancing within.</em></p>
+        <p><em>But the beauty is corrupted. Tendrils of dark mucus web the chamber like a spider's nest. And
+        there, coiled around the altar like a dragon guarding its hoard, is the source of Coral Veil's suffering.</em></p>
+        <p><em>The aboleth is ancient and horrible—a fish-like body easily twenty feet long, covered in mucus
+        that clouds the water. Three baleful eyes fix upon you with intelligence that predates civilization.
+        When it speaks, the voice resonates directly in your mind.</em></p>
+        <p><em>"Ah. The surfacers. I felt you the moment you entered my domain. You carry the stink of
+        death-magic—the bone-orb's resonance. Did you think to collect another? This one is MINE."</em></p>
+        </blockquote></div>
+
+        <h2>Boss: Veth'sora, the Eternal Dreamer</h2>
+        <p><strong>Base:</strong> Aboleth (MM p.13) with enhancements</p>
+
+        <h3>Statistics:</h3>
+        <ul>
+          <li><strong>HP:</strong> 150</li>
+          <li><strong>Legendary Actions (2/round):</strong>
+            <ul>
+              <li><em>Tentacle (1 action):</em> One tentacle attack</li>
+              <li><em>Psychic Lash (2 actions):</em> [[/save int 14 format=short]] or [[/damage 2d8 psychic]] + stunned</li>
+              <li><em>Summon Thrall (2 actions):</em> One enthralled moves and attacks</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Lair Actions (Initiative 20):</h3>
+        <ol>
+          <li>20-foot radius around orb becomes cold: [[/damage 2d6 cold]] ([[/save con 14 format=short]] half)</li>
+          <li>Creates illusory duplicates (as Mirror Image, 1d4 images)</li>
+          <li>One creature makes [[/save wis 14 format=short]] or is charmed until next Initiative 20</li>
+        </ol>
+
+        <h3>Orb Influence (within 30 ft. of orb):</h3>
+        <ul>
+          <li>Regenerates 10 HP at start of turn</li>
+          <li>Psychic abilities gain +2 to save DCs</li>
+          <li>Orb can be removed with [[/check str 15 format=short]], ending these benefits</li>
+        </ul>
+      format: 1
+      markdown: ""
+    image: {}
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    flags: {}
+
+  - name: Combat Setup & Pearlescent
+    type: text
+    _id: CoralCombatPg07
+    _key: '!journal.pages!CoralVeilAdvJrnl.CoralCombatPg07'
+    sort: 700000
+    ownership:
+      default: -1
+    title:
+      show: true
+      level: 1
+    text:
+      content: >-
+        <h1>Combat Setup</h1>
+
+        <h2>Pearlescent Wavecrest (Thalindra's Mother)</h2>
+        <p>Serves as Veth'sora's lieutenant and "voice."</p>
+        <p><strong>Stats:</strong> Veteran with swim 40 ft., resistance to psychic, <em>Command</em> at will (DC 13)</p>
+
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>She might have been beautiful once—her features echo Thalindra's elegance. But her eyes are
+        filmed with opalescent mucus, and her movements carry an unsettling fluidity, as if something else
+        wears her body like a suit.</em></p>
+        </blockquote></div>
+
+        <h3>During Combat (Breaking Through):</h3>
+        <p>Her true personality occasionally surfaces:</p>
+        <ul>
+          <li><em>"Run... please run... I can't stop..."</em></li>
+          <li><em>"Tell Thalindra... tell her I tried..."</em></li>
+          <li><em>"The dreams... I can't escape the dreams..."</em></li>
+        </ul>
+
+        <h3>Fate:</h3>
+        <ul>
+          <li><strong>Saved (knocked unconscious):</strong> Can be cured, tearful reunion with family</li>
+          <li><strong>Killed:</strong> Last moment of clarity thanking killer for ending her suffering</li>
+        </ul>
+
+        <hr>
+
+        <h2>Enemies in Chamber</h2>
+        <ul>
+          <li>Veth'sora (modified aboleth)</li>
+          <li>Pearlescent Wavecrest (enthralled veteran)</li>
+          <li>2 Hunter Sharks</li>
+          <li>4 Enthralled Sea Elves (half if distraction used)</li>
+        </ul>
+
+        <h2>Terrain Features</h2>
+        <table>
+          <thead><tr><th>Feature</th><th>Effect</th></tr></thead>
+          <tbody>
+            <tr><td><strong>The Altar</strong></td><td>10 ft. diameter, half cover</td></tr>
+            <tr><td><strong>Coral Pillars</strong></td><td>4 pillars, cover/climbing</td></tr>
+            <tr><td><strong>Mucus Webs</strong></td><td>Difficult terrain; [[/save dex 12 format=short]] or restrained</td></tr>
+            <tr><td><strong>The Orb</strong></td><td>[[/check str 15 format=short]] to grab; holder takes [[/damage 1d6 cold]]/turn</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Tactics</h2>
+        <ul>
+          <li>Veth'sora prioritizes dominating strongest-looking member (Threk)</li>
+          <li>Sharks are expendable protectors</li>
+          <li>Pearlescent stays near aboleth for commands</li>
+          <li>At 50 HP, Veth'sora may attempt to flee</li>
+        </ul>
+      format: 1
+      markdown: ""
+    image: {}
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    flags: {}
+
+  - name: Victory & Rewards
+    type: text
+    _id: CoralRewardsPg8
+    _key: '!journal.pages!CoralVeilAdvJrnl.CoralRewardsPg8'
+    sort: 800000
+    ownership:
+      default: -1
+    title:
+      show: true
+      level: 1
+    text:
+      content: >-
+        <h1>Victory and Aftermath</h1>
+
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>The aboleth's death cry is not a sound but a sensation—a psychic shockwave rippling through
+        water, minds, coral. The enthralled collapse, puppet strings cut. Corruption dissipates, and for the
+        first time, you see the true beauty of the Pearlheart Chamber—ancient, sacred, finally free.</em></p>
+        <p><em>The Water Aether Orb pulses gently on the altar, chaotic swirling calming to gentle, rhythmic
+        flow. It feels... waiting.</em></p>
+        </blockquote></div>
+
+        <h2>Claiming the Orb</h2>
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>The orb is cool in your hands—the temperature of a clear mountain stream on a summer day.
+        Within it, you see not just water but the essence of water—tides and currents, gentle rain and
+        raging tsunamis, the lifeblood of the world. It accepts your touch. It is yours now—another piece
+        of a puzzle you are only beginning to understand.</em></p>
+        </blockquote></div>
+
+        <hr>
+
+        <h2>Rewards</h2>
+
+        <h3>From Veth'sora's Hoard</h3>
+        <ul>
+          <li>850 gp in ancient coins</li>
+          <li>Pearl necklace (250 gp)</li>
+          <li>Gold-inlaid conch shell (100 gp, Horn of Blasting underwater only)</li>
+          <li><strong>Trident of Fish Command</strong> (Rare)</li>
+          <li><strong>Aboleth's Eye</strong> (Uncommon, cursed)</li>
+          <li><strong>Cloak of the Depths</strong> (Uncommon)</li>
+        </ul>
+
+        <h3>Village Gifts</h3>
+        <ul>
+          <li>4 <strong>Pearls of Power</strong> (recover spell slot 1/day)</li>
+          <li><strong>Driftglobe</strong></li>
+          <li>Scroll of Water Breathing</li>
+          <li>Promise of sanctuary beneath the waves</li>
+        </ul>
+
+        <h3>The Water Aether Orb</h3>
+        <p>Requires attunement. Grants: underwater breathing, swim speed, cold resistance,
+        <em>Control Water</em> 1/long rest, sense other orbs within 1 mile.</p>
+
+        <hr>
+
+        <h2>Varrick's Interest</h2>
+        <p>A few days after return, a familiar chill settles over the Bottomless Goat:</p>
+
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>A note rests on the bar in elegant script:</em></p>
+        <p><em>"Two orbs. Impressive. The water aspect was not my original target, but I find myself...
+        intrigued. Our arrangement continues. I will send word when the next piece reveals itself. In the
+        meantime, guard what you carry carefully. You are not the only ones hunting."</em></p>
+        <p><em>—V</em></p>
+        </blockquote></div>
+      format: 1
+      markdown: ""
+    image: {}
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    flags: {}
+
+  - name: Hard Mode Options
+    type: text
+    _id: CoralHardModPg9
+    _key: '!journal.pages!CoralVeilAdvJrnl.CoralHardModPg9'
+    sort: 900000
+    ownership:
+      default: -1
+    title:
+      show: true
+      level: 1
+    text:
+      content: >-
+        <h1>Hard Mode Options</h1>
+        <p><em>For experienced, powerful parties</em></p>
+
+        <h2>Anti-Tank Strategies (Targeting Threk)</h2>
+        <table>
+          <thead><tr><th>Strategy</th><th>Details</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Save Targeting</strong></td><td>DEX save -1, INT save -1; prioritize these</td></tr>
+            <tr><td><strong>Grappling</strong></td><td>Large creatures have advantage; negates AC</td></tr>
+            <tr><td><strong>Psychic Damage</strong></td><td>No resistance</td></tr>
+            <tr><td><strong>Heat Metal</strong></td><td>Force armor removal or damage</td></tr>
+            <tr><td><strong>Mind Control</strong></td><td>Turn Threk against allies</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Enhanced Hag Encounter</h2>
+        <ul>
+          <li>Add 4th hag (Grandmother Brinegut: +20 HP, Horrific Appearance DC 13)</li>
+          <li>Add coven spells: <em>Hunger of Hadar</em>, <em>Slow</em>, <em>Bestow Curse</em></li>
+          <li>Add 2-3 Reef Sharks with Pack Tactics</li>
+          <li>Environmental hazards: Kelp fields, poison pockets</li>
+        </ul>
+
+        <h2>Mythic Aboleth Fight</h2>
+        <p><strong>Phase 1:</strong> Standard enhanced stats (150 HP)</p>
+        <p><strong>Phase 2 (at 0 HP):</strong></p>
+
+        <div class="dnd5e2 chat-card"><blockquote>
+        <p><em>The aboleth's body convulses, and the Aether Orb flares with blinding light. Water swirls
+        as it draws power directly from the orb, wounds sealing, form growing more terrible. Three eyes
+        become six. Tentacles multiply.</em></p>
+        </blockquote></div>
+
+        <ul>
+          <li>Regains 75 HP</li>
+          <li>+2 to all saving throws</li>
+          <li>Tentacles deal extra [[/damage 1d6 cold]]</li>
+          <li><strong>Tidal Surge (Recharge 5-6):</strong> [[/save str 16 format=short]] or pushed 20 ft. and prone</li>
+        </ul>
+
+        <h3>Enhanced Legendary Actions (3/round):</h3>
+        <ul>
+          <li><em>Enslaving Gaze (3 actions):</em> [[/save wis 16 format=short]] or charmed 1 minute</li>
+        </ul>
+
+        <h3>Additional Enemies:</h3>
+        <ul>
+          <li>Upgrade Pearlescent to Gladiator (112 HP, 3 attacks)</li>
+          <li>Add Tidecaller Nereus (Mage with <em>Slow</em>, <em>Counterspell</em>)</li>
+          <li>2 Chuuls (grapple + paralysis)</li>
+          <li>4 Hunter Sharks</li>
+        </ul>
+
+        <hr>
+
+        <h2>Save DCs to Target Threk</h2>
+        <table>
+          <thead><tr><th>Save</th><th>Modifier</th><th>Suggested DC</th></tr></thead>
+          <tbody>
+            <tr><td>Strength</td><td>+5</td><td>16-17</td></tr>
+            <tr><td>Dexterity</td><td>-1</td><td>13-14</td></tr>
+            <tr><td>Constitution</td><td>+2</td><td>14-15</td></tr>
+            <tr><td>Intelligence</td><td>-1</td><td>13-14</td></tr>
+            <tr><td>Wisdom</td><td>+3</td><td>15-16</td></tr>
+            <tr><td>Charisma</td><td>+7</td><td>18+</td></tr>
+          </tbody>
+        </table>
+        <p><em>Target DEX and INT saves for best results.</em></p>
+      format: 1
+      markdown: ""
+    image: {}
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    flags: {}
+
+  - name: NPC Quick Reference
+    type: text
+    _id: CoralNPCRefPg10
+    _key: '!journal.pages!CoralVeilAdvJrnl.CoralNPCRefPg10'
+    sort: 1000000
+    ownership:
+      default: -1
+    title:
+      show: true
+      level: 1
+    text:
+      content: >-
+        <h1>Quick Reference</h1>
+
+        <h2>Key NPCs</h2>
+        <table>
+          <thead><tr><th>Name</th><th>Role</th><th>Attitude</th></tr></thead>
+          <tbody>
+            <tr><td>Thalindra Wavecrest</td><td>Messenger</td><td>Friendly</td></tr>
+            <tr><td>Elder Coralline</td><td>Village Leader</td><td>Cautiously Hopeful</td></tr>
+            <tr><td>Ripple</td><td>Child Survivor</td><td>Frightened but Brave</td></tr>
+            <tr><td>Healer Orin</td><td>Enthralled Medic</td><td>Hostile (conflicted)</td></tr>
+            <tr><td>Veth'sora</td><td>Aboleth BBEG</td><td>Hostile</td></tr>
+            <tr><td>Pearlescent</td><td>Enthralled Lieutenant</td><td>Hostile (tragic)</td></tr>
+            <tr><td>Murkmaw</td><td>Hag Leader</td><td>Hostile (negotiable)</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Encounter Summary</h2>
+        <table>
+          <thead><tr><th>Location</th><th>Enemies</th><th>Difficulty</th></tr></thead>
+          <tbody>
+            <tr><td>Hag's Toll</td><td>3 Sea Hags</td><td>Medium (negotiable)</td></tr>
+            <tr><td>Healing House</td><td>1 Enthralled</td><td>Easy</td></tr>
+            <tr><td>Village Patrol</td><td>4 Enthralled + 1 Sergeant</td><td>Medium</td></tr>
+            <tr><td>Pearlheart Chamber</td><td>Aboleth + Lieutenant + 2 Sharks + 4 Guards</td><td>Hard</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Treasure Summary</h2>
+        <table>
+          <thead><tr><th>Source</th><th>Notable Items</th></tr></thead>
+          <tbody>
+            <tr><td>Healing House</td><td>Potions, Healer's Kit</td></tr>
+            <tr><td>Armory</td><td>Coral Tridents +1, Net of Entangling, Cloak of Manta Ray</td></tr>
+            <tr><td>Ripple</td><td>Ring of Water Walking</td></tr>
+            <tr><td>Aboleth's Hoard</td><td>Trident of Fish Command, Aboleth's Eye, Cloak of Depths, 850 gp</td></tr>
+            <tr><td>Village Gifts</td><td>Pearls of Power (4), Driftglobe, Water Aether Orb</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Future Hooks</h2>
+        <ul>
+          <li><strong>The Third Orb:</strong> Cornelius speaks of "fire in the mountain"</li>
+          <li><strong>Hag Consequences:</strong> Payment comes due OR revenge is plotted</li>
+          <li><strong>Coral Veil Alliance:</strong> Trade, underwater passages, orb lore</li>
+          <li><strong>Veth'sora's Legacy:</strong> If escaped: will return. If killed: other aboleth may investigate</li>
+        </ul>
+      format: 1
+      markdown: ""
+    image: {}
+    video:
+      controls: true
+      volume: 0.5
+    src: null
+    system: {}
+    flags: {}
+
+_stats:
+  systemId: dnd5e
+  systemVersion: 5.0.0
+  coreVersion: '13.344'
+  createdTime: 1734200000000
+  modifiedTime: 1734200000000
+  lastModifiedBy: dnd5ebuilder0000
+_key: '!journal!CoralVeilAdvJrnl'

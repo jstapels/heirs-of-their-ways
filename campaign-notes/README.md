@@ -1,264 +1,131 @@
-# Campaign Notes
+# Heir of Their Ways - Campaign Notes
 
-This directory contains markdown-formatted campaign notes that serve as source material for generating FoundryVTT content.
+This directory contains organized campaign notes for the "Heir of Their Ways" D&D 5e campaign, formatted for AI assistance and easy reference.
 
-## Purpose
+## Quick Start for AI
 
-Campaign notes are written in markdown for:
-- **Easy editing** - Simple text format, works with any editor
-- **Version control** - Track changes to campaign content over time
-- **AI assistance** - Claude can read these notes to generate JSON data
-- **Planning** - Organize ideas before creating Foundry content
-- **Backup** - Human-readable backup of campaign information
+When working with this campaign:
+1. Read `dm-guide.md` first for campaign overview and guidelines
+2. Check `sessions/README.md` for session history and current plot threads
+3. Reference NPC files in `npcs/` for character information
+4. Check `lore/` for world background and artifact information
 
 ## Directory Structure
 
-- **adventures/** - Adventure outlines, session notes, story arcs
-- **npcs/** - NPC descriptions, backgrounds, motivations, stat blocks
-- **locations/** - Location descriptions, maps, points of interest
-- **items/** - Custom item descriptions, magical items, artifacts
-- **lore/** - World lore, history, factions, pantheons
-
-## Writing Format
-
-### Use Markdown Headers for Organization
-
-```markdown
-# NPC Name or Item Title
-
-## Description
-Physical appearance, personality, role in story...
-
-## Stats
-Game statistics, abilities, features...
-
-## Background
-History, motivations, secrets...
+```
+campaign-notes/
+├── dm-guide.md           # DM instructions and campaign overview
+├── README.md             # This file
+├── adventures/           # Planned adventures and story outlines
+│   └── coral-veil.md         # The Sunken Village of Coral Veil
+├── items/                # Magic items and equipment
+│   ├── party-items.md        # Current party inventory
+│   └── coral-veil-items.md   # Coral Veil adventure loot
+├── locations/            # Places in the world
+│   ├── loamvale-region.md      # Region overview
+│   ├── blackthorn-estate.md    # Wine house
+│   ├── escrinos-estate.md      # Cider house
+│   ├── torvaldr-estate.md      # Whiskey house
+│   ├── wolansk-estate.md       # Ale house
+│   ├── shadowtusk-estate.md    # Mead house
+│   ├── the-hunters.md          # Law enforcement organization
+│   ├── bottomless-goat.md      # Party's bastion/tavern
+│   ├── bone-mill.md            # Recent adventure location
+│   └── coral-veil.md           # Underwater sea elf village
+├── lore/                 # World history and background
+│   ├── world-overview.md       # Aevir and regions
+│   ├── aether-orbs.md          # Artifact lore
+│   └── feywild-history.md      # Feywild collision history
+├── npcs/                 # Non-player characters
+│   ├── shadow-conspiracy.md    # Main antagonists
+│   ├── fey-allies.md           # Fey creatures and spirits
+│   ├── briar-hollow.md         # Lycanthrope pack
+│   ├── allies-misc.md          # Other NPCs
+│   └── coral-veil.md           # Sea elf village NPCs
+├── pcs/                  # Player characters
+│   ├── mishko-wolansk.md       # Dan's character
+│   ├── motiejus-torvaldr.md    # Rob's character
+│   ├── threk-shadowtusk.md     # Ryan's character
+│   └── ilizar-escrinos.md      # Jorge's character
+└── sessions/             # Session summaries
+    ├── README.md               # Session index and arcs
+    └── session-XX-*.md         # Individual sessions
 ```
 
-### Include FoundryVTT Enrichers
+## Campaign Summary
 
-Write enrichers directly in your notes:
+### The Story So Far
 
-```markdown
-The dragon breathes [[/damage 18d6 fire average]] fire.
+The party of heirs from Loamvale's great houses was assembled to investigate missing trade shipments. Their investigation uncovered a shadow conspiracy involving:
+- **Lucien Darkwood** - A fallen noble funding illicit operations
+- **Lord Varrick** - A mysterious patron spreading blood magic
+- **Selene (Sylvaine Willowbrook)** - An agent working between factions
 
-Players must make a [[/save dex 20]] or be knocked &Reference[prone].
+The party has:
+- Cleared Stonebridge Keep of bandits
+- Met the Archfey Luminara and received blessings
+- Established The Bottomless Goat tavern in Briar Hollow
+- Defeated the necromancer Malrik Veynor
+- Recovered an Aether Orb (necrotic aspect)
 
-The rogue can attempt a [[/check dex dc=15]] using [[/tool thieves]].
-```
+### Current Status (Session 25+)
 
-This allows Claude to:
-1. Understand game mechanics in your notes
-2. Preserve enrichers when generating JSON
-3. Create properly formatted FoundryVTT content
+**Party Level:** 6 (approaching 7)
+**Location:** The Bottomless Goat, Briar Hollow
+**Main Quest:** Protect/recover Aether Orbs, uncover Shadow Conspiracy
 
-### Link Related Content
+**Open Threads:**
+- Lord Varrick's expectations after receiving the Aether Orb
+- Lucien Darkwood's whereabouts and plans
+- Selene's true allegiance
+- Vargr's lycanthrope pack (territorial tension)
+- Ilizar's debt to the imp Zzyzx
+- Ilizar's lycanthropy curse
+- The watering hole north of the Bottomless Goat
 
-Use descriptive links to connect content:
+**Upcoming Adventure:** The Sunken Village of Coral Veil (see `adventures/coral-veil.md`)
 
-```markdown
-Meet [Lord Blackwood](npcs/lord-blackwood.md) at
-[Blackwood Manor](locations/blackwood-manor.md).
+## The Five Great Houses
 
-He wields the [Flaming Sword](items/flaming-sword.md).
-```
+| House | Specialty | PC Connection |
+|-------|-----------|---------------|
+| Blackthorn | Wine | Oversees The Hunters |
+| Escrinos | Hard Cider | Ilizar (reluctant heir) |
+| Torvaldr | Whiskey | Motiejus "Mats" |
+| Wolansk | Ale | Mishko |
+| Shadowtusk | Mead | Threk |
 
-## Example Files
+## Key NPCs
 
-### Example: NPC File
+### Allies
+- **Alara Swiftwind** - Hunter ranger, party's first contact
+- **Luminara** - Archfey guardian of the Fey Grotto
+- **Cornelius** - Pombero fey, mischievous ally
 
-**File:** `npcs/elder-theron.md`
+### Antagonists
+- **Lord Varrick** - Shadow lord, possibly undead
+- **Lucien Darkwood** - Fallen noble, funds conspiracy
+- **Selene** - Seraphine's twin, serves Varrick
 
-```markdown
-# Elder Theron
-
-*Human Cleric, Lawful Good*
-
-## Description
-Elder Theron is the village priest, a kind elderly man with silver hair
-and warm brown eyes. He wears simple brown robes and carries a wooden
-staff topped with a sun symbol.
-
-## Role in Campaign
-- Quest giver for Chapter 1
-- Provides healing and guidance
-- Knows secret about the ancient temple
-
-## Stats
-- **AC:** 12 (robes)
-- **HP:** 27 (5d8 + 5)
-- **Speed:** 30 ft.
-- **Abilities:** STR 10, DEX 10, CON 12, INT 14, WIS 18, CHA 16
-
-## Spells
-- **Cantrips:** light, sacred flame, spare the dying
-- **1st level (4 slots):** cure wounds, bless, sanctuary
-- **2nd level (3 slots):** lesser restoration, spiritual weapon
-- **3rd level (2 slots):** dispel magic, spirit guardians
-
-## Actions
-- **Staff:** [[/attack +2]] to hit, [[/damage 1d6 bludgeoning]]
-- **Sacred Flame:** Target makes [[/save dex 15]] or takes [[/damage 2d8 radiant]]
-
-## Personality
-- Kind and patient
-- Speaks in parables
-- Fears the darkness growing in the forest
-```
-
-### Example: Adventure File
-
-**File:** `adventures/chapter-1-the-awakening.md`
-
-```markdown
-# Chapter 1: The Awakening
-
-## Synopsis
-The adventurers arrive in the village of Millhaven to find strange
-occurrences plaguing the townsfolk. Elder Theron seeks their help to
-investigate the ancient temple in the nearby forest.
-
-## Story Hooks
-- Promised payment of 100gp each
-- Millhaven is on route to their destination
-- Personal connection to missing villagers
-
-## Act 1: Arrival in Millhaven
-
-### Scene 1: The Village Square
-Players arrive to find villagers gathered, whispering nervously.
-
-**Key NPCs:**
-- [Elder Theron](../npcs/elder-theron.md) - Quest giver
-- [Mayor Thornton](../npcs/mayor-thornton.md) - Skeptical authority
-- [Innkeeper Sara](../npcs/innkeeper-sara.md) - Information source
-
-**Clues:**
-- Three villagers missing in past week
-- All disappeared near the old temple
-- Strange lights seen in forest at night
-
-### Scene 2: Investigation
-Players can investigate:
-- **Temple ruins** - [[/check int 13]] reveals recent activity
-- **Forest tracks** - [[/check wis 12]] finds footprints
-- **Interview villagers** - [[/check cha 10]] to gather rumors
-
-## Act 2: The Temple
-
-### Encounter 1: Forest Ambush
-2d4 shadows attack! [[/roll 2d4]]
-
-**Tactics:** Shadows hide in darkness, attack with [[/attack +4]]
-dealing [[/damage 2d6+2 necrotic]].
-
-**Treasure:** 25gp, [amulet of protection](../items/amulet-protection.md)
-
-### Encounter 2: Temple Entrance
-Ancient doors sealed with magic. Requires:
-- [[/check int 14]] to read inscription
-- [[/check arcana 15]] to understand magic
-- Speak passphrase: "By light, we enter"
-
-### Encounter 3: The Awakening Chamber
-**Boss:** Awakened Shadow (see [shadow-priest](../npcs/shadow-priest.md))
-
-**Environment:**
-- Darkness gives enemies advantage
-- Magical braziers can be lit with [[/check dex 12]]
-- Central altar holds [Crystal of Dawn](../items/crystal-of-dawn.md)
-
-## Rewards
-- 100gp from Elder Theron
-- [Crystal of Dawn](../items/crystal-of-dawn.md)
-- Gratitude of Millhaven (future benefits)
-- 500 XP per character
-
-## Next Chapter
-Leads to [Chapter 2: The Spreading Darkness](chapter-2.md)
-```
-
-### Example: Item File
-
-**File:** `items/crystal-of-dawn.md`
-
-```markdown
-# Crystal of Dawn
-
-*Wondrous item, uncommon (requires attunement)*
-
-## Description
-A fist-sized crystal that glows with warm sunlight. The light pulses
-gently like a heartbeat. When held, it feels warm and comforting.
-
-## History
-Created by ancient sun clerics to ward against shadow creatures.
-Thought lost for centuries until found in the awakening chamber.
-
-## Properties
-- **Light:** Sheds bright light 20ft, dim light 40ft
-- **Control:** Bonus action to brighten, dim, or extinguish
-- **Radiant Burst:** Once per day, as an action, emit burst of light
-  - All creatures within 20ft make [[/save con 14]]
-  - On fail: [[/damage 3d6 radiant]] and &Reference[blinded] for 1 round
-  - On save: Half damage, not blinded
-  - Shadow/undead creatures have disadvantage on save
-
-## Attunement
-To attune, meditate with crystal at dawn for 1 hour.
-
-## Value
-800gp (if sold)
-```
+### Complicated
+- **Liora** - Mats' former love, now a were-harengon
+- **Vargr Bloodfang** - Werewolf pack alpha
 
 ## Using These Notes
 
-### With Claude Code
+### For Adventure Planning
+1. Check `sessions/README.md` for plot threads and party status
+2. Reference NPC files for existing characters
+3. Use `lore/aether-orbs.md` for artifact-related content
+4. Consider house connections in `locations/`
 
-Ask Claude to generate JSON from your notes:
+### For AI Assistance
+The notes are organized for easy AI consumption:
+- Each file focuses on one topic
+- Cross-references use relative links
+- Session summaries provide context
+- DM guide explains campaign conventions
 
-```
-"Generate an NPC actor JSON for Elder Theron based on
- campaign-notes/npcs/elder-theron.md"
-```
+## FoundryVTT Integration
 
-Claude will:
-1. Read the markdown file
-2. Parse the stat block and abilities
-3. Generate properly formatted JSON
-4. Save to source-data/actors/elder-theron.json
-5. Preserve enricher syntax in descriptions
-
-### With Manual Import
-
-1. Write your notes here in markdown
-2. Create content manually in FoundryVTT
-3. Export from Foundry to source-data/ for version control
-4. Keep notes updated as content evolves
-
-## Tips
-
-- ✅ Use descriptive filenames (elder-theron.md not npc1.md)
-- ✅ Include enricher syntax for mechanics
-- ✅ Link related content with relative paths
-- ✅ Keep stat blocks formatted consistently
-- ✅ Update notes when content changes in Foundry
-- ❌ Don't include copyrighted content without permission
-- ❌ Don't put player-facing spoilers in shared docs
-- ❌ Don't use special characters in filenames
-- ❌ Don't duplicate content between notes and source-data
-
-## Workflow
-
-1. **Plan** - Brainstorm and outline in markdown
-2. **Write** - Create detailed notes with enrichers
-3. **Generate** - Use Claude to create JSON (or do manually)
-4. **Import** - Import JSON into FoundryVTT
-5. **Refine** - Edit in Foundry UI as needed
-6. **Backup** - Export final version to source-data/
-7. **Update** - Keep notes in sync with Foundry content
-
----
-
-Happy worldbuilding!
+When ready to create Foundry content from these notes, use the enricher syntax documented in `docs/ENRICHERS.md`.

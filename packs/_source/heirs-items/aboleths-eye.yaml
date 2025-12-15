@@ -1,0 +1,116 @@
+# Aboleth's Eye - Uncommon Wondrous Item (Cursed)
+# Found in Veth'sora's hoard
+_id: AbolethsEye00001
+name: Aboleth's Eye
+type: equipment
+img: icons/commodities/biological/eye-purple.webp
+folder: CoralVeilItmFold
+
+system:
+  description:
+    value: >-
+      <p>A fist-sized orb of amber resin containing a preserved aboleth eye. It occasionally blinks.</p>
+
+      <h3>Properties (while attuned)</h3>
+      <ul>
+        <li>You can breathe underwater</li>
+        <li>You have darkvision out to 120 feet while underwater</li>
+        <li>Once per long rest, you can cast <em>Detect Thoughts</em> (save DC 13)</li>
+      </ul>
+
+      <h3>Curse</h3>
+      <p>While attuned to this item, you have disadvantage on saving throws against being charmed
+      by aberrations.</p>
+
+  # Equipment properties
+  type:
+    value: trinket
+    baseItem: ""
+  rarity: uncommon
+  identified: true
+  attunement: required
+  equipped: false
+
+  # Activities
+  activities:
+    detectthoughts1:
+      _id: detectthoughts1
+      type: save
+      name: Detect Thoughts
+      activation:
+        type: action
+        value: 1
+        condition: 'Once per long rest'
+        override: false
+      consumption:
+        targets:
+          - type: itemUses
+            value: '1'
+            scaling: {}
+        scaling:
+          allowed: false
+          max: ''
+        spellSlot: false
+      description:
+        chatFlavor: 'The eye pulses as you read surface thoughts'
+      duration:
+        concentration: true
+        value: '1'
+        units: minute
+        special: ''
+        override: false
+      effects: []
+      range:
+        value: '30'
+        units: ft
+        special: ''
+        override: false
+      target:
+        template:
+          count: ''
+          contiguous: false
+          type: ''
+          size: ''
+          width: ''
+          height: ''
+          units: ft
+        affects:
+          count: '1'
+          type: creature
+          choice: false
+          special: ''
+        prompt: true
+        override: false
+      save:
+        ability: wis
+        dc:
+          calculation: ''
+          formula: '13'
+      uses:
+        spent: 0
+        max: '1'
+        recovery:
+          - period: lr
+            type: recoverAll
+      sort: 0
+
+  # Uses
+  uses:
+    max: '1'
+    recovery:
+      - period: lr
+        type: recoverAll
+    spent: 0
+
+  # Weight and value
+  weight:
+    value: 1
+  price:
+    value: 500
+    denomination: gp
+
+ownership:
+  default: 0
+
+sort: 300000
+_key: '!items!AbolethsEye00001'

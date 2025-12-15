@@ -1,0 +1,103 @@
+# Thalindra Wavecrest - Sea Elf Messenger
+# Brings the adventure hook to the party at the Bottomless Goat
+_id: ThalindraWave001
+name: Thalindra Wavecrest
+type: npc
+img: icons/environment/people/elf-female.webp
+folder: CoralVeilActFold
+
+system:
+  abilities:
+    str:
+      value: 10
+      proficient: 0
+    dex:
+      value: 14
+      proficient: 0
+    con:
+      value: 12
+      proficient: 0
+    int:
+      value: 11
+      proficient: 0
+    wis:
+      value: 13
+      proficient: 0
+    cha:
+      value: 12
+      proficient: 0
+
+  attributes:
+    hp:
+      value: 22
+      max: 22
+      formula: 4d8 + 4
+    ac:
+      value: 12
+      flat: 12
+      calc: flat
+    movement:
+      walk: 30
+      swim: 30
+      units: ft
+
+  details:
+    cr: 0.5
+    source:
+      custom: Coral Veil Adventure
+    type:
+      value: humanoid
+      subtype: elf (sea)
+    alignment: ng  # Neutral Good
+    biography:
+      value: >-
+        <p>Thalindra is a young sea elf woman sent by her grandmother, Elder Coralline, to seek
+        help from the surface world. Her skin carries the blue-green tint of deep water, and
+        delicate fins frame her pointed ears. Gills flutter at her throat.</p>
+
+        <p>She bears translucent burns on her forearms—the telltale sign of aboleth corruption
+        from her escape through Veth'sora's territory.</p>
+
+        <h3>Key Information</h3>
+        <ul>
+          <li>Coral Veil is a village of ~60 sea elves beneath the watering hole</li>
+          <li>An Aether Orb arrived three weeks ago, drawing the aboleth</li>
+          <li>Her mother Pearlescent was among the first enthralled</li>
+          <li>Her grandmother leads the resistance</li>
+          <li>She cannot survive long out of water</li>
+        </ul>
+
+        <h3>Personality</h3>
+        <p>Desperate and exhausted, but determined to save her people. Speaks halting Common.
+        Terrified of what has become of her mother.</p>
+
+  traits:
+    size: med
+    di:
+      value: []
+    dr:
+      value: []
+    dv:
+      value: []
+    ci:
+      value: []
+    languages:
+      value:
+        - common
+        - elvish
+        - aquan
+
+  # Skills
+  skills:
+    per:
+      value: 1
+      ability: wis
+    ath:
+      value: 1
+      ability: str
+
+ownership:
+  default: 0
+
+sort: 100000
+_key: '!actors!ThalindraWave001'

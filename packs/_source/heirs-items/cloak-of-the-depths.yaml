@@ -1,0 +1,47 @@
+# Cloak of the Depths - Uncommon Wondrous Item
+# Found in Veth'sora's hoard
+_id: CloakOfDepths001
+name: Cloak of the Depths
+type: equipment
+img: icons/equipment/back/cloak-layered-blue.webp
+folder: CoralVeilItmFold
+
+system:
+  description:
+    value: >-
+      <p>This dark blue cloak seems to ripple like water even when dry. Small bioluminescent
+      organisms are woven into its fabric, giving it a faint glow in darkness.</p>
+
+      <h3>Properties</h3>
+      <ul>
+        <li>You have resistance to cold damage</li>
+        <li>You can breathe underwater</li>
+        <li>While underwater, you have advantage on Stealth checks</li>
+      </ul>
+
+  # Equipment properties
+  type:
+    value: clothing
+    baseItem: ""
+  rarity: uncommon
+  identified: true
+  attunement: ""
+  equipped: false
+
+  # Armor
+  armor:
+    value: null
+    magicalBonus: null
+
+  # Weight and value
+  weight:
+    value: 1
+  price:
+    value: 500
+    denomination: gp
+
+ownership:
+  default: 0
+
+sort: 400000
+_key: '!items!CloakOfDepths001'

@@ -1,0 +1,127 @@
+# Water Aether Orb - Rare Artifact
+# Recovered from Coral Veil after defeating Veth'sora
+_id: WaterAetherOrb01
+name: Aether Orb (Water Aspect)
+type: equipment
+img: icons/commodities/gems/gem-faceted-round-blue.webp
+folder: CoralVeilItmFold
+
+system:
+  description:
+    value: >-
+      <p>This fist-sized sphere contains swirling ocean currents in miniature—blues and greens
+      dancing in eternal motion. When held, you can hear distant whale song and feel the pull
+      of tides.</p>
+
+      <h3>Properties (while attuned)</h3>
+      <ul>
+        <li>You can breathe underwater and have a swimming speed equal to your walking speed</li>
+        <li>You have resistance to cold damage</li>
+        <li>Once per long rest, you can cast <em>Control Water</em> without expending a spell slot</li>
+      </ul>
+
+      <h3>Orb Resonance</h3>
+      <p>You can sense the approximate direction of other Aether Orbs within 1 mile.</p>
+
+      <h3>Dual Orb Effect</h3>
+      <p>When carried alongside the Necrotic Aether Orb, the bearer occasionally sees visions of
+      death by drowning (necrotic orb) or feels phantom sensations of decay (water orb). These
+      are disturbing but not mechanically harmful—yet.</p>
+
+  # Equipment properties
+  type:
+    value: trinket
+    baseItem: ""
+  rarity: rare
+  identified: true
+  attunement: required
+  equipped: false
+
+  # Armor/AC (not applicable for trinket)
+  armor:
+    value: null
+    magicalBonus: null
+
+  # Movement granted
+  speed:
+    value: null
+    conditions: "Swimming speed equal to walking speed while attuned"
+
+  # Activities
+  activities:
+    controlwater0001:
+      _id: controlwater0001
+      type: utility
+      name: Control Water
+      activation:
+        type: action
+        value: 1
+        condition: 'Once per long rest'
+        override: false
+      consumption:
+        targets:
+          - type: itemUses
+            value: '1'
+            scaling: {}
+        scaling:
+          allowed: false
+          max: ''
+        spellSlot: false
+      description:
+        chatFlavor: 'You shape the water around you with the orb''s power'
+      duration:
+        concentration: true
+        value: '10'
+        units: minute
+        special: ''
+        override: false
+      effects: []
+      range:
+        value: '300'
+        units: ft
+        special: ''
+        override: false
+      target:
+        template:
+          count: ''
+          contiguous: false
+          type: cube
+          size: '100'
+          width: ''
+          height: ''
+          units: ft
+        affects:
+          count: ''
+          type: ''
+          choice: false
+          special: 'Water in a 100-foot cube'
+        prompt: true
+        override: false
+      uses:
+        spent: 0
+        max: '1'
+        recovery:
+          - period: lr
+            type: recoverAll
+      sort: 0
+
+  # Uses
+  uses:
+    max: '1'
+    recovery:
+      - period: lr
+        type: recoverAll
+    spent: 0
+
+  # Weight and value
+  weight:
+    value: 1
+  price:
+    value: 10000
+    denomination: gp
+
+ownership:
+  default: 0
+
+sort: 100000
+_key: '!items!WaterAetherOrb01'

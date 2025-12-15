@@ -1,0 +1,106 @@
+# Ripple - Sea Elf Child Survivor
+# Knows the secret tunnel to the Pearlheart Chamber
+_id: RippleSeaElf001
+name: Ripple
+type: npc
+img: icons/environment/people/elf-child.webp
+folder: CoralVeilActFold
+
+system:
+  abilities:
+    str:
+      value: 8
+      proficient: 0
+    dex:
+      value: 14
+      proficient: 0
+    con:
+      value: 10
+      proficient: 0
+    int:
+      value: 10
+      proficient: 0
+    wis:
+      value: 12
+      proficient: 0
+    cha:
+      value: 11
+      proficient: 0
+
+  attributes:
+    hp:
+      value: 7
+      max: 7
+      formula: 2d6
+    ac:
+      value: 12
+      flat: 12
+      calc: flat
+    movement:
+      walk: 25
+      swim: 30
+      units: ft
+
+  details:
+    cr: 0
+    source:
+      custom: Coral Veil Adventure
+    type:
+      value: humanoid
+      subtype: elf (sea)
+    alignment: ng  # Neutral Good
+    biography:
+      value: >-
+        <p>A young sea elf girl with iridescent blue-green skin and enormous, frightened eyes.
+        Her hair is seafoam green, cut short and practical. She clutches a stuffed toy shaped
+        like a seahorse.</p>
+
+        <h3>Background</h3>
+        <p>Approximately 10 years old. Survived by being small, quiet, and clever. Has been
+        hiding in the school, watching her enthralled father from afar, hoping he'll "wake up."</p>
+
+        <h3>What Ripple Knows</h3>
+        <ul>
+          <li>There's a "back way" into the Pearlheart Chamber (maintenance tunnel)</li>
+          <li>Her father is one of the enthralled guards</li>
+          <li>The creature "talks in dreams"—even free sea elves have nightmares</li>
+          <li>Location of air pockets where the aboleth's voice is weaker</li>
+        </ul>
+
+        <h3>Ripple's Secret</h3>
+        <p>She found a <strong>Ring of Water Walking</strong> in her grandmother's things.
+        Uses it to access air pockets. Will give it to the party if they promise to save
+        her father.</p>
+
+        <h3>Personality</h3>
+        <p>Frightened but brave. Desperate to save her father. Clever and observant.</p>
+
+  traits:
+    size: sm
+    di:
+      value: []
+    dr:
+      value: []
+    dv:
+      value: []
+    ci:
+      value: []
+    languages:
+      value:
+        - elvish
+        - aquan
+
+  # Skills
+  skills:
+    ste:
+      value: 2
+      ability: dex
+    per:
+      value: 1
+      ability: wis
+
+ownership:
+  default: 0
+
+sort: 500000
+_key: '!actors!RippleSeaElf001'
