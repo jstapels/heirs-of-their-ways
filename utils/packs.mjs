@@ -27,6 +27,56 @@ import { hideBin } from "yargs/helpers";
 const PACK_SOURCE = "packs/_source";
 const PACK_DEST = "packs";
 const USE_YAML = true; // Set to false for JSON
+const ID_LENGTH = 16; // FoundryVTT requires exactly 16 alphanumeric characters
+
+/**
+ * Generate a valid 16-character alphanumeric ID from a name
+ * @param {string} name - The name to generate an ID from
+ * @param {string} [prefix=""] - Optional prefix for the ID
+ * @returns {string} A valid 16-character ID
+ */
+function generateId(name, prefix = "") {
+  // Remove non-alphanumeric characters and convert to consistent case
+  const cleaned = (prefix + name)
+    .replace(/[^a-zA-Z0-9]/g, "")
+    .replace(/([a-z])([A-Z])/g, "$1$2"); // Keep camelCase intact
+
+  // Take first 16 chars or pad with zeros if too short
+  if (cleaned.length >= ID_LENGTH) {
+    return cleaned.substring(0, ID_LENGTH);
+  }
+
+  // Pad with zeros to reach 16 characters
+  return cleaned.padEnd(ID_LENGTH, "0");
+}
+
+/**
+ * Validate and fix an ID to ensure it's exactly 16 alphanumeric characters
+ * @param {string} id - The ID to validate
+ * @param {string} name - The name to use for regeneration if needed
+ * @param {string} [prefix=""] - Optional prefix for regenerated IDs
+ * @returns {string} A valid 16-character ID
+ */
+function validateId(id, name, prefix = "") {
+  // Check if ID is valid (exactly 16 alphanumeric characters)
+  if (id && /^[a-zA-Z0-9]{16}$/.test(id)) {
+    return id;
+  }
+
+  // If ID exists but is wrong length, try to fix it
+  if (id) {
+    const cleaned = id.replace(/[^a-zA-Z0-9]/g, "");
+    if (cleaned.length >= ID_LENGTH) {
+      return cleaned.substring(0, ID_LENGTH);
+    }
+    if (cleaned.length > 0) {
+      return cleaned.padEnd(ID_LENGTH, "0");
+    }
+  }
+
+  // Generate new ID from name
+  return generateId(name, prefix);
+}
 
 /**
  * Parse command line arguments
@@ -51,9 +101,43 @@ const argv = yargs(hideBin(process.argv))
 
 /**
  * Clean up pack entry before compilation
- * Removes metadata and standardizes formatting
+ * Removes metadata, standardizes formatting, and validates IDs
  */
-function cleanPackEntry(entry) {
+function cleanPackEntry(entry, parentName = "") {
+  const entryName = entry.name || "Unknown";
+
+  // Validate and fix the main _id
+  if (entry._id !== undefined) {
+    const oldId = entry._id;
+    entry._id = validateId(entry._id, entryName);
+    if (oldId !== entry._id) {
+      log.info(`  Fixed ID: ${oldId} -> ${entry._id} (${entryName})`);
+    }
+  }
+
+  // Also fix _key if it contains the old ID pattern
+  if (entry._key && entry._id) {
+    // _key format is like "!items!ItemId00000000" or "!journal.pages!JournalId.PageId"
+    const keyParts = entry._key.split("!");
+    if (keyParts.length >= 3) {
+      const lastPart = keyParts[keyParts.length - 1];
+      // Check if the last part contains an ID that needs updating
+      if (lastPart.includes(".")) {
+        // Handle nested keys like "JournalId.PageId"
+        const [parentId, childId] = lastPart.split(".");
+        if (childId === entry._id || (childId && childId.length !== ID_LENGTH)) {
+          // Update the child ID portion
+          keyParts[keyParts.length - 1] = `${parentId}.${entry._id}`;
+          entry._key = keyParts.join("!");
+        }
+      } else if (lastPart !== entry._id) {
+        // Simple key, just replace the ID
+        keyParts[keyParts.length - 1] = entry._id;
+        entry._key = keyParts.join("!");
+      }
+    }
+  }
+
   // Remove flags that shouldn't be in compendia
   if (entry.flags) {
     delete entry.flags.importSource;
@@ -84,16 +168,48 @@ function cleanPackEntry(entry) {
 
   // Clean embedded documents (items in actors, etc.)
   if (entry.items) {
-    entry.items = entry.items.map(cleanPackEntry);
+    entry.items = entry.items.map(item => cleanPackEntry(item, entryName));
   }
 
   if (entry.effects) {
-    entry.effects = entry.effects.map(cleanPackEntry);
+    entry.effects = entry.effects.map(effect => cleanPackEntry(effect, entryName));
   }
 
   // Clean journal pages
   if (entry.pages) {
-    entry.pages = entry.pages.map(cleanPackEntry);
+    entry.pages = entry.pages.map(page => cleanPackEntry(page, entryName));
+  }
+
+  // Clean activities (for items with activities like weapons)
+  if (entry.system?.activities) {
+    for (const [actId, activity] of Object.entries(entry.system.activities)) {
+      if (activity._id !== undefined) {
+        const oldActId = activity._id;
+        activity._id = validateId(activity._id, activity.name || actId, "act");
+        if (oldActId !== activity._id) {
+          log.info(`  Fixed activity ID: ${oldActId} -> ${activity._id}`);
+          // Also need to rename the key in activities object if different
+          if (actId !== activity._id && actId === oldActId) {
+            entry.system.activities[activity._id] = activity;
+            delete entry.system.activities[actId];
+          }
+        }
+      }
+    }
+  }
+
+  // Clean table results
+  if (entry.results) {
+    entry.results = entry.results.map((result, idx) => {
+      if (result._id !== undefined) {
+        const oldResId = result._id;
+        result._id = validateId(result._id, `${entryName}Result${idx}`, "res");
+        if (oldResId !== result._id) {
+          log.info(`  Fixed result ID: ${oldResId} -> ${result._id}`);
+        }
+      }
+      return result;
+    });
   }
 
   return entry;
