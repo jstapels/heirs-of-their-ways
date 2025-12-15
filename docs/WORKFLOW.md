@@ -78,7 +78,7 @@ This module uses a **modern YAML-based build system** for managing compendium co
 npm install
 
 # Build markdown → YAML → packs
-npm run build          # runs build:notes then build:packs
+npm run build          # runs build:yaml then build:packs
 
 # Edit YAML files in packs/_source/heirs-pack/
 # (actors, items, journals, scenes, tables)
@@ -92,9 +92,8 @@ npm run build:packs
 ### Build Commands
 
 ```bash
-npm run build                    # Full build: journals + packs
-npm run build:notes              # Compile markdown in campaign-notes/ → packs/_source/*
-npm run build:journals           # Compile markdown → journal YAML
+npm run build                    # Full build: markdown → YAML → packs
+npm run build:yaml               # Compile markdown in campaign-notes/ → packs/_source/*
 npm run build:packs              # Compile all YAML → LevelDB
 npm run build:packs -- heirs-pack  # Compile specific pack
 
@@ -107,7 +106,7 @@ npm run clean:packs              # Standardize YAML formatting
 ### Markdown-First Flow
 - Author everything in `campaign-notes/` with frontmatter keys (`type`, `pack`, `folder`, `img`, `system`, `embedded_items`, etc.).
 - Optional fenced blocks ```foundry-yaml``` can describe complex payloads (activities/effects/tokens) and are merged into the generated YAML.
-- Run `npm run build:notes` to emit pack sources in `packs/_source/`, then `npm run build:packs` to compile LevelDB packs.
+- Run `npm run build:yaml` to emit pack sources in `packs/_source/`, then `npm run build:packs` to compile LevelDB packs.
 
 ### Why YAML?
 
@@ -188,9 +187,8 @@ journal: false
 
 ```bash
 npm run build                    # Build journals + packs (full build)
-npm run build:journals           # Build only journals (markdown → YAML)
+npm run build:yaml               # Build only journals (markdown → YAML)
 npm run build:packs              # Build only packs (YAML → LevelDB)
-npm run build:packs:only         # Alias for build:packs without journals
 ```
 
 ### Example Workflow

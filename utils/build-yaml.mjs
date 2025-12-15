@@ -20,8 +20,8 @@
  *   generated document (visible in markdown previews).
  *
  * Usage:
- *   npm run build:notes            # build all notes
- *   npm run build:notes -- <file>  # build a specific markdown file
+ *   npm run build:yaml            # build all notes
+ *   npm run build:yaml -- <file>  # build a specific markdown file
  */
 
 import fs from "node:fs";
