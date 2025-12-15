@@ -193,7 +193,7 @@ npm run build:packs              # Build only packs (YAML → LevelDB)
 
 ### Example Workflow
 
-1. Edit `campaign-notes/adventures/coral-veil.md`
+1. Edit `campaign-notes/adventures/coral-veil/adventure.md`
 2. Run `npm run build`
 3. Refresh FoundryVTT to see updated journal
 

@@ -1,3 +1,7 @@
+---
+type: adventure
+---
+
 # The Sunken Village of Coral Veil
 
 *Adventure for 4 characters of level 6-7, designed for 2-3 sessions*

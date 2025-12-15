@@ -16,7 +16,11 @@ When working with this campaign:
 campaign-notes/
 ├── README.md                   # This file
 ├── adventures/                 # Planned adventures and story outlines (Adventure docs)
-│   └── coral-veil.md               # The Sunken Village of Coral Veil
+│   └── coral-veil/                 # The Sunken Village of Coral Veil (adventure + assets)
+│       ├── adventure.md            # Adventure document (Adventure type)
+│       ├── actors/                 # NPCs specific to the adventure (Actor type)
+│       ├── items/                  # Loot/rewards for the adventure (Item type)
+│       └── journals/               # Location/notes tied to the adventure (Journal type)
 ├── journals/                   # Journal-type content
 │   ├── DM-Notes/                   # Session logs + DM guide
 │   ├── Locations/                 # Place writeups
@@ -61,7 +65,7 @@ The party has:
 - Ilizar's lycanthropy curse
 - The watering hole north of the Bottomless Goat
 
-**Upcoming Adventure:** The Sunken Village of Coral Veil (see `adventures/coral-veil.md`)
+**Upcoming Adventure:** The Sunken Village of Coral Veil (see `adventures/coral-veil/adventure.md`)
 
 ## The Five Great Houses
 

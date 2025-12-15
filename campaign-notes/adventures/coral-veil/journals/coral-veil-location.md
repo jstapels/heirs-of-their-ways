@@ -1,3 +1,7 @@
+---
+type: journal
+---
+
 # Coral Veil
 
 *Location: Underwater cavern system beneath the watering hole north of the Bottomless Goat*
