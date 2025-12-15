@@ -25,6 +25,46 @@ system:
 
 A blue-green skinned sea elf whose gills flutter anxiously whenever she is out of the water. Scars from translucent aboleth mucus burns mark her forearms. She speaks halting Common but is determined to save Coral Veil.
 
+```foundry-yaml
+system:
+  abilities:
+    str:
+      value: 10
+    dex:
+      value: 14
+    con:
+      value: 12
+    int:
+      value: 11
+    wis:
+      value: 12
+    cha:
+      value: 13
+  attributes:
+    ac:
+      flat: 14
+      calc: flat
+    hp:
+      value: 22
+      max: 22
+    prof: 2
+    movement:
+      walk: 30
+      swim: 40
+  skills:
+    prc:
+      value: 2
+    per:
+      value: 1
+  traits:
+    size: med
+    languages:
+      value:
+        - common
+        - elvish
+        - aquan
+```
+
 ## Biography {.system.details.biography.value}
 - Granddaughter of Elder Coralline; daughter of Pearlescent.
 - Escaped Veth'sora's psychic grip long enough to reach the surface and beg the party for aid.

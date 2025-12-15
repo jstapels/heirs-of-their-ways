@@ -25,6 +25,46 @@ system:
 
 Thalindra's mother, once a poised sea elf warrior now moving with unsettling fluidity as the aboleth speaks through her. Her eyes are filmed with opalescent mucus and her voice harmonizes with Veth'sora's psychic presence.
 
+```foundry-yaml
+system:
+  abilities:
+    str:
+      value: 16
+    dex:
+      value: 13
+    con:
+      value: 14
+    int:
+      value: 10
+    wis:
+      value: 11
+    cha:
+      value: 14
+  attributes:
+    ac:
+      flat: 17
+      calc: flat
+    hp:
+      value: 68
+      max: 68
+    prof: 2
+    movement:
+      walk: 30
+      swim: 40
+    senses:
+      darkvision: 60
+  traits:
+    size: med
+    languages:
+      value:
+        - common
+        - elvish
+        - aquan
+    dr:
+      value:
+        - psychic
+```
+
 ## Biography {.system.details.biography.value}
 - Among the first villagers taken; now serves as Veth'sora's primary lieutenant.
 - Uses veteran stats with swim speed 40 ft., resistance to psychic damage, and *command* at will (DC 13).

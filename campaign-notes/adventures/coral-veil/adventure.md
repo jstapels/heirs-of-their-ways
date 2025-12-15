@@ -2,6 +2,48 @@
 type: adventure
 ---
 
+```foundry-yaml
+adventure:
+  journal: Compendium.heirs-of-their-ways.heirs-journals.JrnlCoralVeil000
+  contents:
+    - uuid: Compendium.heirs-of-their-ways.heirs-journals.JrnlCoralVeil000
+      type: JournalEntry
+      name: Coral Veil
+    - uuid: Compendium.heirs-of-their-ways.heirs-actors.ActrElderCoralli
+      type: Actor
+      name: Elder Coralline Wavecrest
+    - uuid: Compendium.heirs-of-their-ways.heirs-actors.ActrThalindraWav
+      type: Actor
+      name: Thalindra Wavecrest
+    - uuid: Compendium.heirs-of-their-ways.heirs-actors.ActrPearlescentW
+      type: Actor
+      name: Pearlescent Wavecrest
+    - uuid: Compendium.heirs-of-their-ways.heirs-actors.ActrRipplesFathe
+      type: Actor
+      name: Ripple's Father
+    - uuid: Compendium.heirs-of-their-ways.heirs-actors.ActrSergeantKelv
+      type: Actor
+      name: Sergeant Kelvar
+    - uuid: Compendium.heirs-of-their-ways.heirs-actors.ActrRipple000000
+      type: Actor
+      name: Ripple
+    - uuid: Compendium.heirs-of-their-ways.heirs-actors.ActrHealerOrin00
+      type: Actor
+      name: Healer Orin
+    - uuid: Compendium.heirs-of-their-ways.heirs-actors.ActrMurkmaw00000
+      type: Actor
+      name: Murkmaw
+    - uuid: Compendium.heirs-of-their-ways.heirs-actors.ActrScabrine0000
+      type: Actor
+      name: Scabrine
+    - uuid: Compendium.heirs-of-their-ways.heirs-actors.ActrWeepingNell0
+      type: Actor
+      name: Weeping Nell
+    - uuid: Compendium.heirs-of-their-ways.heirs-actors.ActrVethsora0000
+      type: Actor
+      name: Veth'sora
+```
+
 # The Sunken Village of Coral Veil
 
 *Adventure for 4 characters of level 6-7, designed for 2-3 sessions*

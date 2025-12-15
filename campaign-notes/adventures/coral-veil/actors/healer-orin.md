@@ -25,6 +25,50 @@ system:
 
 A sea elf man with an oily glaze over his eyes and mucus dripping from his gills. Movements are jerky and unnatural, and his voice blends his own frightened tone with Veth'sora's psychic command.
 
+```foundry-yaml
+system:
+  abilities:
+    str:
+      value: 11
+    dex:
+      value: 14
+    con:
+      value: 12
+    int:
+      value: 11
+    wis:
+      value: 13
+    cha:
+      value: 11
+  attributes:
+    ac:
+      flat: 13
+      calc: flat
+    hp:
+      value: 16
+      max: 16
+    prof: 2
+    movement:
+      walk: 30
+      swim: 40
+  skills:
+    nat:
+      value: 2
+    prc:
+      value: 3
+    ste:
+      value: 3
+    sur:
+      value: 3
+  traits:
+    size: med
+    languages:
+      value:
+        - common
+        - elvish
+        - aquan
+```
+
 ## Biography {.system.details.biography.value}
 - Former village healer; retains medical knowledge even while enthralled.
 - Guards supplies in the Healing House (potions and healer's kit).
