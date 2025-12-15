@@ -4,10 +4,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Compiled Packs (LevelDB)
-# Only commit source files in packs/_source/
-packs/*/
-!packs/_source/
+# Packs (generated: sources and compiled)
+packs/
 
 # Build output
 dist/

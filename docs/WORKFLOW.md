@@ -14,6 +14,7 @@ heirs-of-their-ways/
 │   ├── ENRICHERS.md              # Text enrichers reference
 │   └── WORKFLOW.md               # This file
 ├── utils/                         # Build utilities
+│   ├── build-journals.mjs        # Markdown → Journal YAML compiler
 │   └── packs.mjs                 # Pack compilation script
 ├── campaign-notes/                # Markdown notes for campaign content
 │   ├── adventures/               # Adventure outlines and session notes
@@ -76,6 +77,9 @@ This module uses a **modern YAML-based build system** for managing compendium co
 # First time setup
 npm install
 
+# Build markdown → YAML → packs
+npm run build          # runs build:notes then build:packs
+
 # Edit YAML files in packs/_source/heirs-pack/
 # (actors, items, journals, scenes, tables)
 
@@ -88,6 +92,9 @@ npm run build:packs
 ### Build Commands
 
 ```bash
+npm run build                    # Full build: journals + packs
+npm run build:notes              # Compile markdown in campaign-notes/ → packs/_source/*
+npm run build:journals           # Compile markdown → journal YAML
 npm run build:packs              # Compile all YAML → LevelDB
 npm run build:packs -- heirs-pack  # Compile specific pack
 
@@ -96,6 +103,11 @@ npm run extract:packs -- heirs-pack # Extract specific pack
 
 npm run clean:packs              # Standardize YAML formatting
 ```
+
+### Markdown-First Flow
+- Author everything in `campaign-notes/` with frontmatter keys (`type`, `pack`, `folder`, `img`, `system`, `embedded_items`, etc.).
+- Optional fenced blocks ```foundry-yaml``` can describe complex payloads (activities/effects/tokens) and are merged into the generated YAML.
+- Run `npm run build:notes` to emit pack sources in `packs/_source/`, then `npm run build:packs` to compile LevelDB packs.
 
 ### Why YAML?
 
@@ -106,6 +118,86 @@ npm run clean:packs              # Standardize YAML formatting
 - **Industry standard** - Same approach as official dnd5e system
 
 See [packs/_source/README.md](../packs/_source/README.md) for complete YAML documentation.
+
+---
+
+## Markdown Journal System
+
+**Journals are now built from markdown files** in `campaign-notes/`. This provides a better authoring experience for narrative content.
+
+### How It Works
+
+1. Write content in `campaign-notes/` as normal markdown files
+2. The build system automatically converts markdown → journal YAML
+3. Journal YAML is then compiled into the LevelDB pack
+
+### Markdown Format
+
+```markdown
+---
+# Optional YAML frontmatter
+_id: MyJournalId00000   # Custom journal ID (auto-generated if omitted)
+folder: FolderIdHere0   # Folder ID in the pack
+ownership: 0            # Default ownership (0 = GM only)
+---
+# Journal Title
+
+Content before the first H2 becomes part of the "Overview" page.
+
+## First Page Title
+
+Content for the first page...
+
+## Second Page Title
+
+Content for the second page...
+```
+
+### Page Splitting
+
+- **H1 (`#`)** becomes the journal name
+- **H2 (`##`)** headers create new pages
+- Content between H2 headers becomes each page's content
+- Tables, lists, blockquotes, and enrichers are preserved
+
+### Preserved Enrichers
+
+The markdown compiler preserves FoundryVTT enricher syntax:
+- `[[/check Perception 15]]` - Skill checks
+- `[[/damage 2d6 fire]]` - Damage rolls
+- `[[/save DEX 14]]` - Saving throws
+- `@UUID[...]` - Document links
+- `&Reference[stunned]` - Condition references
+
+### Excluded Files
+
+The following files are **not** compiled to journals:
+- `*-template.md` files
+- `README.md` files
+- Files in `sessions/` directory (DM notes only)
+
+To explicitly exclude a file, add `journal: false` to frontmatter:
+```markdown
+---
+journal: false
+---
+# This won't become a journal
+```
+
+### Build Commands
+
+```bash
+npm run build                    # Build journals + packs (full build)
+npm run build:journals           # Build only journals (markdown → YAML)
+npm run build:packs              # Build only packs (YAML → LevelDB)
+npm run build:packs:only         # Alias for build:packs without journals
+```
+
+### Example Workflow
+
+1. Edit `campaign-notes/adventures/coral-veil.md`
+2. Run `npm run build`
+3. Refresh FoundryVTT to see updated journal
 
 ---
 
