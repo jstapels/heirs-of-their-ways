@@ -1,42 +1,42 @@
 {
-    "name": "heirs-of-their-ways",
-    "version": "1.0.16",
-    "description": "FoundryVTT module for the Heirs of Their Ways D&D 5e campaign",
-    "private": true,
-    "type": "module",
-    "scripts": {
-        "build": "npm run build:yaml && npm run build:packs",
-        "build:yaml": "node utils/build-yaml.mjs",
-        "build:packs": "node utils/packs.mjs compile",
-        "extract:packs": "node utils/packs.mjs extract",
-        "clean:packs": "node utils/packs.mjs clean",
-        "clean:build": "node utils/clean-build.mjs",
-        "version:patch": "node utils/bump-version.mjs patch",
-        "version:minor": "node utils/bump-version.mjs minor",
-        "version:major": "node utils/bump-version.mjs major",
-        "build:release": "npm run build && node utils/build-release.mjs",
-        "release": "npm run build:release"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/jstapels/heirs-of-their-ways.git"
-    },
-    "keywords": [
-        "foundry-vtt",
-        "dnd5e",
-        "campaign",
-        "module"
-    ],
-    "author": "Jason Stapels <jstapels@gmail.com>",
-    "license": "MIT",
-    "devDependencies": {
-        "@foundryvtt/foundryvtt-cli": "^3.0.2",
-        "archiver": "^7.0.1",
-        "fancy-log": "^2.0.0",
-        "js-yaml": "^4.1.0",
-        "yargs": "^17.7.2"
-    },
-    "engines": {
-        "node": ">=18.0.0"
-    }
+  "name": "heirs-of-their-ways",
+  "version": "1.0.17",
+  "description": "FoundryVTT module for the Heirs of Their Ways D&D 5e campaign",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run build:yaml && npm run build:packs",
+    "build:yaml": "node utils/build-yaml.mjs",
+    "build:packs": "node utils/packs.mjs compile",
+    "extract:packs": "node utils/packs.mjs extract",
+    "clean:packs": "node utils/packs.mjs clean",
+    "clean:build": "node utils/clean-build.mjs",
+    "version:patch": "node utils/bump-version.mjs patch",
+    "version:minor": "node utils/bump-version.mjs minor",
+    "version:major": "node utils/bump-version.mjs major",
+    "build:release": "npm run build && node utils/build-release.mjs",
+    "release": "npm run build:release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jstapels/heirs-of-their-ways.git"
+  },
+  "keywords": [
+    "foundry-vtt",
+    "dnd5e",
+    "campaign",
+    "module"
+  ],
+  "author": "Jason Stapels <jstapels@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^3.0.2",
+    "archiver": "^7.0.1",
+    "fancy-log": "^2.0.0",
+    "js-yaml": "^4.1.0",
+    "yargs": "^17.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }
