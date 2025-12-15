@@ -45,6 +45,15 @@ const INVALID_IMAGE_PATTERNS = [
     /^icons\/svg\/item-bag\.svg$/, // Default item bag
 ];
 
+const DOCUMENT_COLLECTION_MAP = {
+    Actor: "actors",
+    Item: "items",
+    JournalEntry: "journal",
+    RollTable: "tables",
+    Scene: "scenes",
+    Adventure: "adventures",
+};
+
 function deriveCollectionFromKey(key) {
     if (!key) return null;
     const parts = key.split("!").filter(Boolean);
@@ -79,6 +88,18 @@ function isInvalidImage(imgPath) {
  */
 function getDefaultImage(type) {
     return DEFAULT_IMAGES[type] || DEFAULT_IMAGES.item || null;
+}
+
+function removeStrayYmlSources(dir = PACK_SOURCE) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+        const fullPath = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+            removeStrayYmlSources(fullPath);
+        } else if (entry.isFile() && path.extname(entry.name) === ".yml") {
+            fs.rmSync(fullPath);
+        }
+    }
 }
 
 /**
@@ -167,6 +188,7 @@ function cleanPackEntry(entry, context = {}) {
     const collection =
         context.collection ||
         deriveCollectionFromKey(entry._key) ||
+        DOCUMENT_COLLECTION_MAP[context.documentType] ||
         context.parentCollection ||
         null;
 
@@ -440,6 +462,7 @@ async function extractPacks(packName = null) {
  */
 async function cleanPacks() {
     log.info("Cleaning pack source files...");
+    await removeStrayYmlSources();
     await extractPacks();
     log.info("Source files cleaned");
 }
