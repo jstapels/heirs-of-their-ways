@@ -5,7 +5,7 @@ Contributor cheat sheet for keeping the Heirs of Their Ways module healthy and s
 ## Project Structure & Module Organization
 - Core sources live in `packs/_source/heirs-pack/` (YAML actors/items/journals/scenes/tables); compiled LevelDB output goes to `packs/heirs-pack/` (generated).
 - Campaign drafting happens in `campaign-notes/` markdown; journals are built from these files.
-- Build utilities are in `utils/` (e.g., `build-journals.mjs`, `packs.mjs`); documentation in `docs/`; assets in `assets/`; legacy JSON exports in `source-data/`.
+- Build utilities are in `utils/` (e.g., `build-yaml.mjs`, `packs.mjs`); documentation in `docs/`; assets in `assets/`; legacy JSON exports in `source-data/`.
 - `module.json` is critical for Foundry metadata—coordinate changes and keep paths consistent.
 
 ## Build, Test, and Development Commands

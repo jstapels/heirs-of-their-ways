@@ -14,7 +14,7 @@ heirs-of-their-ways/
 │   ├── ENRICHERS.md              # Text enrichers reference
 │   └── WORKFLOW.md               # This file
 ├── utils/                         # Build utilities
-│   ├── build-journals.mjs        # Markdown → Journal YAML compiler
+│   ├── build-yaml.mjs            # Markdown → YAML compiler
 │   └── packs.mjs                 # Pack compilation script
 ├── campaign-notes/                # Markdown notes for campaign content
 │   ├── adventures/               # Adventure outlines and session notes
