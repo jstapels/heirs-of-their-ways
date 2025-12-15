@@ -29,6 +29,41 @@ const PACK_DEST = "packs";
 const USE_YAML = true; // Set to false for JSON
 const ID_LENGTH = 16; // FoundryVTT requires exactly 16 alphanumeric characters
 
+// Default images for different document types (relative to module root)
+const DEFAULT_IMAGES = {
+  npc: "modules/heirs-of-their-ways/assets/tokens/nobody.webp",
+  character: "modules/heirs-of-their-ways/assets/tokens/nobody.webp",
+  item: "modules/heirs-of-their-ways/assets/images/placeholder.webp",
+  feature: "modules/heirs-of-their-ways/assets/images/placeholder.webp"
+};
+
+// Image patterns that should be replaced with defaults (these are placeholder icons that may not exist)
+const INVALID_IMAGE_PATTERNS = [
+  /^icons\/environment\/people\//,      // Generic people icons
+  /^icons\/creatures\//,                 // Generic creature icons
+  /^icons\/svg\/mystery-man\.svg$/,      // Default mystery man
+  /^icons\/svg\/item-bag\.svg$/          // Default item bag
+];
+
+/**
+ * Check if an image path is invalid and should be replaced
+ * @param {string} imgPath - The image path to check
+ * @returns {boolean} True if the image should be replaced
+ */
+function isInvalidImage(imgPath) {
+  if (!imgPath) return true;
+  return INVALID_IMAGE_PATTERNS.some(pattern => pattern.test(imgPath));
+}
+
+/**
+ * Get the appropriate default image for a document type
+ * @param {string} type - The document type (npc, character, item, etc.)
+ * @returns {string|null} The default image path or null
+ */
+function getDefaultImage(type) {
+  return DEFAULT_IMAGES[type] || DEFAULT_IMAGES.item || null;
+}
+
 /**
  * Generate a valid 16-character alphanumeric ID from a name
  * @param {string} name - The name to generate an ID from
@@ -161,9 +196,16 @@ function cleanPackEntry(entry, parentName = "") {
     }
   }
 
-  // Remove default actor images
-  if (entry.img === "icons/svg/mystery-man.svg") {
-    delete entry.img;
+  // Fix invalid or missing images based on document type
+  if (entry.type && isInvalidImage(entry.img)) {
+    const oldImg = entry.img;
+    const defaultImg = getDefaultImage(entry.type);
+    if (defaultImg) {
+      entry.img = defaultImg;
+      if (oldImg && oldImg !== defaultImg) {
+        log.info(`  Fixed image: ${oldImg} -> ${defaultImg} (${entryName})`);
+      }
+    }
   }
 
   // Clean embedded documents (items in actors, etc.)

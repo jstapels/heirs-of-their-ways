@@ -67,43 +67,88 @@ The DnD5e system adds specialized enrichers for game mechanics.
 
 ### @Check / @Skill / @Tool
 
-Create ability checks, skill checks, and tool checks.
+Create ability checks, skill checks, and tool checks. Use `/skill` for skill checks (preferred), `/check` for ability checks, and `/tool` for tool checks.
 
-**Basic Syntax:**
+**Skill Checks (Preferred for Skills):**
 ```
-[[/check dex]]                  # Dexterity check
 [[/skill acrobatics]]           # Acrobatics skill check
+[[/skill perception 15]]        # DC 15 Perception check
+[[/skill medicine 12]]          # DC 12 Medicine check
+[[/skill stealth dc=14]]        # DC 14 Stealth check
+[[/skill survival 13]]          # DC 13 Survival check
+[[/skill intimidation]]         # Intimidation check (no DC)
+```
+
+**Ability Checks:**
+```
+[[/check dex]]                  # Dexterity ability check
+[[/check str 15]]               # DC 15 Strength check
+[[/check int dc=12]]            # DC 12 Intelligence check
+```
+
+**Tool Checks:**
+```
 [[/tool thieves]]               # Thieves' tools check
+[[/tool thieves 15]]            # DC 15 Thieves' tools
+[[/tool ability=dex tool=thief]]  # Dex-based thieves' tools
 ```
 
-**With DC:**
+**Multiple Abilities/Skills (Choose One):**
 ```
-[[/check dex 15]]              # DC 15 Dexterity check
-[[/check dex dc=15]]           # Explicit DC syntax
-[[/check dex dc=@abilities.con.dc]]  # Formula-based DC
+[[/check str/dex]]              # Choose Str or Dex
+[[/skill acrobatics/athletics 15]]  # Choose Acrobatics or Athletics DC 15
+[[/save str/dex dc=15]]         # Choose Str or Dex save DC 15
 ```
 
-**Multiple Skills:**
+**With Specific Ability Override:**
 ```
-[[/check dex/str]]             # Choose Dex or Str
-[[/check skill=acr/ath]]       # Choose Acrobatics or Athletics
-[[/check acr ath]]             # Multiple skills
+[[/skill intimidation ability=str]]  # Strength-based Intimidation
+[[/skill athletics ability=con]]     # Constitution-based Athletics
 ```
 
 **Passive Checks:**
 ```
-[[/skill perception 15 passive format=long]]
+[[/skill perception 15 passive]]           # Passive Perception DC 15
+[[/skill perception 15 passive format=long]]  # Long format
+```
+
+**Formula-based DC:**
+```
+[[/check dex dc=@abilities.con.dc]]  # DC equals caster's CON DC
+[[/check int dc="8 + @prof"]]        # DC equals 8 + proficiency
 ```
 
 **Options:**
 | Option | Values | Example |
 |--------|--------|---------|
 | ability | str, dex, con, int, wis, cha | `ability=dex` |
-| skill | acr, ath, dec, his, etc. | `skill=acr/ath` |
+| skill | Full name or abbreviation | `skill=acrobatics` or `acr` |
 | tool | Tool name | `tool=thieves` |
 | dc | Number or formula | `dc=15` or `dc=@abilities.con.dc` |
 | format | short, long | `format=long` |
-| passive | true/false | `passive` |
+| passive | (flag, no value needed) | `passive` |
+
+**Common Skill Abbreviations:**
+| Skill | Abbreviation |
+|-------|--------------|
+| Acrobatics | acr |
+| Animal Handling | ani |
+| Arcana | arc |
+| Athletics | ath |
+| Deception | dec |
+| History | his |
+| Insight | ins |
+| Intimidation | itm |
+| Investigation | inv |
+| Medicine | med |
+| Nature | nat |
+| Perception | prc |
+| Performance | prf |
+| Persuasion | per |
+| Religion | rel |
+| Sleight of Hand | slt |
+| Stealth | ste |
+| Survival | sur |
 
 ### @Damage / @Heal
 

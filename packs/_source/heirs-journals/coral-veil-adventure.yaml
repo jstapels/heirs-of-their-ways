@@ -84,7 +84,7 @@ pages:
         </blockquote></div>
 
         <h2>Thalindra Wavecrest</h2>
-        <p>When revived ([[/check wis 12 format=short]] Medicine or any healing magic), Thalindra
+        <p>When revived ([[/skill medicine 12]] or any healing magic), Thalindra
         speaks in halting Common:</p>
 
         <div class="dnd5e2 chat-card"><blockquote>
@@ -147,7 +147,7 @@ pages:
         </blockquote></div>
 
         <h2>The Descent (Skill Challenge)</h2>
-        <p><strong>Navigation Check:</strong> [[/check wis 13 format=short]] Survival</p>
+        <p><strong>Navigation Check:</strong> [[/skill survival 13]]</p>
         <ul>
           <li><strong>Success:</strong> Efficient navigation through current channels</li>
           <li><strong>Failure:</strong> Disoriented, +30 minutes travel time, potentially alerts patrols</li>
@@ -171,8 +171,8 @@ pages:
           <tbody>
             <tr><td><strong>Combat</strong></td><td>Fight viciously, flee at half strength</td></tr>
             <tr><td><strong>Payment</strong></td><td>Magical item OR "secrets that cut deep" OR future service</td></tr>
-            <tr><td><strong>Intimidation</strong></td><td>[[/check cha 16 format=short]] - Mention Marrow Titan, show necrotic orb</td></tr>
-            <tr><td><strong>Deception</strong></td><td>[[/check cha 15 format=short]] - Claim to serve greater power</td></tr>
+            <tr><td><strong>Intimidation</strong></td><td>[[/skill intimidation 16]] - Mention Marrow Titan, show necrotic orb</td></tr>
+            <tr><td><strong>Deception</strong></td><td>[[/skill deception 15]] - Claim to serve greater power</td></tr>
           </tbody>
         </table>
 
@@ -280,8 +280,8 @@ pages:
 
         <p><strong>Loot:</strong></p>
         <ul>
-          <li>4 Potions of Healing ([[/damage 2d4+2 healing]])</li>
-          <li>2 Potions of Greater Healing ([[/damage 4d4+4 healing]])</li>
+          <li>4 Potions of Healing ([[/heal 2d4+2]])</li>
+          <li>2 Potions of Greater Healing ([[/heal 4d4+4]])</li>
           <li>1 Potion of Resistance (Psychic)</li>
           <li>Healer's Kit (8 uses)</li>
         </ul>
@@ -296,8 +296,7 @@ pages:
         </blockquote></div>
 
         <p><strong>Combat:</strong> Use Scout stats (swim 40 ft.)</p>
-        <p><strong>Non-Combat:</strong> [[/check cha 15 format=short]] Persuasion or [[/check wis 14 format=short]]
-        Insight—appeal to his healer nature to make him hesitate for 1 minute</p>
+        <p><strong>Non-Combat:</strong> [[/skill persuasion 15]] or [[/skill insight 14]]—appeal to his healer nature to make him hesitate for 1 minute</p>
 
         <hr>
 
@@ -332,7 +331,7 @@ pages:
         <p><strong>Loot:</strong></p>
         <ul>
           <li>2 Coral Tridents +1 (extra [[/damage 1d6 cold]] when submerged)</li>
-          <li>1 Net of Entangling ([[/save str 13 format=short]] to escape)</li>
+          <li>1 Net of Entangling ([[/save str 13]] to escape)</li>
           <li>Cloak of the Manta Ray</li>
         </ul>
 
@@ -378,7 +377,7 @@ pages:
           <thead><tr><th>Option</th><th>Details</th></tr></thead>
           <tbody>
             <tr><td><strong>A: Front Entrance</strong></td><td>6 enthralled + 2 Hunter Sharks; direct but allows retreat</td></tr>
-            <tr><td><strong>B: Ripple's Tunnel</strong></td><td>[[/check dex 14 format=short]] group Stealth; single file; advantage on initiative</td></tr>
+            <tr><td><strong>B: Ripple's Tunnel</strong></td><td>[[/skill stealth 14]] group check; single file; advantage on initiative</td></tr>
             <tr><td><strong>C: Distraction</strong></td><td>Coralline draws away half guards; risk of survivor casualties</td></tr>
           </tbody>
         </table>
@@ -407,7 +406,7 @@ pages:
           <li><strong>Legendary Actions (2/round):</strong>
             <ul>
               <li><em>Tentacle (1 action):</em> One tentacle attack</li>
-              <li><em>Psychic Lash (2 actions):</em> [[/save int 14 format=short]] or [[/damage 2d8 psychic]] + stunned</li>
+              <li><em>Psychic Lash (2 actions):</em> [[/save int 14]] or [[/damage 2d8 psychic]] + &Reference[stunned]</li>
               <li><em>Summon Thrall (2 actions):</em> One enthralled moves and attacks</li>
             </ul>
           </li>
@@ -415,16 +414,16 @@ pages:
 
         <h3>Lair Actions (Initiative 20):</h3>
         <ol>
-          <li>20-foot radius around orb becomes cold: [[/damage 2d6 cold]] ([[/save con 14 format=short]] half)</li>
+          <li>20-foot radius around orb becomes cold: [[/damage 2d6 cold]] ([[/save con 14]] half)</li>
           <li>Creates illusory duplicates (as Mirror Image, 1d4 images)</li>
-          <li>One creature makes [[/save wis 14 format=short]] or is charmed until next Initiative 20</li>
+          <li>One creature makes [[/save wis 14]] or is &Reference[charmed] until next Initiative 20</li>
         </ol>
 
         <h3>Orb Influence (within 30 ft. of orb):</h3>
         <ul>
           <li>Regenerates 10 HP at start of turn</li>
           <li>Psychic abilities gain +2 to save DCs</li>
-          <li>Orb can be removed with [[/check str 15 format=short]], ending these benefits</li>
+          <li>Orb can be removed with [[/check str 15]], ending these benefits</li>
         </ul>
       format: 1
       markdown: ""
@@ -490,8 +489,8 @@ pages:
           <tbody>
             <tr><td><strong>The Altar</strong></td><td>10 ft. diameter, half cover</td></tr>
             <tr><td><strong>Coral Pillars</strong></td><td>4 pillars, cover/climbing</td></tr>
-            <tr><td><strong>Mucus Webs</strong></td><td>Difficult terrain; [[/save dex 12 format=short]] or restrained</td></tr>
-            <tr><td><strong>The Orb</strong></td><td>[[/check str 15 format=short]] to grab; holder takes [[/damage 1d6 cold]]/turn</td></tr>
+            <tr><td><strong>Mucus Webs</strong></td><td>Difficult terrain; [[/save dex 12]] or &Reference[restrained]</td></tr>
+            <tr><td><strong>The Orb</strong></td><td>[[/check str 15]] to grab; holder takes [[/damage 1d6 cold]]/turn</td></tr>
           </tbody>
         </table>
 
@@ -639,12 +638,12 @@ pages:
           <li>Regains 75 HP</li>
           <li>+2 to all saving throws</li>
           <li>Tentacles deal extra [[/damage 1d6 cold]]</li>
-          <li><strong>Tidal Surge (Recharge 5-6):</strong> [[/save str 16 format=short]] or pushed 20 ft. and prone</li>
+          <li><strong>Tidal Surge (Recharge 5-6):</strong> [[/save str 16]] or pushed 20 ft. and &Reference[prone]</li>
         </ul>
 
         <h3>Enhanced Legendary Actions (3/round):</h3>
         <ul>
-          <li><em>Enslaving Gaze (3 actions):</em> [[/save wis 16 format=short]] or charmed 1 minute</li>
+          <li><em>Enslaving Gaze (3 actions):</em> [[/save wis 16]] or &Reference[charmed] 1 minute</li>
         </ul>
 
         <h3>Additional Enemies:</h3>
