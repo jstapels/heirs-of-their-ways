@@ -605,6 +605,56 @@ function mergeFoundryBlocks(doc, blocks) {
     return deepMerge({}, doc, ...blocks);
 }
 
+async function deriveAdventureMetadata(adventureFile) {
+    const adventureDir = path.dirname(adventureFile);
+    const files = (await findMarkdownFiles(adventureDir, adventureDir)).sort();
+
+    const contents = [];
+    let primaryJournal = null;
+
+    for (const file of files) {
+        if (path.resolve(file) === path.resolve(adventureFile)) continue;
+
+        const relToNotes = path.relative(CAMPAIGN_NOTES_DIR, file);
+        const content = await fsp.readFile(file, "utf-8");
+        const { frontmatter, body } = parseFrontmatter(content);
+        const context = deriveContext(relToNotes, frontmatter);
+        const docType = context.docType;
+        if (docType === "adventure") continue;
+
+        const cfg = DOC_MAP[docType] || DOC_MAP.journal;
+        const effectiveFrontmatter = {
+            ...frontmatter,
+            folder: frontmatter.folder ?? context.folderId,
+        };
+        const name =
+            effectiveFrontmatter.name ||
+            extractTitle(body) ||
+            path.basename(file, ".md");
+        const docId = validateId(effectiveFrontmatter._id, name, cfg.idPrefix);
+        const pack = effectiveFrontmatter.pack || cfg.pack;
+        const entry = {
+            uuid: `Compendium.heirs-of-their-ways.${pack}.${docId}`,
+            type: cfg.document,
+            name,
+        };
+
+        contents.push(entry);
+        if (!primaryJournal && cfg.document === "JournalEntry") {
+            primaryJournal = entry;
+        }
+    }
+
+    contents.sort((a, b) => a.name.localeCompare(b.name, "en"));
+
+    if (!contents.length) return null;
+
+    return {
+        journal: primaryJournal?.uuid || contents[0].uuid,
+        contents,
+    };
+}
+
 async function processFile(filePath, relativePath, folderRegistry) {
     const content = await fsp.readFile(filePath, "utf-8");
     const { frontmatter, body } = parseFrontmatter(content);
@@ -625,6 +675,11 @@ async function processFile(filePath, relativePath, folderRegistry) {
     const now = Date.now();
 
     const { blocks: foundryBlocks, cleaned } = extractFoundryBlocks(body);
+    const adventureData =
+        cfg.document === "Adventure"
+            ? effectiveFrontmatter.adventure ||
+              (await deriveAdventureMetadata(filePath))
+            : null;
     let document;
 
     if (cfg.document === "JournalEntry") {
@@ -647,6 +702,10 @@ async function processFile(filePath, relativePath, folderRegistry) {
 
     if (!document) return null;
     document = mergeFoundryBlocks(document, foundryBlocks);
+
+    if (cfg.document === "Adventure" && adventureData) {
+        document.adventure = adventureData;
+    }
 
     const outputName = slugifyOutputName(relativePath);
     const pack = effectiveFrontmatter.pack || cfg.pack;
