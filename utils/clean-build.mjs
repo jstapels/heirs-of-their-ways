@@ -67,9 +67,24 @@ function removeGeneratedYamlSources(packDirs) {
     }
 }
 
+function removeOrphanedSourceDirs(validPackNames) {
+    const sourceRoot = path.join(PACKS_ROOT, "_source");
+    if (!fs.existsSync(sourceRoot)) return;
+
+    for (const entry of fs.readdirSync(sourceRoot, { withFileTypes: true })) {
+        if (!entry.isDirectory()) continue;
+        if (!validPackNames.includes(entry.name)) {
+            const orphanPath = path.join(sourceRoot, entry.name);
+            fs.rmSync(orphanPath, { recursive: true, force: true });
+            log.info(`Removed orphaned source directory ${orphanPath}`);
+        }
+    }
+}
+
 function main() {
     const removeSources = process.argv.includes("--sources");
     const packPaths = loadPackPaths();
+    const validPackNames = packPaths.map((p) => path.basename(p));
 
     // Remove compiled LevelDB pack directories (exclude _source)
     if (fs.existsSync(PACKS_ROOT)) {
@@ -85,6 +100,11 @@ function main() {
 
     // Clean stray .yml files in source
     removeStrayYml(path.join(PACKS_ROOT, "_source"));
+
+    // Remove orphaned source directories (not in module.json)
+    if (validPackNames.length) {
+        removeOrphanedSourceDirs(validPackNames);
+    }
 
     // Optionally remove generated YAML sources
     if (removeSources && packPaths.length) {

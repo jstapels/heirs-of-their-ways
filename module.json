@@ -100,18 +100,6 @@
       },
       "system": "dnd5e",
       "flags": {}
-    },
-    {
-      "name": "heirs-adventures",
-      "label": "Heirs: Adventures",
-      "path": "packs/heirs-adventures",
-      "type": "Adventure",
-      "ownership": {
-        "PLAYER": "NONE",
-        "ASSISTANT": "OWNER"
-      },
-      "system": "dnd5e",
-      "flags": {}
     }
   ],
   "packFolders": [
@@ -125,8 +113,7 @@
         "heirs-features",
         "heirs-journals",
         "heirs-tables",
-        "heirs-scenes",
-        "heirs-adventures"
+        "heirs-scenes"
       ],
       "folders": []
     }

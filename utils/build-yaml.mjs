@@ -130,10 +130,10 @@ const DOC_MAP = {
         idPrefix: "Tabl",
     },
     adventure: {
-        pack: "heirs-adventures",
-        document: "Adventure",
-        subtype: "adventure",
-        idPrefix: "Advn",
+        pack: "heirs-journals",
+        document: "JournalEntry",
+        subtype: "base",
+        idPrefix: "Jrnl",
     },
 };
 
@@ -143,7 +143,6 @@ const KEY_PREFIX = {
     JournalEntry: "!journal!",
     Scene: "!scenes!",
     RollTable: "!tables!",
-    Adventure: "!adventure!",
 };
 
 function normalizeDocType(value) {
@@ -256,7 +255,8 @@ function extractTitle(content) {
 }
 
 function splitIntoPages(content) {
-    const withoutH1 = content.replace(/^#\s+.+\n+/, "");
+    // Strip leading whitespace and H1 heading (which becomes the document name)
+    const withoutH1 = content.replace(/^\s*#\s+.+\n*/, "").trim();
     const h2Regex = /^##\s+(.+)$/gm;
     const pages = [];
     let match;
@@ -754,7 +754,13 @@ async function processFile(filePath, relativePath, folderRegistry) {
         effectiveFrontmatter.name || title || path.basename(filePath, ".md");
     const now = Date.now();
 
-    const { blocks: foundryBlocks, cleaned } = extractFoundryBlocks(body);
+    // Strip redundant H1 heading when name is defined in frontmatter
+    let processedBody = body;
+    if (effectiveFrontmatter.name) {
+        processedBody = body.replace(/^\s*#\s+.+\n*/, "").trim();
+    }
+
+    const { blocks: foundryBlocks, cleaned } = extractFoundryBlocks(processedBody);
     const adventureData =
         cfg.document === "Adventure"
             ? effectiveFrontmatter.adventure ||
