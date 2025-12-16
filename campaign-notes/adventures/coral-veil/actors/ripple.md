@@ -25,6 +25,45 @@ system:
 
 A ten-year-old sea elf girl with iridescent blue-green skin and wide, frightened eyes. Her seafoam-green hair is cropped short, and she clutches a stuffed seahorse toy for comfort.
 
+```foundry-yaml
+system:
+  abilities:
+    str:
+      value: 8
+    dex:
+      value: 14
+    con:
+      value: 10
+    int:
+      value: 10
+    wis:
+      value: 12
+    cha:
+      value: 11
+  attributes:
+    ac:
+      flat: 12
+      calc: flat
+    hp:
+      value: 9
+      max: 9
+    prof: 2
+    movement:
+      walk: 25
+      swim: 40
+  skills:
+    ste:
+      value: 2
+    prc:
+      value: 1
+  traits:
+    size: sm
+    languages:
+      value:
+        - common
+        - elvish
+```
+
 ## Biography {.system.details.biography.value}
 - Survived by hiding in the school and avoiding enthralled patrols.
 - Knows a maintenance tunnel that leads into the Pearlheart Chamber and where air pockets weaken Veth'sora's psychic voice.

@@ -19,6 +19,47 @@ system:
 
 A sea hag obsessed with her lost beauty, drifting through the murk with a mournful wail and negotiating from a place of sorrow rather than greed.
 
+```foundry-yaml
+system:
+  abilities:
+    str:
+      value: 16
+    dex:
+      value: 12
+    con:
+      value: 16
+    int:
+      value: 12
+    wis:
+      value: 12
+    cha:
+      value: 13
+  attributes:
+    ac:
+      flat: 14
+      calc: flat
+    hp:
+      value: 52
+      max: 52
+    prof: 2
+    movement:
+      walk: 30
+      swim: 40
+    senses:
+      darkvision: 60
+  skills:
+    prc:
+      value: 1
+    ste:
+      value: 1
+  traits:
+    size: med
+    languages:
+      value:
+        - common
+        - aquan
+```
+
 ## Biography {.system.details.biography.value}
 - Uses standard sea hag statistics as part of the coven.
 - May be swayed by sincere sympathy or flattery, especially regarding her past appearance.
