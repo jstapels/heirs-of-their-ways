@@ -29,12 +29,24 @@ const PACK_DEST = "packs";
 const USE_YAML = true; // Set to false for JSON
 const ID_LENGTH = 16; // FoundryVTT requires exactly 16 alphanumeric characters
 
+// Load module ID from module.json for consistent referencing
+function loadModuleId() {
+    try {
+        const moduleJson = JSON.parse(fs.readFileSync("module.json", "utf-8"));
+        return moduleJson.id || "heirs-of-their-ways";
+    } catch {
+        return "heirs-of-their-ways";
+    }
+}
+
+const MODULE_ID = loadModuleId();
+
 // Default images for different document types (relative to module root)
 const DEFAULT_IMAGES = {
-    npc: "modules/heirs-of-their-ways/assets/tokens/nobody.webp",
-    character: "modules/heirs-of-their-ways/assets/tokens/nobody.webp",
-    item: "modules/heirs-of-their-ways/assets/images/placeholder.webp",
-    feature: "modules/heirs-of-their-ways/assets/images/placeholder.webp",
+    npc: `modules/${MODULE_ID}/assets/tokens/nobody.webp`,
+    character: `modules/${MODULE_ID}/assets/tokens/nobody.webp`,
+    item: `modules/${MODULE_ID}/assets/images/placeholder.webp`,
+    feature: `modules/${MODULE_ID}/assets/images/placeholder.webp`,
 };
 
 // Image patterns that should be replaced with defaults (these are placeholder icons that may not exist)

@@ -34,6 +34,56 @@ const CAMPAIGN_NOTES_DIR = "campaign-notes";
 const PACK_SOURCE_ROOT = "packs/_source";
 const ID_LENGTH = 16;
 
+// Load module ID from module.json for consistent referencing
+function loadModuleId() {
+    try {
+        const moduleJson = JSON.parse(fs.readFileSync("module.json", "utf-8"));
+        return moduleJson.id || "heirs-of-their-ways";
+    } catch {
+        return "heirs-of-their-ways";
+    }
+}
+
+const MODULE_ID = loadModuleId();
+
+/**
+ * Clean up stale generated YAML files before rebuilding.
+ * Only removes files with the "# Generated from campaign-notes/" header.
+ */
+async function cleanupGeneratedYaml() {
+    const sourceRoot = PACK_SOURCE_ROOT;
+    if (!fs.existsSync(sourceRoot)) return;
+
+    const packDirs = fs.readdirSync(sourceRoot, { withFileTypes: true })
+        .filter(d => d.isDirectory())
+        .map(d => d.name);
+
+    let removedCount = 0;
+    for (const packDir of packDirs) {
+        const packPath = path.join(sourceRoot, packDir);
+        const files = fs.readdirSync(packPath, { withFileTypes: true })
+            .filter(f => f.isFile() && f.name.endsWith(".yaml"));
+
+        for (const file of files) {
+            const filePath = path.join(packPath, file.name);
+            try {
+                const content = fs.readFileSync(filePath, "utf-8");
+                // Only remove files that were generated from campaign-notes
+                if (content.startsWith("# Generated from campaign-notes/")) {
+                    fs.rmSync(filePath);
+                    removedCount++;
+                }
+            } catch {
+                // Skip files that can't be read
+            }
+        }
+    }
+
+    if (removedCount > 0) {
+        log.info(`Cleaned up ${removedCount} stale generated YAML file(s)`);
+    }
+}
+
 const SKIP_PATTERNS = [/-template\.md$/, /README\.md$/];
 
 const DOC_MAP = {
@@ -100,10 +150,14 @@ function normalizeDocType(value) {
     if (!value) return "journal";
     const key = String(value).trim().toLowerCase();
     if (DOC_MAP[key]) return key;
-    // aliases
-    if (["npc", "character"].includes(key)) return "actor";
-    if (["journalentry", "journal-entry"].includes(key)) return "journal";
-    if (["rolltable", "roll-table"].includes(key)) return "table";
+    // aliases - including plural forms of directory names
+    if (["npc", "character", "actors"].includes(key)) return "actor";
+    if (["journalentry", "journal-entry", "journals"].includes(key)) return "journal";
+    if (["rolltable", "roll-table", "tables"].includes(key)) return "table";
+    if (["items"].includes(key)) return "item";
+    if (["features", "spells"].includes(key)) return "feature";
+    if (["scenes"].includes(key)) return "scene";
+    if (["adventures"].includes(key)) return "adventure";
     return "journal";
 }
 
@@ -136,13 +190,28 @@ function titleFromSegment(segment) {
 
 function deriveContext(relativePath, frontmatter) {
     const segments = relativePath.split(path.sep);
-    const typeFromPath = normalizeDocType(segments[0]);
-    const docType = normalizeDocType(
-        frontmatter.document ||
-            frontmatter.doc ||
-            frontmatter.type ||
-            typeFromPath,
-    );
+    const isUnderAdventures = segments[0] === "adventures";
+
+    // Determine document type:
+    // 1. Explicit frontmatter type takes priority
+    // 2. Directory-based inference only for files under adventures/
+    // 3. Default to journal for top-level directories without explicit type
+    let docType;
+    const frontmatterType = frontmatter.document || frontmatter.doc || frontmatter.type;
+
+    if (frontmatterType) {
+        // Explicit type in frontmatter
+        docType = normalizeDocType(frontmatterType);
+    } else if (isUnderAdventures && segments.length > 2) {
+        // Under adventures/, use subdirectory for type inference
+        // e.g., adventures/coral-veil/actors/ -> actor
+        const typeSegment = segments[2]; // The subdirectory under the adventure
+        docType = normalizeDocType(typeSegment);
+    } else {
+        // Top-level directories without explicit type default to journal
+        // This allows campaign-notes/actors/NPCs/notes.md to be journals
+        docType = "journal";
+    }
 
     const folderSegment = segments[1];
     const folderName =
@@ -634,7 +703,7 @@ async function deriveAdventureMetadata(adventureFile) {
         const docId = validateId(effectiveFrontmatter._id, name, cfg.idPrefix);
         const pack = effectiveFrontmatter.pack || cfg.pack;
         const entry = {
-            uuid: `Compendium.heirs-of-their-ways.${pack}.${docId}`,
+            uuid: `Compendium.${MODULE_ID}.${pack}.${docId}`,
             type: cfg.document,
             name,
         };
@@ -760,6 +829,8 @@ async function buildNotes(specificFile = null) {
         }
         files = [fullPath];
     } else {
+        // Clean up stale generated YAML before full rebuild
+        await cleanupGeneratedYaml();
         files = await findMarkdownFiles(CAMPAIGN_NOTES_DIR);
     }
 
