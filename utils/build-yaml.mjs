@@ -188,38 +188,49 @@ function titleFromSegment(segment) {
     return segment.replace(/[-_]+/g, " ").replace(/\s+/g, " ").trim();
 }
 
+function titleCase(str) {
+    if (!str) return str;
+    return str
+        .split(/[\s-_]+/)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(" ");
+}
+
 function deriveContext(relativePath, frontmatter) {
     const segments = relativePath.split(path.sep);
     const isUnderAdventures = segments[0] === "adventures";
-
-    // Determine document type:
-    // 1. Explicit frontmatter type takes priority
-    // 2. Directory-based inference only for files under adventures/
-    // 3. Default to journal for top-level directories without explicit type
-    let docType;
     const frontmatterType = frontmatter.document || frontmatter.doc || frontmatter.type;
 
-    if (frontmatterType) {
-        // Explicit type in frontmatter
-        docType = normalizeDocType(frontmatterType);
-    } else if (isUnderAdventures && segments.length > 2) {
-        // Under adventures/, use subdirectory for type inference
-        // e.g., adventures/coral-veil/actors/ -> actor
-        const typeSegment = segments[2]; // The subdirectory under the adventure
-        docType = normalizeDocType(typeSegment);
-    } else {
-        // Top-level directories without explicit type default to journal
-        // This allows campaign-notes/actors/NPCs/notes.md to be journals
-        docType = "journal";
-    }
+    // Determine document type and folder based on location
+    let docType;
+    let folderName;
+    let folderId;
 
-    const folderSegment = segments[1];
-    const folderName =
-        frontmatter.folderName || titleFromSegment(folderSegment);
-    const folderId =
-        !frontmatter.folder && folderName
-            ? validateId(folderName, "Fldr")
+    if (isUnderAdventures && segments.length >= 2) {
+        // Files under adventures/<adventure-name>/
+        // Adventure folder name becomes the folder for all content
+        const adventureName = segments[1]; // e.g., "coral-veil"
+        folderName = frontmatter.folderName || titleCase(adventureName);
+        folderId = frontmatter.folder || validateId(adventureName, "");
+
+        if (frontmatterType) {
+            // Explicit type in frontmatter determines the pack
+            docType = normalizeDocType(frontmatterType);
+        } else {
+            // Default to journal for adventure content without explicit type
+            docType = "journal";
+        }
+    } else {
+        // Top-level directories (actors/, items/, journals/, features/, etc.)
+        // Use explicit frontmatter type, or default to journal
+        docType = frontmatterType ? normalizeDocType(frontmatterType) : "journal";
+
+        const folderSegment = segments[1];
+        folderName = frontmatter.folderName || titleFromSegment(folderSegment);
+        folderId = !frontmatter.folder && folderName
+            ? validateId(folderName, "")
             : frontmatter.folder || null;
+    }
 
     return { docType, folderName, folderId };
 }
