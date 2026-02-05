@@ -51,29 +51,45 @@ The module will automatically update when new releases are published.
 heirs-of-their-ways/
 ├── module.json              # FoundryVTT module manifest
 ├── README.md                # This file
-├── CLAUDE.md                # Guide for AI assistants
+├── AGENTS.md                # Guide for AI assistants
 ├── docs/                    # Documentation
 │   ├── ENRICHERS.md        # Text enrichers reference
 │   └── WORKFLOW.md         # Development workflow guide
-├── campaign-notes/          # Source notes in markdown
-│   ├── adventures/         # Adventure outlines
-│   ├── npcs/              # NPC descriptions
-│   ├── locations/         # Location details
-│   ├── items/             # Item descriptions
-│   └── lore/              # World lore
-├── source-data/            # JSON exports for version control
-│   ├── actors/            # NPC/creature JSON
-│   ├── items/             # Item JSON
-│   ├── journals/          # Journal JSON
-│   ├── scenes/            # Scene JSON
-│   └── tables/            # Roll table JSON
-├── assets/                 # Media files
-│   ├── maps/              # Scene maps
-│   ├── tokens/            # Token artwork
-│   ├── images/            # Other images
-│   └── sounds/            # Audio files
-└── packs/                  # Compendium packs
-    └── heirs-pack/        # Main adventure pack
+├── src/                    # Source notes in markdown (frontmatter-driven)
+│   ├── module/            # Module-level content
+│   │   ├── actors/        # NPCs and PCs
+│   │   ├── items/         # Items and loot
+│   │   ├── features/      # Feats/spells/abilities
+│   │   ├── journals/      # Lore, locations, DM notes
+│   │   ├── scenes/        # Shared scenes/maps
+│   │   ├── tables/        # Shared roll tables
+│   │   └── assets/        # Module-level assets (source)
+│   └── adventures/        # Adventure-specific content
+│       └── <adventure>/   # e.g., fight-the-dragon/
+│           ├── actors/
+│           ├── items/
+│           ├── features/
+│           ├── journals/
+│           ├── scenes/
+│           ├── tables/
+│           └── assets/    # Adventure assets (source)
+├── source-data/            # Legacy JSON exports (optional)
+│   └── README.md
+├── assets/                 # Built assets (generated)
+└── packs/                  # Compendium packs (generated)
+    ├── _source/           # YAML sources (generated)
+    │   ├── heirs-actors/
+    │   ├── heirs-items/
+    │   ├── heirs-features/
+    │   ├── heirs-journals/
+    │   ├── heirs-scenes/
+    │   └── heirs-tables/
+    ├── heirs-actors/       # Compiled LevelDB packs (generated)
+    ├── heirs-items/
+    ├── heirs-features/
+    ├── heirs-journals/
+    ├── heirs-scenes/
+    └── heirs-tables/
 ```
 
 ## Usage
@@ -82,7 +98,7 @@ heirs-of-their-ways/
 
 1. Enable the "Heirs of Their Ways" module in your world
 2. Open the Compendium Packs sidebar tab
-3. Browse the "Heirs Campaign" pack for content
+3. Browse the "Heirs: *" packs for content
 4. Drag content into your world as needed
 
 ### For Game Masters
@@ -94,16 +110,20 @@ heirs-of-their-ways/
 
 ## Development
 
-This module uses a modern development workflow with YAML sources and automated releases.
+This module uses a modern markdown + YAML workflow with automated releases.
 
 ### Workflow
 
-1. **Edit** YAML files in `packs/_source/heirs-pack/`
-2. **Build** compendium packs with `npm run build:packs`
+1. **Edit** markdown in `src/` (frontmatter defines document data)
+2. **Build** everything with `npm run build` (markdown → YAML → packs)
 3. **Test** in FoundryVTT
 4. **Commit** changes with descriptive messages
 5. **Create PR** with appropriate version label
 6. **Merge** to trigger automatic release
+
+Build outputs (`assets/`, `packs/`) are generated and should not be committed.
+
+To validate the build in CI or locally, run `npm test`.
 
 See [docs/WORKFLOW.md](docs/WORKFLOW.md) for detailed development workflow.
 
@@ -119,7 +139,7 @@ See [docs/RELEASE.md](docs/RELEASE.md) for complete release process documentatio
 
 ### For Contributors
 
-- Read [CLAUDE.md](CLAUDE.md) for AI-assisted development guidelines
+- Read [AGENTS.md](AGENTS.md) for AI-assisted development guidelines
 - Check [docs/ENRICHERS.md](docs/ENRICHERS.md) for text enricher syntax
 - Follow the workflow in [docs/WORKFLOW.md](docs/WORKFLOW.md)
 - Review [docs/RELEASE.md](docs/RELEASE.md) before creating PRs

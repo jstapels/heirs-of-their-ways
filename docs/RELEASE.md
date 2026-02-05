@@ -122,7 +122,7 @@ The release package includes:
 - `assets/` - All images, maps, tokens, sounds
 
 **Excluded from release:**
-- `packs/_source/` - YAML source files (development only)
+- `packs/_source/` - Generated YAML sources (development only)
 - `node_modules/` - NPM dependencies
 - `utils/` - Build scripts
 - `.github/` - GitHub Actions workflows
@@ -162,7 +162,12 @@ The `utils/build-release.mjs` script:
        ├── LICENSE
        ├── SETUP.md
        ├── packs/
-       │   └── heirs-pack/
+       │   ├── heirs-actors/
+       │   ├── heirs-items/
+       │   ├── heirs-features/
+       │   ├── heirs-journals/
+       │   ├── heirs-scenes/
+       │   └── heirs-tables/
        └── assets/
    ```
 4. Copies `module.json` for manifest

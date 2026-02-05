@@ -56,19 +56,15 @@ Quick setup guide for the Heirs of Their Ways campaign module.
 
 ### Editing Content
 
-1. **Edit YAML source files:**
+1. **Edit markdown source files (recommended):**
    ```bash
-   # Edit files in packs/_source/heirs-pack/
-   # - actors/   (NPCs, creatures)
-   # - items/    (weapons, armor, magic items)
-   # - journals/ (adventures, lore)
-   # - scenes/   (maps, encounters)
-   # - tables/   (random tables)
+   # Edit files in src/
+   # Frontmatter defines document data (type, system, effects, etc.)
    ```
 
-2. **Build the packs:**
+2. **Build everything:**
    ```bash
-   npm run build:packs
+   npm run build
    ```
 
 3. **Refresh FoundryVTT:**
@@ -77,98 +73,109 @@ Quick setup guide for the Heirs of Their Ways campaign module.
 
 4. **Test your changes:**
    - Open the Compendium Packs tab
-   - Browse "Heirs Campaign" pack
+   - Browse the "Heirs: *" packs
    - Verify your content appears correctly
 
 ### Creating New Content
 
-#### Method 1: Write YAML Directly
+#### Method 1: Write Markdown (Frontmatter-First)
 
-1. Create a new `.yaml` file in the appropriate directory:
+1. Create a new `.md` file in `src/`:
    ```bash
    # Example: Creating an NPC
-   code packs/_source/heirs-pack/actors/my-npc.yaml
+   code src/module/actors/my-npc.md
    ```
 
-2. Use example files as templates:
-   - `actors/example-npc.yaml`
-   - `items/example-weapon.yaml`
-   - `journals/example-journal.yaml`
+2. Add frontmatter and content (see `docs/WORKFLOW.md` for examples)
+   - Place images in `src/**/assets/` and reference them with relative paths
 
 3. Build and test:
    ```bash
-   npm run build:packs
+   npm run build
    # Refresh FoundryVTT
    ```
 
 #### Method 2: Create in FoundryVTT First
 
 1. Create content in FoundryVTT UI
-2. Add to the "Heirs Campaign" compendium
+2. Add to the appropriate "Heirs: *" compendium
 3. Extract to YAML:
    ```bash
    npm run extract:packs
    ```
-4. Find your new YAML file in `packs/_source/heirs-pack/`
-5. Edit and enhance with comments
-6. Rebuild:
+4. Use the extracted YAML for reference, then migrate changes into `src/`
+5. Rebuild:
    ```bash
    npm run build:packs
    ```
 
 #### Method 3: Use Claude Code
 
-1. Write notes in `campaign-notes/`:
+1. Write notes in `src/`:
    ```bash
-   code campaign-notes/npcs/my-npc.md
+   code src/module/actors/my-npc.md
    ```
 
-2. Ask Claude to generate YAML:
+2. Ask Claude to generate frontmatter-first markdown:
    ```
-   "Generate a YAML actor file for the NPC described in
-    campaign-notes/npcs/my-npc.md"
+   "Generate a frontmatter-first markdown actor file for the NPC described in
+    src/module/actors/my-npc.md"
    ```
 
 3. Build and test:
    ```bash
-   npm run build:packs
+   npm run build
    ```
 
 ## Common Commands
 
 ```bash
-# Build all packs (YAML → LevelDB)
+# Build markdown → YAML → LevelDB
+npm run build
+
+# Copy src assets → assets/
+npm run build:assets
+
+# Build markdown → YAML only
+npm run build:yaml
+
+# Build packs from YAML only (YAML → LevelDB)
 npm run build:packs
 
 # Build specific pack
-npm run build:packs -- heirs-pack
+npm run build:packs -- heirs-actors   # or heirs-items/heirs-journals/etc.
 
 # Extract all packs (LevelDB → YAML)
 npm run extract:packs
 
 # Extract specific pack
-npm run extract:packs -- heirs-pack
+npm run extract:packs -- heirs-actors   # or heirs-items/heirs-journals/etc.
 
 # Clean/standardize YAML formatting
 npm run clean:packs
 
 # Install/update dependencies
 npm install
+
+# Run build checks
+npm test
+
+# Create a new adventure scaffold
+npm run create -- my-new-adventure
 ```
 
 ## Directory Structure Quick Reference
 
 ```
-📁 campaign-notes/      # Your planning notes (markdown)
-📁 packs/_source/       # ⭐ Edit YAML here! (version controlled)
-  └─ heirs-pack/
-     ├─ actors/
-     ├─ items/
-     ├─ journals/
-     ├─ scenes/
-     └─ tables/
-📁 packs/heirs-pack/    # Compiled LevelDB (auto-generated)
-📁 assets/              # Images, maps, tokens, sounds
+📁 src/                 # Markdown source (module + adventures)
+📁 packs/_source/       # YAML sources (generated)
+📁 packs/heirs-actors/  # Compiled LevelDB (generated)
+📁 packs/heirs-items/
+📁 packs/heirs-features/
+📁 packs/heirs-journals/
+📁 packs/heirs-scenes/
+📁 packs/heirs-tables/
+📁 assets/              # Built assets (generated)
 📁 docs/                # Documentation
 📁 utils/               # Build scripts
 ```
@@ -211,8 +218,8 @@ npm install
 **Problem:** Git wants to commit LevelDB files
 
 **Solution:**
-- `.gitignore` should exclude `packs/*/` except `packs/_source/`
-- Only commit YAML files in `packs/_source/`
+- `.gitignore` should exclude build outputs (`packs/`, `assets/`, `dist/`)
+- Only commit source files in `src/`
 - Run `git status` to verify
 
 ### npm install fails
@@ -233,8 +240,8 @@ npm install
 
 1. Read [docs/WORKFLOW.md](docs/WORKFLOW.md) for detailed workflow
 2. Read [docs/ENRICHERS.md](docs/ENRICHERS.md) for enricher syntax
-3. Read [packs/_source/README.md](packs/_source/README.md) for YAML format
-4. Check example files in `packs/_source/heirs-pack/`
+3. Read [docs/DND5E-YAML-STRUCTURE.md](docs/DND5E-YAML-STRUCTURE.md) for YAML format
+4. Check example files in `src/module/` and `src/adventures/`
 5. Start creating your campaign content!
 
 ## Getting Help

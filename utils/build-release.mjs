@@ -22,7 +22,17 @@ import log from "fancy-log";
 // Configuration
 const MODULE_JSON = "module.json";
 const DIST_DIR = "dist";
-const MODULE_ID = "heirs-of-their-ways";
+
+function loadModuleId() {
+    try {
+        const moduleData = JSON.parse(fs.readFileSync(MODULE_JSON, "utf8"));
+        return moduleData.id || "heirs-of-their-ways";
+    } catch {
+        return "heirs-of-their-ways";
+    }
+}
+
+const MODULE_ID = loadModuleId();
 
 // Files and directories to include in release
 const INCLUDE_PATTERNS = [

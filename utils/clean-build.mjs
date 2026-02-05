@@ -19,6 +19,7 @@ import log from "fancy-log";
 const MODULE_JSON = "module.json";
 const PACKS_ROOT = "packs";
 const DIST_DIR = "dist";
+const ASSETS_DIR = "assets";
 
 function loadPackPaths() {
     try {
@@ -97,6 +98,9 @@ function main() {
 
     // Remove dist output
     removeDir(DIST_DIR);
+
+    // Remove built assets output
+    removeDir(ASSETS_DIR);
 
     // Clean stray .yml files in source
     removeStrayYml(path.join(PACKS_ROOT, "_source"));

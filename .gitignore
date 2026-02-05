@@ -4,8 +4,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Packs (generated: sources and compiled)
+# Build outputs
 packs/
+assets/
 
 # Build output
 dist/

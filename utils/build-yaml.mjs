@@ -3,8 +3,8 @@
 /**
  * Notes → YAML pack source compiler
  *
- * Reads markdown in campaign-notes/, consumes frontmatter + optional fenced
- * foundry-yaml blocks, and emits pack-ready YAML into packs/_source/<pack>/.
+ * Reads markdown in src/, consumes frontmatter, and emits pack-ready YAML
+ * into packs/_source/<pack>/.
  *
  * Supported document types (frontmatter: type):
  * - journal (default), actor, item, feature, spell, scene, table, adventure
@@ -16,8 +16,8 @@
  * - activities/effects/relationships/prototypeToken: pass-through
  *
  * Complex payloads:
- * - fenced ```foundry-yaml``` blocks are parsed and deep-merged into the
- *   generated document (visible in markdown previews).
+ * - frontmatter can include full Foundry document fields; use "document:"
+ *   to merge arbitrary top-level data onto the generated document.
  *
  * Usage:
  *   npm run build:yaml            # build all notes
@@ -30,9 +30,10 @@ import path from "node:path";
 import yaml from "js-yaml";
 import log from "fancy-log";
 
-const CAMPAIGN_NOTES_DIR = "campaign-notes";
+const SRC_ROOT = "src";
 const PACK_SOURCE_ROOT = "packs/_source";
 const ID_LENGTH = 16;
+const ASSET_OUTPUT_ROOT = "assets";
 
 // Load module ID from module.json for consistent referencing
 function loadModuleId() {
@@ -46,9 +47,86 @@ function loadModuleId() {
 
 const MODULE_ID = loadModuleId();
 
+const ABSOLUTE_PREFIXES = [
+    "modules/",
+    "systems/",
+    "icons/",
+    "worlds/",
+    "data/",
+    "http://",
+    "https://",
+];
+
+function isRelativeAssetPath(value) {
+    if (!value || typeof value !== "string") return false;
+    if (path.isAbsolute(value)) return false;
+    const normalized = value.replace(/\\/g, "/");
+    return !ABSOLUTE_PREFIXES.some((prefix) => normalized.startsWith(prefix));
+}
+
+function toPosixPath(value) {
+    return value.replace(/\\/g, "/");
+}
+
+function mapAssetOutputPath(sourcePath) {
+    const relToSrc = path.relative(SRC_ROOT, sourcePath);
+    if (relToSrc.startsWith("..")) {
+        return null;
+    }
+    const parts = relToSrc.split(path.sep);
+
+    if (parts[0] === "module" && parts[1] === "assets") {
+        return path.join(...parts.slice(2));
+    }
+
+    if (parts[0] === "adventures" && parts[2] === "assets") {
+        const adventureName = parts[1];
+        return path.join("adventures", adventureName, ...parts.slice(3));
+    }
+
+    const assetsIndex = parts.indexOf("assets");
+    if (assetsIndex >= 0 && assetsIndex < parts.length - 1) {
+        return path.join(...parts.slice(assetsIndex + 1));
+    }
+
+    return null;
+}
+
+function rewriteAssetPath(rawPath, fileDir) {
+    if (!isRelativeAssetPath(rawPath)) return rawPath;
+    const resolved = path.resolve(fileDir, rawPath);
+    if (!fs.existsSync(resolved)) {
+        log.warn(`Asset not found: ${rawPath} (from ${fileDir})`);
+        return rawPath;
+    }
+    const outputRel = mapAssetOutputPath(resolved);
+    if (!outputRel) {
+        log.warn(`Asset not under src/**/assets: ${rawPath} (from ${fileDir})`);
+        return rawPath;
+    }
+    const modulePath = `modules/${MODULE_ID}/${ASSET_OUTPUT_ROOT}/${toPosixPath(outputRel)}`;
+    return modulePath;
+}
+
+function rewriteAssetPaths(value, fileDir) {
+    if (Array.isArray(value)) {
+        return value.map((item) => rewriteAssetPaths(item, fileDir));
+    }
+    if (!value || typeof value !== "object") return value;
+
+    for (const [key, val] of Object.entries(value)) {
+        if (typeof val === "string" && (key === "img" || key === "src" || key === "thumb")) {
+            value[key] = rewriteAssetPath(val, fileDir);
+            continue;
+        }
+        value[key] = rewriteAssetPaths(val, fileDir);
+    }
+    return value;
+}
+
 /**
  * Clean up stale generated YAML files before rebuilding.
- * Only removes files with the "# Generated from campaign-notes/" header.
+ * Only removes files with the "# Generated from src/" header.
  */
 async function cleanupGeneratedYaml() {
     const sourceRoot = PACK_SOURCE_ROOT;
@@ -68,8 +146,8 @@ async function cleanupGeneratedYaml() {
             const filePath = path.join(packPath, file.name);
             try {
                 const content = fs.readFileSync(filePath, "utf-8");
-                // Only remove files that were generated from campaign-notes
-                if (content.startsWith("# Generated from campaign-notes/")) {
+                // Only remove files that were generated from src
+                if (content.startsWith("# Generated from src/")) {
                     fs.rmSync(filePath);
                     removedCount++;
                 }
@@ -197,6 +275,7 @@ function titleCase(str) {
 
 function deriveContext(relativePath, frontmatter) {
     const segments = relativePath.split(path.sep);
+    const isUnderModule = segments[0] === "module";
     const isUnderAdventures = segments[0] === "adventures";
     const frontmatterType = frontmatter.document || frontmatter.doc || frontmatter.type;
 
@@ -215,10 +294,32 @@ function deriveContext(relativePath, frontmatter) {
         if (frontmatterType) {
             // Explicit type in frontmatter determines the pack
             docType = normalizeDocType(frontmatterType);
+        } else if (segments.length >= 3) {
+            const category = segments[2];
+            const filename = path.basename(category, ".md").toLowerCase();
+            if (segments.length === 3 && ["overview", "adventure"].includes(filename)) {
+                docType = "adventure";
+            } else {
+                docType = normalizeDocType(category);
+            }
         } else {
             // Default to journal for adventure content without explicit type
             docType = "journal";
         }
+    } else if (isUnderModule && segments.length >= 2) {
+        const category = segments[1];
+        if (frontmatterType) {
+            docType = normalizeDocType(frontmatterType);
+        } else {
+            const normalized = normalizeDocType(category);
+            docType = normalized || "journal";
+        }
+
+        const folderSegment = segments.length >= 4 ? segments[segments.length - 2] : null;
+        folderName = frontmatter.folderName || titleFromSegment(folderSegment);
+        folderId = !frontmatter.folder && folderName
+            ? validateId(folderName, "")
+            : frontmatter.folder || null;
     } else {
         // Top-level directories (actors/, items/, journals/, features/, etc.)
         // Use explicit frontmatter type, or default to journal
@@ -337,8 +438,21 @@ function restoreEnrichers(html, placeholders) {
     return html;
 }
 
-function convertInlineMarkdown(text) {
+function convertInlineMarkdown(text, fileDir) {
     let t = text;
+    t = t.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, rawPath) => {
+        const trimmed = rawPath.trim();
+        let src = trimmed;
+        let title = "";
+        const titleMatch = trimmed.match(/^(\S+)\s+["'](.+)["']$/);
+        if (titleMatch) {
+            src = titleMatch[1];
+            title = titleMatch[2];
+        }
+        const rewritten = fileDir ? rewriteAssetPath(src, fileDir) : src;
+        const titleAttr = title ? ` title="${title}"` : "";
+        return `<img src="${rewritten}" alt="${alt}"${titleAttr}>`;
+    });
     t = t.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
     t = t.replace(/\*([^*]+)\*/g, "<em>$1</em>");
     t = t.replace(/_([^_]+)_/g, "<em>$1</em>");
@@ -347,7 +461,7 @@ function convertInlineMarkdown(text) {
     return t;
 }
 
-function convertTables(html) {
+function convertTables(html, fileDir) {
     const tableRegex = /\|(.+)\|\n\|[-:\s|]+\|\n((?:\|.+\|\n?)+)/g;
     return html.replace(tableRegex, (match, headerRow, bodyRows) => {
         const headers = headerRow
@@ -365,13 +479,14 @@ function convertTables(html) {
             );
         let table = "<table>\n<thead><tr>";
         headers.forEach(
-            (h) => (table += `<th>${convertInlineMarkdown(h)}</th>`),
+            (h) => (table += `<th>${convertInlineMarkdown(h, fileDir)}</th>`),
         );
         table += "</tr></thead>\n<tbody>\n";
         rows.forEach((row) => {
             table += "<tr>";
             row.forEach(
-                (cell) => (table += `<td>${convertInlineMarkdown(cell)}</td>`),
+                (cell) =>
+                    (table += `<td>${convertInlineMarkdown(cell, fileDir)}</td>`),
             );
             table += "</tr>\n";
         });
@@ -380,7 +495,7 @@ function convertTables(html) {
     });
 }
 
-function markdownToHtml(markdown) {
+function markdownToHtml(markdown, fileDir) {
     const { html: protectedHtml, placeholders } = protectEnrichers(markdown);
     let html = protectedHtml;
 
@@ -396,11 +511,11 @@ function markdownToHtml(markdown) {
             .map((line) => line.replace(/^>\s*/, ""))
             .join("\n")
             .trim();
-        const innerHtml = convertInlineMarkdown(content);
+        const innerHtml = convertInlineMarkdown(content, fileDir);
         return `<div class="dnd5e2 chat-card"><blockquote>\n<p><em>${innerHtml}</em></p>\n</blockquote></div>\n`;
     });
 
-    html = convertTables(html);
+    html = convertTables(html, fileDir);
 
     html = html.replace(
         /```([a-zA-Z0-9-]*)\n([\s\S]*?)```/g,
@@ -417,7 +532,7 @@ function markdownToHtml(markdown) {
             .split("\n")
             .map(
                 (line) =>
-                    `<li>${convertInlineMarkdown(line.replace(/^[-*]\s+/, ""))}</li>`,
+                    `<li>${convertInlineMarkdown(line.replace(/^[-*]\s+/, ""), fileDir)}</li>`,
             )
             .join("\n");
         return `<ul>\n${items}\n</ul>\n`;
@@ -429,7 +544,7 @@ function markdownToHtml(markdown) {
             .split("\n")
             .map(
                 (line) =>
-                    `<li>${convertInlineMarkdown(line.replace(/^\d+\.\s+/, ""))}</li>`,
+                    `<li>${convertInlineMarkdown(line.replace(/^\d+\.\s+/, ""), fileDir)}</li>`,
             )
             .join("\n");
         return `<ol>\n${items}\n</ol>\n`;
@@ -441,7 +556,7 @@ function markdownToHtml(markdown) {
             const b = block.trim();
             if (!b) return "";
             if (b.startsWith("<")) return b;
-            return `<p>${convertInlineMarkdown(b)}</p>`;
+            return `<p>${convertInlineMarkdown(b, fileDir)}</p>`;
         })
         .join("\n\n");
 
@@ -467,23 +582,6 @@ function deepMerge(target, ...sources) {
         }
     }
     return target;
-}
-
-function extractFoundryBlocks(markdown) {
-    const blocks = [];
-    const regex = /```foundry-yaml\n([\s\S]*?)```/g;
-    let match;
-    let cleaned = markdown;
-    while ((match = regex.exec(markdown)) !== null) {
-        try {
-            const parsed = yaml.load(match[1]) || {};
-            if (parsed && typeof parsed === "object") blocks.push(parsed);
-        } catch (err) {
-            log.warn(`Failed to parse foundry-yaml block: ${err.message}`);
-        }
-        cleaned = cleaned.replace(match[0], "");
-    }
-    return { blocks, cleaned };
 }
 
 function parseSections(markdown) {
@@ -527,7 +625,7 @@ function setDeep(target, pathArr, value) {
     ref[pathArr[pathArr.length - 1]] = value;
 }
 
-function buildJournalDocument(cfg, frontmatter, body, name, now) {
+function buildJournalDocument(cfg, frontmatter, body, name, now, fileDir) {
     const pages = splitIntoPages(body);
     if (pages.length === 0) return null;
     const journalId = validateId(frontmatter._id, name, cfg.idPrefix);
@@ -550,7 +648,7 @@ function buildJournalDocument(cfg, frontmatter, body, name, now) {
                 ownership: { default: -1 },
                 title: { show: true, level: 1 },
                 text: {
-                    content: markdownToHtml(page.content),
+                    content: markdownToHtml(page.content, fileDir),
                     format: 1,
                     markdown: "",
                 },
@@ -573,9 +671,9 @@ function buildJournalDocument(cfg, frontmatter, body, name, now) {
     };
 }
 
-function buildNonJournalDocument(cfg, frontmatter, body, name, now) {
+function buildNonJournalDocument(cfg, frontmatter, body, name, now, fileDir) {
     const { main, sections } = parseSections(body);
-    const html = main.trim() ? markdownToHtml(main.trim()) : "";
+    const html = main.trim() ? markdownToHtml(main.trim(), fileDir) : "";
     const docId = validateId(frontmatter._id, name, cfg.idPrefix);
     const base = {
         _id: docId,
@@ -604,17 +702,45 @@ function buildNonJournalDocument(cfg, frontmatter, body, name, now) {
 
     const system = deepMerge({}, frontmatter.system || {});
     if (html) {
-        system.description = deepMerge({}, system.description || {}, {
-            value: html,
-        });
+        if (cfg.document === "Actor") {
+            if (!system.details?.biography?.value) {
+                system.details = deepMerge({}, system.details || {}, {
+                    biography: { value: html },
+                });
+            }
+            if (!system.description?.value) {
+                system.description = deepMerge({}, system.description || {}, {
+                    value: html,
+                });
+            }
+        } else if (cfg.document === "Item") {
+            if (!system.description?.value) {
+                system.description = deepMerge({}, system.description || {}, {
+                    value: html,
+                });
+            }
+        }
     }
+
+    base.system = system;
+
+    if (frontmatter.document || frontmatter.foundry) {
+        deepMerge(base, frontmatter.document || frontmatter.foundry);
+    }
+
     const sectionMap = {
+        description: ["system", "description", "value"],
+        "chat": ["system", "description", "chat"],
+        "chat-description": ["system", "description", "chat"],
         unidentified: ["system", "unidentified", "description"],
         "unidentified-description": ["system", "unidentified", "description"],
+        biography: ["system", "details", "biography", "value"],
+        "biography-public": ["system", "details", "biography", "public"],
+        "public-biography": ["system", "details", "biography", "public"],
     };
     for (const section of sections) {
         const htmlContent = section.content.trim()
-            ? markdownToHtml(section.content.trim())
+            ? markdownToHtml(section.content.trim(), fileDir)
             : "";
         if (section.path) {
             const pathArr = section.path.split(".");
@@ -626,7 +752,6 @@ function buildNonJournalDocument(cfg, frontmatter, body, name, now) {
             setDeep(base, mapped, htmlContent);
         }
     }
-    base.system = system;
 
     if (cfg.document === "Actor") {
         base.prototypeToken = frontmatter.prototypeToken || {
@@ -638,7 +763,9 @@ function buildNonJournalDocument(cfg, frontmatter, body, name, now) {
 
     if (cfg.document === "Item") {
         base.effects = frontmatter.effects || [];
-        if (frontmatter.activities) base.activities = frontmatter.activities;
+        if (frontmatter.activities && !base.system.activities) {
+            base.system.activities = frontmatter.activities;
+        }
     }
 
     if (cfg.document === "RollTable" && frontmatter.results) {
@@ -680,11 +807,6 @@ function slugifyOutputName(relativePath) {
     return relativePath.replace(/[\\/]/g, "-").replace(/\.md$/, ".yaml");
 }
 
-function mergeFoundryBlocks(doc, blocks) {
-    if (!blocks.length) return doc;
-    return deepMerge({}, doc, ...blocks);
-}
-
 async function deriveAdventureMetadata(adventureFile) {
     const adventureDir = path.dirname(adventureFile);
     const files = (await findMarkdownFiles(adventureDir, adventureDir)).sort();
@@ -695,7 +817,7 @@ async function deriveAdventureMetadata(adventureFile) {
     for (const file of files) {
         if (path.resolve(file) === path.resolve(adventureFile)) continue;
 
-        const relToNotes = path.relative(CAMPAIGN_NOTES_DIR, file);
+        const relToNotes = path.relative(SRC_ROOT, file);
         const content = await fsp.readFile(file, "utf-8");
         const { frontmatter, body } = parseFrontmatter(content);
         const context = deriveContext(relToNotes, frontmatter);
@@ -738,6 +860,13 @@ async function deriveAdventureMetadata(adventureFile) {
 async function processFile(filePath, relativePath, folderRegistry) {
     const content = await fsp.readFile(filePath, "utf-8");
     const { frontmatter, body } = parseFrontmatter(content);
+    if (
+        frontmatter?.journal === false ||
+        frontmatter?.build === false ||
+        frontmatter?.compile === false
+    ) {
+        return null;
+    }
     const { docType, folderName, folderId } = deriveContext(
         relativePath,
         frontmatter,
@@ -760,7 +889,6 @@ async function processFile(filePath, relativePath, folderRegistry) {
         processedBody = body.replace(/^\s*#\s+.+\n*/, "").trim();
     }
 
-    const { blocks: foundryBlocks, cleaned } = extractFoundryBlocks(processedBody);
     const adventureData =
         cfg.document === "Adventure"
             ? effectiveFrontmatter.adventure ||
@@ -768,27 +896,30 @@ async function processFile(filePath, relativePath, folderRegistry) {
             : null;
     let document;
 
+    const fileDir = path.dirname(filePath);
+
     if (cfg.document === "JournalEntry") {
         document = buildJournalDocument(
             cfg,
             effectiveFrontmatter,
-            cleaned,
+            processedBody,
             name,
             now,
+            fileDir,
         );
     } else {
         document = buildNonJournalDocument(
             cfg,
             effectiveFrontmatter,
-            cleaned,
+            processedBody,
             name,
             now,
+            fileDir,
         );
     }
 
     if (!document) return null;
-    document = mergeFoundryBlocks(document, foundryBlocks);
-
+    rewriteAssetPaths(document, fileDir);
     if (cfg.document === "Adventure" && adventureData) {
         document.adventure = adventureData;
     }
@@ -829,7 +960,7 @@ async function writeFolders(folderRegistry) {
                 quotingType: '"',
                 forceQuotes: false,
             });
-            const header = `# Generated folder for ${meta.name}\n# Auto-created from folder path in campaign-notes\n`;
+            const header = `# Generated folder for ${meta.name}\n# Auto-created from folder path in src\n`;
             const folderPath = path.join(packDir, `_folder-${folderId}.yaml`);
             await fsp.writeFile(folderPath, header + yamlContent);
         }
@@ -848,7 +979,7 @@ async function buildNotes(specificFile = null) {
     } else {
         // Clean up stale generated YAML before full rebuild
         await cleanupGeneratedYaml();
-        files = await findMarkdownFiles(CAMPAIGN_NOTES_DIR);
+        files = await findMarkdownFiles(SRC_ROOT);
     }
 
     if (!files.length) {
@@ -861,7 +992,7 @@ async function buildNotes(specificFile = null) {
     const folderRegistry = {};
 
     for (const file of files) {
-        const relativePath = path.relative(CAMPAIGN_NOTES_DIR, file);
+        const relativePath = path.relative(SRC_ROOT, file);
         log.info(`Processing: ${relativePath}`);
         try {
             const result = await processFile(

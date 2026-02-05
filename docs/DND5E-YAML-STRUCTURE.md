@@ -1106,7 +1106,7 @@ _key: '!items!UniqueID16Chars'
 
 - [ENRICHERS.md](ENRICHERS.md) - Text enricher reference
 - [WORKFLOW.md](WORKFLOW.md) - Development workflow
-- [packs/_source/README.md](../packs/_source/README.md) - YAML build system
+- [WORKFLOW.md](WORKFLOW.md) - Markdown build system
 
 ---
 

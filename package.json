@@ -6,16 +6,19 @@
   "type": "module",
   "scripts": {
     "build": "npm run build:yaml && npm run build:packs",
-    "build:yaml": "node utils/build-yaml.mjs",
+    "build:assets": "node utils/copy-assets.mjs",
+    "build:yaml": "npm run build:assets && node utils/build-yaml.mjs",
     "build:packs": "node utils/packs.mjs compile",
     "extract:packs": "node utils/packs.mjs extract",
     "clean:packs": "node utils/packs.mjs clean",
     "clean:build": "node utils/clean-build.mjs",
+    "test": "node utils/test-build.mjs",
     "version:patch": "node utils/bump-version.mjs patch",
     "version:minor": "node utils/bump-version.mjs minor",
     "version:major": "node utils/bump-version.mjs major",
     "build:release": "npm run build && node utils/build-release.mjs",
-    "release": "npm run build:release"
+    "release": "npm run build:release",
+    "create": "node utils/create-adventure.mjs"
   },
   "repository": {
     "type": "git",

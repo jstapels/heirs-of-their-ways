@@ -8,7 +8,7 @@ This guide explains the workflow for developing content for the Heirs of Their W
 heirs-of-their-ways/
 ├── module.json                    # FoundryVTT module manifest
 ├── package.json                   # NPM configuration for build scripts
-├── CLAUDE.md                      # AI assistant guide
+├── AGENTS.md                      # AI assistant guide
 ├── README.md                      # Project overview
 ├── docs/                          # Documentation
 │   ├── ENRICHERS.md              # Text enrichers reference
@@ -16,58 +16,73 @@ heirs-of-their-ways/
 ├── utils/                         # Build utilities
 │   ├── build-yaml.mjs            # Markdown → YAML compiler
 │   └── packs.mjs                 # Pack compilation script
-├── campaign-notes/                # Markdown notes for campaign content
-│   ├── adventures/               # Adventure outlines and session notes
-│   ├── npcs/                     # NPC descriptions and backgrounds
-│   ├── locations/                # Location descriptions
-│   ├── items/                    # Custom item descriptions
-│   └── lore/                     # World lore and background
-├── source-data/                   # JSON exports (legacy/backup)
-│   ├── actors/                   # NPC/creature JSON files
-│   ├── items/                    # Item JSON files
-│   ├── journals/                 # Journal entry JSON files
-│   ├── scenes/                   # Scene JSON files
-│   └── tables/                   # Roll table JSON files
-├── packs/                         # Compendium packs
-│   ├── _source/                  # YAML source files (edit these!)
-│   │   └── heirs-pack/          # Main campaign pack sources
-│   │       ├── actors/          # NPC YAML files
-│   │       ├── items/           # Item YAML files
-│   │       ├── journals/        # Journal YAML files
-│   │       ├── scenes/          # Scene YAML files
-│   │       └── tables/          # Table YAML files
-│   └── heirs-pack/               # Compiled LevelDB (generated)
-├── assets/                        # Media assets
-│   ├── maps/                     # Map images for scenes
-│   ├── tokens/                   # Token artwork
-│   ├── images/                   # Other images
-│   └── sounds/                   # Audio files
+├── src/                          # Markdown notes for campaign content
+│   ├── module/                   # Module-level content
+│   │   ├── actors/
+│   │   ├── items/
+│   │   ├── features/
+│   │   ├── journals/
+│   │   ├── scenes/
+│   │   ├── tables/
+│   │   └── assets/               # Module assets (source)
+│   └── adventures/               # Adventure-specific content
+│       └── <adventure>/          # e.g., fight-the-dragon/
+│           ├── actors/
+│           ├── items/
+│           ├── features/
+│           ├── journals/
+│           ├── scenes/
+│           ├── tables/
+│           └── assets/           # Adventure assets (source)
+├── source-data/                   # Legacy JSON exports (optional)
+│   └── README.md
+├── packs/                         # Compendium packs (generated)
+│   ├── _source/                  # YAML source files (generated)
+│   │   ├── heirs-actors/
+│   │   ├── heirs-items/
+│   │   ├── heirs-features/
+│   │   ├── heirs-journals/
+│   │   ├── heirs-scenes/
+│   │   └── heirs-tables/
+│   ├── heirs-actors/             # Compiled LevelDB (generated)
+│   ├── heirs-items/
+│   ├── heirs-features/
+│   ├── heirs-journals/
+│   ├── heirs-scenes/
+│   └── heirs-tables/
+├── assets/                        # Built assets (generated)
 └── node_modules/                  # NPM dependencies (auto-generated)
 ```
 
 ## Workflow Overview
 
-This module uses a **modern YAML-based build system** for managing compendium content. There are two primary workflows:
+This module uses a **markdown-first + YAML build system** for managing compendium content. There are two primary workflows:
 
-### Recommended Workflow: YAML Source Files
+### Recommended Workflow: Markdown Source Files
 
 **Best for:** Version control, collaboration, and maintainability
 
-1. Edit YAML files in `packs/_source/heirs-pack/`
-2. Run `npm run build:packs` to compile to LevelDB
+1. Edit markdown files in `src/` (frontmatter defines type/system/data)
+2. Run `npm run build` to compile markdown → YAML → LevelDB
 3. Test in FoundryVTT
-4. Commit YAML sources to git
+4. Commit markdown + source assets to git (no build artifacts)
 
-### Alternative Workflow: Direct FoundryVTT Editing
+### Alternative Workflow: Direct FoundryVTT Editing (Extract → YAML)
 
 **Best for:** Complex content requiring visual editing
 
 1. Create/edit content in FoundryVTT UI
 2. Run `npm run extract:packs` to generate YAML sources
-3. Commit YAML sources to git
-4. Share with collaborators
+3. Use extracted YAML as reference, then migrate changes into `src/`
+4. Rebuild and share
 
 ---
+
+## Source Layout
+
+- `src/module/` holds module-level content shared across adventures.
+- `src/adventures/<adventure>/` holds adventure-specific content.
+- Place media in the nearest `assets/` folder and reference it with relative paths.
 
 ## YAML Build System
 
@@ -80,8 +95,7 @@ npm install
 # Build markdown → YAML → packs
 npm run build          # runs build:yaml then build:packs
 
-# Edit YAML files in packs/_source/heirs-pack/
-# (actors, items, journals, scenes, tables)
+# Edit markdown in src/
 
 # Build the compendium packs
 npm run build:packs
@@ -93,20 +107,53 @@ npm run build:packs
 
 ```bash
 npm run build                    # Full build: markdown → YAML → packs
-npm run build:yaml               # Compile markdown in campaign-notes/ → packs/_source/*
+npm run build:assets             # Copy src assets → assets/
+npm run build:yaml               # Compile markdown in src/ → packs/_source/*
 npm run build:packs              # Compile all YAML → LevelDB
-npm run build:packs -- heirs-pack  # Compile specific pack
+npm run build:packs -- heirs-actors  # Compile specific pack
 
 npm run extract:packs            # Extract all LevelDB → YAML
-npm run extract:packs -- heirs-pack # Extract specific pack
+npm run extract:packs -- heirs-actors # Extract specific pack
 
 npm run clean:packs              # Standardize YAML formatting
+npm run create -- my-new-adventure # Create a new adventure scaffold
 ```
 
 ### Markdown-First Flow
-- Author everything in `campaign-notes/` with frontmatter keys (`type`, `pack`, `folder`, `img`, `system`, `embedded_items`, etc.).
-- Optional fenced blocks ```foundry-yaml``` can describe complex payloads (activities/effects/tokens) and are merged into the generated YAML.
+- Author everything in `src/` with frontmatter keys (`type`, `pack`, `folder`, `img`, `system`, `effects`, `items`, `prototypeToken`, etc.).
+- Use `document:` in frontmatter to merge arbitrary top-level Foundry fields (tokens, walls, lights, scene settings).
+- Inline `foundry-yaml` blocks are not supported; keep all data in frontmatter.
+- Place media in `src/**/assets/` and reference them with relative paths in frontmatter or markdown image links.
 - Run `npm run build:yaml` to emit pack sources in `packs/_source/`, then `npm run build:packs` to compile LevelDB packs.
+- Adventure root files named `overview.md` or `adventure.md` default to `type: adventure` if not specified.
+
+### Frontmatter Pass-Through
+
+Any valid DnD5e document fields can be defined in frontmatter under `system`, including requirements/prerequisites:
+
+```yaml
+---
+type: item
+name: Ring of Protection
+system:
+  requirements: "Requires attunement by a creature"
+---
+```
+
+### Description Sections (Actors & Items)
+Use H2 sections to target common description fields:
+- `## Description` → `system.description.value`
+- `## Chat` → `system.description.chat`
+- `## Unidentified` → `system.unidentified.description`
+- `## Biography` → `system.details.biography.value`
+- `## Public Biography` → `system.details.biography.public`
+
+For any other field, add an explicit path on the header:
+```markdown
+## GM Notes {.flags.heirs.gmNotes}
+```
+
+Note: For non-journal documents, H2 sections without a mapping or explicit path are ignored.
 
 ### Why YAML?
 
@@ -116,17 +163,17 @@ npm run clean:packs              # Standardize YAML formatting
 - **Merge-friendly** - Avoid binary LevelDB merge conflicts
 - **Industry standard** - Same approach as official dnd5e system
 
-See [packs/_source/README.md](../packs/_source/README.md) for complete YAML documentation.
+See [docs/DND5E-YAML-STRUCTURE.md](DND5E-YAML-STRUCTURE.md) for complete YAML documentation.
 
 ---
 
 ## Markdown Journal System
 
-**Journals are now built from markdown files** in `campaign-notes/`. This provides a better authoring experience for narrative content.
+**Journals are now built from markdown files** in `src/`. This provides a better authoring experience for narrative content.
 
 ### How It Works
 
-1. Write content in `campaign-notes/` as normal markdown files
+1. Write content in `src/` as normal markdown files
 2. The build system automatically converts markdown → journal YAML
 3. Journal YAML is then compiled into the LevelDB pack
 
@@ -152,6 +199,16 @@ Content for the first page...
 Content for the second page...
 ```
 
+### Images in Markdown
+
+You can embed images directly in journal content using standard markdown syntax:
+
+```markdown
+![Coral Veil Map](../assets/maps/coral-veil-map.webp)
+```
+
+Relative asset paths are rewritten to `modules/<moduleId>/assets/...` during the build.
+
 ### Page Splitting
 
 - **H1 (`#`)** becomes the journal name
@@ -170,7 +227,7 @@ The markdown compiler preserves FoundryVTT enricher syntax:
 
 ### Excluded Files
 
-The following files are **not** compiled to journals:
+The following files are **not** compiled:
 - `*-template.md` files
 - `README.md` files
 - Files in `sessions/` directory (DM notes only)
@@ -186,138 +243,88 @@ journal: false
 ### Build Commands
 
 ```bash
-npm run build                    # Build journals + packs (full build)
-npm run build:yaml               # Build only journals (markdown → YAML)
+npm run build                    # Build markdown → YAML → packs
+npm run build:yaml               # Build only markdown → YAML
 npm run build:packs              # Build only packs (YAML → LevelDB)
 ```
 
 ### Example Workflow
 
-1. Edit `campaign-notes/adventures/coral-veil/adventure.md`
+1. Edit `src/adventures/coral-veil/overview.md`
 2. Run `npm run build`
 3. Refresh FoundryVTT to see updated journal
 
 ---
 
-## Traditional Workflow (Legacy)
-
-The following workflow uses the `source-data/` directory for JSON exports. This is maintained for compatibility but **YAML sources are recommended** for new content.
-
-### Phase 1: Planning and Note-Taking
-
-1. **Write Campaign Notes** - Create markdown files in `campaign-notes/`
-   - Document adventures, NPCs, locations, items, and lore
-   - Use descriptive filenames (e.g., `chapter-1-the-awakening.md`)
-   - Include stat blocks, descriptions, and story elements
-   - Use FoundryVTT enricher syntax where appropriate
-
-2. **Organize Assets** - Collect media files in `assets/`
-   - Maps go in `assets/maps/`
-   - Token artwork in `assets/tokens/`
-   - Background images in `assets/images/`
-   - Sound effects and music in `assets/sounds/`
-
-### Phase 2: Content Creation with Claude
-
-3. **Generate JSON Data** - Use Claude Code to convert notes to Foundry JSON
-   - Claude reads campaign notes from markdown files
-   - Claude generates properly formatted JSON for actors, items, etc.
-   - Claude saves JSON to appropriate `source-data/` subdirectory
-   - Validate JSON syntax before committing
-
-4. **Create Journal Entries** - Use Claude to format adventures and lore
-   - Convert markdown notes to FoundryVTT journal format
-   - Add enrichers for interactive elements (@Check, @Damage, etc.)
-   - Include @UUID links to related content
-   - Export as JSON to `source-data/journals/`
-
-### Phase 3: Import to FoundryVTT
-
-5. **Import Content to Foundry**
-   - Open FoundryVTT and navigate to the appropriate tab (Actors, Items, Journal)
-   - Right-click in the directory and select "Import Data"
-   - Select JSON files from `source-data/`
-   - Review and edit in Foundry UI as needed
-
-6. **Organize in Compendium**
-   - Create or open the compendium pack (heirs-pack)
-   - Drag imported content into the compendium
-   - Organize using folders within the compendium
-   - Set appropriate ownership/permissions
-
-### Phase 4: Version Control
-
-7. **Commit Changes**
-   - Review changes with `git status` and `git diff`
-   - Stage JSON files: `git add source-data/`
-   - Stage assets: `git add assets/`
-   - Create descriptive commit message
-   - Push to feature branch
-
-8. **Backup Compendium** (Optional)
-   - Export compendium content to JSON periodically
-   - Store in `source-data/` for version control backup
-   - Note: LevelDB files in `packs/` are binary and harder to version
-
----
-
 ## Common Tasks
 
-### Task: Create a New NPC
+### Task: Create a New NPC (Actor)
 
-1. **Write NPC Notes** - Create `campaign-notes/npcs/npc-name.md`
+1. **Create a markdown file** in `src/module/actors/`:
    ```markdown
+   ---
+   type: actor
+   name: Lord Blackwood
+   img: ../assets/tokens/blackwood.webp
+   system:
+     type: npc
+     details:
+       type:
+         value: humanoid
+         subtype: human noble
+       alignment: lawful evil
+       cr: 4
+     abilities:
+       str: { value: 10 }
+       dex: { value: 14 }
+       con: { value: 14 }
+       int: { value: 16 }
+       wis: { value: 13 }
+       cha: { value: 18 }
+     attributes:
+       ac: { flat: 15, calc: flat }
+       hp: { value: 52, max: 52 }
+       movement: { walk: 30 }
+   ---
    # Lord Blackwood
+   *Human noble, lawful evil*
 
-   *Human Noble, Neutral Evil*
-
-   ## Description
+   ## Biography
    A corrupt noble who secretly worships dark powers...
 
-   ## Stats
-   - **AC:** 15 (studded leather)
-   - **HP:** 52 (8d8 + 16)
-   - **Speed:** 30 ft.
-   - **STR:** 10, **DEX:** 14, **CON:** 14, **INT:** 16, **WIS:** 13, **CHA:** 18
-
-   ## Actions
-   - **Rapier:** [[/attack +4]] to hit, [[/damage 1d8+2 piercing]]
-   - **Command:** Target must make [[/save wis 15]] or obey
+   ## Public Biography {.system.details.biography.public}
+   A polished public-facing summary for players.
    ```
 
-2. **Ask Claude to Generate JSON**
+2. **Build and test**:
+   ```bash
+   npm run build
    ```
-   User: "Generate an NPC actor JSON for Lord Blackwood based on
-          campaign-notes/npcs/lord-blackwood.md"
-   ```
-
-3. **Claude Generates JSON** - Saves to `source-data/actors/lord-blackwood.json`
-
-4. **Import to Foundry**
-   - Right-click Actors tab → Import Data
-   - Select `source-data/actors/lord-blackwood.json`
-   - Review and adjust in Foundry
-
-5. **Add to Compendium**
-   - Open heirs-pack compendium
-   - Drag Lord Blackwood into compendium
-   - Organize in appropriate folder
 
 ### Task: Create a Magic Item
 
-1. **Write Item Notes** - Create `campaign-notes/items/flaming-sword.md`
+1. **Create a markdown file** in `src/module/items/` with frontmatter:
    ```markdown
-   # Flaming Longsword
-
+   ---
+   type: item
+   name: Flaming Longsword
+   img: ../assets/images/flaming-longsword.webp
+   system:
+     type:
+       value: weapon
+       baseItem: longsword
+     rarity: rare
+     attunement: required
+     damage:
+       base:
+         number: 1
+         denomination: 8
+         types: [slashing]
+   ---
    *Weapon (longsword), rare (requires attunement)*
 
    ## Description
    This sword bursts into flame when drawn...
-
-   ## Properties
-   - **Type:** Longsword
-   - **Rarity:** Rare
-   - **Damage:** 1d8 slashing + 1d6 fire
    - **Properties:** Versatile (1d10)
    - **Attunement:** Required
 
@@ -326,16 +333,16 @@ The following workflow uses the `source-data/` directory for JSON exports. This 
    - Sheds bright light 20ft, dim 20ft
    ```
 
-2. **Generate with Claude**
+2. **Optional: Ask Claude to draft frontmatter + markdown**
    ```
-   User: "Generate an item JSON for the Flaming Longsword"
+   User: "Generate a frontmatter-first markdown file for the Flaming Longsword item"
    ```
 
-3. **Import and Add to Compendium** - Same process as NPC
+3. **Build and verify** - `npm run build`
 
 ### Task: Create a Journal Adventure
 
-1. **Write Adventure Notes** - Create `campaign-notes/adventures/chapter-1.md`
+1. **Write Adventure Notes** - Create `src/adventures/chapter-1/overview.md`
    ```markdown
    # Chapter 1: The Awakening
 
@@ -353,30 +360,31 @@ The following workflow uses the `source-data/` directory for JSON exports. This 
    **Tactics:** They demand [[/check int 12]] to negotiate...
    ```
 
-2. **Convert with Claude**
+2. **Build and verify**
    ```
-   User: "Convert chapter-1.md into a FoundryVTT journal entry JSON
-          with proper enrichers"
+   npm run build
    ```
 
-3. **Import and Organize** - Import to Journal tab, add to compendium
+3. **Open in Foundry** - Check the entry in "Heirs: Journals"
 
 ### Task: Create a Scene
 
 1. **Prepare Assets**
-   - Save map image to `assets/maps/millhaven-square.jpg`
-   - Save token images to `assets/tokens/`
+   - Save map image to `src/adventures/chapter-1/assets/maps/millhaven-square.jpg`
+   - Save token images to `src/adventures/chapter-1/assets/tokens/`
 
-2. **Create Scene in Foundry**
-   - Create new scene, upload map
-   - Configure grid, walls, lighting
-   - Place tokens from actors
-   - Export scene JSON to `source-data/scenes/millhaven-square.json`
+2. **Create Scene in markdown**
+   - Use `type: scene` and `document:` frontmatter
+   - Include grid, walls, lights, and tokens in `document:`
+
+   **Alternative (Foundry-first):**
+   - Create the scene in Foundry
+   - Run `npm run extract:packs` to get YAML sources (for reference)
 
 3. **Commit to Git**
    ```bash
-   git add assets/maps/millhaven-square.jpg
-   git add source-data/scenes/millhaven-square.json
+   git add src/adventures/chapter-1/assets/maps/millhaven-square.jpg
+   git add src/adventures/chapter-1/scenes/
    git commit -m "Add Millhaven Square scene with map"
    ```
 
@@ -397,9 +405,9 @@ A [[/save dex 15]] reduces damage by half.
 ```
 
 This allows Claude to:
-1. Preserve enricher syntax when converting to JSON
+1. Preserve enricher syntax when drafting markdown
 2. Understand the game mechanics in your notes
-3. Generate appropriate JSON structure
+3. Generate appropriate frontmatter/YAML structure
 
 ### Testing Enrichers
 
@@ -411,27 +419,15 @@ Always test enrichers in FoundryVTT after import:
 
 ---
 
-## JSON Export from FoundryVTT
+## Foundry-First Extraction
 
-### Exporting Actors
-1. Right-click actor in Actors tab
-2. Select "Export Data"
-3. Save to `source-data/actors/actor-name.json`
+If you create or edit content in Foundry, extract YAML sources with:
 
-### Exporting Items
-1. Right-click item in Items tab
-2. Select "Export Data"
-3. Save to `source-data/items/item-name.json`
+```bash
+npm run extract:packs
+```
 
-### Exporting Journals
-1. Right-click journal in Journal tab
-2. Select "Export Data"
-3. Save to `source-data/journals/journal-name.json`
-
-### Exporting Scenes
-1. Right-click scene in Scenes tab
-2. Select "Export Data"
-3. Save to `source-data/scenes/scene-name.json`
+Use the extracted YAML as a reference, then migrate changes into `src/`.
 
 ---
 
@@ -439,8 +435,8 @@ Always test enrichers in FoundryVTT after import:
 
 ### Naming Conventions
 
-- **Files:** kebab-case (e.g., `lord-blackwood.md`, `flaming-sword.json`)
-- **Folders:** kebab-case (e.g., `campaign-notes`, `source-data`)
+- **Files:** kebab-case (e.g., `lord-blackwood.md`, `flaming-sword.md`)
+- **Folders:** kebab-case (e.g., `src/module`, `src/adventures`)
 - **Actors/Items in notes:** Descriptive with context (e.g., "Lord Blackwood - Antagonist")
 - **Compendium entries:** Clear, searchable names
 
@@ -463,14 +459,15 @@ Always test enrichers in FoundryVTT after import:
 - **Optimize Images:** Compress large map files
 - **Consistent Naming:** Match asset names to content
 - **Organize by Type:** Keep maps, tokens, images separate
+- **Source Location:** Store assets in `src/**/assets/` and let the build copy them to `assets/`
 - **Attribution:** Note sources and licenses
 
 ---
 
 ## Troubleshooting
 
-### JSON Import Fails
-- **Check Syntax:** Validate JSON with online validator
+### Build Fails
+- **Check Syntax:** Validate YAML/frontmatter formatting
 - **Check Version:** Ensure compatible with Foundry v13 / DnD5e v5.2
 - **Check Paths:** Verify file paths for images/assets
 - **Check UUIDs:** Ensure referenced UUIDs exist
@@ -492,7 +489,7 @@ Always test enrichers in FoundryVTT after import:
 ## Resources
 
 ### Documentation
-- **CLAUDE.md** - AI assistant guide for this project
+- **AGENTS.md** - AI assistant guide for this project
 - **ENRICHERS.md** - Complete enricher reference
 - **README.md** - Project overview
 
