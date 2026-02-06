@@ -43,6 +43,18 @@ Optional Session 5:
 - Roleplay scenes unlock tactical advantages, not just lore.
 - Player choices affect the final boss state and rescue outcomes.
 
+## Encounter Sourcing Standard
+
+- **Printed creatures:** Use Monster Manual 2024 stat blocks (for example: Veteran, Scout, Mage).
+- **Custom creatures:** Use linked actor entries in this adventure (all custom enemies below are fully statted).
+- **Journal usability:** Encounter entries should reference creatures by actor link so the GM can open stats quickly during play.
+
+## House and Region Touchpoints
+
+- Reference Loamvale trade history, old supply routes, and family iconography in each chamber.
+- Give each PC at least one optional interaction tied to family legacy, personal fear, or ancestor memory.
+- Tie clues back to nearby campaign landmarks so the temple feels part of the same world, not an isolated dungeon.
+
 ---
 
 ## Major Areas
@@ -52,8 +64,8 @@ Optional Session 5:
 > *A stone bridge hangs over a canyon where broken clocks and rusted chains sway with no wind. Every footstep sounds half a second late, as if the world is listening before it answers.*
 
 **Encounter Options (Pick One):**
-- **Temporal Raiders (Hard):** 1 veteran captain, 4 scouts, 1 chrono-mage adept.
-- **Shatterquake Swarm (Hard):** environmental collapse plus 3 temporal predators.
+- **Temporal Raiders (Hard):** 1 Veteran, 4 Scouts (MM 2024), and @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrChronMageA01]{Chrono-Mage Adept}.
+- **Shatterquake Swarm (Hard):** environmental collapse plus custom predators like @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrFlickerSw01X]{Flickerswarm} and @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrEchoBlade001]{Echo Blade}.
 
 **Alternative Path:**
 - Outmaneuver raiders with [[/check Deception 16]] or [[/check Survival 15]] and avoid full attrition before Session 2.
@@ -63,7 +75,7 @@ Optional Session 5:
 Use the existing hall journal and DM notes as the core setpiece.
 
 **Strong-party baseline update:**
-- Add one extra Flickerswarm.
+- Add one extra @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrFlickerSw01X]{Flickerswarm}.
 - Trigger one additional tile surge at initiative count 10 in rounds 2 and 4.
 - Keep truth-door scene as emotional anchor after the combat spike.
 
@@ -75,21 +87,21 @@ Three connected chambers, each with combat and non-combat resolution routes:
 
 > *Statues of children and elders share the same face at different ages, all turned toward a dry fountain where amber water hovers in midair, refusing to fall.*
 
-- **Combat:** 2 temporal sentinels + 1 chronal ooze (Hard).
+- **Combat:** 2 @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrTempSentin01]{Temporal Sentinels} + 1 @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrChronOoze001]{Chronal Ooze} (Hard).
 - **Alternative:** Offer memory fragments (roleplay confessions) to deactivate sentinels.
 
 #### The Archive of Unfinished Futures
 
 > *Shelves of stone tablets shift on their own, swapping places as whispers recite events that have not happened yet.*
 
-- **Combat:** time-warped scribes and echo blades (Hard).
+- **Combat:** @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrChronMageA01]{Chrono-Mage Adept}, @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrEchoBlade001]{Echo Blades}, and @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrFlickerSw01X]{Flickerswarm} (Hard).
 - **Alternative:** [[/check Arcana 16]] + [[/check Investigation 15]] to route around guardians.
 
 #### The Anchor Vault
 
 > *A circular room of chained hourglasses suspended over black water. One chain is freshly broken.*
 
-- **Combat:** elite rival strike team arrives mid-scene.
+- **Combat:** @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrKestrelVan01]{Kestrel Vane} with Veteran, Scouts, and Mage (MM 2024) arrives mid-scene.
 - **Alternative:** bargain with rival leader for temporary truce against the hydra.
 
 ### 4) Serpent of Moments Lair (Session 4)
@@ -97,6 +109,7 @@ Three connected chambers, each with combat and non-combat resolution routes:
 > *The final chamber is a sunken amphitheater of broken dials and flooded stone terraces. In the center, a hydra coils around a cracked hourglass monolith, each head watching a different second of your life.*
 
 **Chrono-Hydra Structure:**
+- @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrChronHydra01]{Serpent of Moments (Chrono-Hydra)} is a custom actor with complete stats.
 - Multi-phase boss with lair actions tied to time distortion.
 - Starts with 5 heads and gains tactical reactions when heads are severed.
 - Uses forced movement, delayed-damage effects, and initiative disruption.

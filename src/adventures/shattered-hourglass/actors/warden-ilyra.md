@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Warden Ilyra
+_id: ShHrWardenIlyr01
 img: icons/svg/mystery-man.svg
 system:
   type: npc

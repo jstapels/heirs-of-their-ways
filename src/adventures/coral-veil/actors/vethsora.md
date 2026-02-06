@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Veth'sora
+_id: CoVeVethsora001X
 img: icons/svg/mystery-man.svg
 system:
   type: npc

@@ -10,20 +10,27 @@ type: journal
 
 > *A bridge of blackened stone cuts across a canyon filled with hanging gears and broken bells. Chains sway without wind. Every step echoes twice, once now and once a heartbeat later.*
 
-The causeway is the adventure's opener and establishes temporal instability before the party reaches the hall.
+The causeway is the opener and should feel like Loamvale history is physically cracking open.
+
+## Interactive Features
+
+- **House Marker Stones:** Four weathered waystones sit near the bridge mouth. Each bears a nearly-erased house sigil. On [[/check History 13]], a character identifies one family oath tied to sacrifice at the old temple.
+- **Broken Toll Ledger:** A brass-bound slate records old crossings between Loamvale estates and deep-cavern traders. On [[/check Investigation 14]], the party finds one entry tied to a known family ancestor.
+- **Pendulum Chain:** A swaying chain can be cut to drop cover into the battlefield (15-foot line, [[/save DEX 14]] or [[/damage 2d6 bludgeoning]]).
 
 ## Encounter Options
 
-Choose one:
+Choose one.
 
 ### Temporal Raiders (Hard)
-- 1 veteran captain
-- 4 scouts
-- 1 **Chrono-Mage Adept**
+- **Printed Stat Blocks:** 1 Veteran, 4 Scouts (Monster Manual 2024)
+- **Custom Stat Block:** @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrChronMageA01]{Chrono-Mage Adept}
 
 ### Shatterquake Swarm (Hard)
 - Environmental collapse in initiative order
-- 3 temporal predators (mix of Flickerswarm and Echo Blade)
+- 3 temporal predators from custom actors:
+  - @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrFlickerSw01X]{Flickerswarm}
+  - @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrEchoBlade001]{Echo Blade}
 
 ## Alternate Resolution
 

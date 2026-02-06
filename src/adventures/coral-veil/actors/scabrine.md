@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Scabrine
+_id: CoVeScabrine001X
 img: icons/svg/mystery-man.svg
 system:
   type: npc

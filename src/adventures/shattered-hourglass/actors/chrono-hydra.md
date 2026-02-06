@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Serpent of Moments (Chrono-Hydra)
+_id: ShHrChronHydra01
 img: icons/svg/mystery-man.svg
 system:
   type: npc

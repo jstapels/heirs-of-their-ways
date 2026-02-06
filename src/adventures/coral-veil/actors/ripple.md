@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Ripple
+_id: CoVeRippleChild1
 img: icons/svg/mystery-man.svg
 system:
   type: npc

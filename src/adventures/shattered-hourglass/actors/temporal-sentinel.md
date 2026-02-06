@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Temporal Sentinel
+_id: ShHrTempSentin01
 img: icons/svg/mystery-man.svg
 system:
   type: npc

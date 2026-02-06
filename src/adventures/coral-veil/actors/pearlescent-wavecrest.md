@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Pearlescent Wavecrest
+_id: CoVePearlescent1X
 img: icons/svg/mystery-man.svg
 system:
   type: npc

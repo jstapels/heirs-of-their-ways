@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Chronal Ooze
+_id: ShHrChronOoze001
 img: icons/svg/mystery-man.svg
 system:
   type: npc

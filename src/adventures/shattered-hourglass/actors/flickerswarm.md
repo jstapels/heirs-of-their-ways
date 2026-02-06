@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Flickerswarm
+_id: ShHrFlickerSw01X
 img: ../assets/flickerswarm.svg
 system:
   type: npc

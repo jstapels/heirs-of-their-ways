@@ -20,6 +20,18 @@ This version of the adventure assumes a strong level 7 party and runs combat sli
 - **Aether Orb Collection:** This is the second orb the party can acquire (Water aspect), following the Necrotic orb from the Bone Mill.
 - **Varrick's Interest:** Varrick will take notice of the party collecting multiple orbs.
 
+## Encounter Sourcing Standard
+
+- **Printed creatures:** Use Monster Manual 2024 stat blocks (Sea Hag, Reef Shark, Hunter Shark, Guard, Scout, Veteran, Giant Octopus, Aboleth baseline).
+- **Custom creatures/NPCs:** Use linked actor entries in this adventure.
+- **At-table speed:** Journals should reference custom enemies with actor links so stats are one click away.
+
+## Player Connection Pillars
+
+- **House Legacy:** Place house iconography, old supply records, and inherited oaths throughout Coral Veil so each PC can discover a personal tie.
+- **Loamvale Continuity:** Keep references to the Bottomless Goat, regional trade routes, and known antagonists.
+- **Hands-On Interactivity:** Every major location should include objects to inspect, move, negotiate over, or repurpose during conflict.
+
 ---
 
 ## Session Framework (4 Sessions)
@@ -71,6 +83,7 @@ Use these when introducing key NPCs.
 
 - **Roleplay Hook:** Speaks slowly, weighs every loss, refuses to abandon her people.
 - **Conflict Lever:** She will authorize dangerous distraction tactics if civilians can be saved.
+- **Actor:** @UUID[Compendium.heirs-of-their-ways.heirs-actors.CoVeCoralline01X]{Elder Coralline Wavecrest}
 - **Portrait Prompt:** "elder sea elf druid matriarch, silver-blue skin, white hair drifting in water, coral staff with glowing pearl, sorrowful but resolute expression, bioluminescent cavern background"
 
 ### Pearlescent Wavecrest (Enthralled Lieutenant)
@@ -79,6 +92,7 @@ Use these when introducing key NPCs.
 
 - **Roleplay Hook:** Brief flashes of self break through during high emotional beats.
 - **Conflict Lever:** Non-lethal subdual can save her.
+- **Actor:** @UUID[Compendium.heirs-of-their-ways.heirs-actors.CoVePearlescent1X]{Pearlescent Wavecrest}
 - **Portrait Prompt:** "sea elf veteran corrupted by aboleth influence, opalescent mucus over eyes, elegant armor, tragic expression, underwater psychic glow"
 
 ### Veth'sora (Aboleth Tyrant)
@@ -87,6 +101,7 @@ Use these when introducing key NPCs.
 
 - **Roleplay Hook:** Speaks as if history itself belongs to it.
 - **Conflict Lever:** It values dominance and leverage more than death; it can be forced into retreat.
+- **Actor:** @UUID[Compendium.heirs-of-their-ways.heirs-actors.CoVeVethsora001X]{Veth'sora}
 - **Portrait Prompt:** "ancient aboleth in luminous coral dome, dark mucus tendrils, three baleful eyes, regal predatory posture, eerie underwater light"
 
 ### Murkmaw (Hag Broker)
@@ -95,7 +110,15 @@ Use these when introducing key NPCs.
 
 - **Roleplay Hook:** Prefers debts and secrets over clean violence.
 - **Conflict Lever:** Offer leverage, not mercy.
+- **Actor:** @UUID[Compendium.heirs-of-their-ways.heirs-actors.CoVeMurkmaw0001X]{Murkmaw}
 - **Portrait Prompt:** "sea hag queen in murky water, kelp mantle, bone fetishes, predatory grin, ritual totems hanging in dark current"
+
+## House and Region Hooks
+
+- **Wolansk Tie (Mishko):** Coral hymn fragments echo Vaelith's cadence; performing them can calm one frightened survivor automatically.
+- **Torvaldr Tie (Mats):** A collapsed coral spar can be re-braced with quick engineering, opening a flanking route in one encounter.
+- **Shadowtusk Tie (Threk):** An old oath-tablet references Torvath-era protection doctrine; invoking it grants advantage on one group morale check with survivors.
+- **Escrinos Tie (Ilizar):** Archived aquifer trade ciphers match Escrinos merchant notation; decoding them reveals a hidden cache route.
 
 ---
 
@@ -124,8 +147,8 @@ The watering hole is approximately 200 feet deep before opening into the cavern 
 At 80 feet down, the party enters hag territory.
 
 **Baseline for Strong Party:**
-- 3 Sea Hags (standard)
-- 2 Reef Sharks circling the negotiation zone
+- **Printed Stat Blocks (MM 2024):** 3 Sea Hags, 2 Reef Sharks
+- **Custom Hag Personalities:** @UUID[Compendium.heirs-of-their-ways.heirs-actors.CoVeMurkmaw0001X]{Murkmaw}, @UUID[Compendium.heirs-of-their-ways.heirs-actors.CoVeScabrine001X]{Scabrine}, @UUID[Compendium.heirs-of-their-ways.heirs-actors.CoVeWeepingNell1]{Weeping Nell}
 
 **Resolution Paths:**
 - **Combat:** Hags fight aggressively, then attempt escape at half strength.
@@ -138,8 +161,7 @@ At 80 feet down, the party enters hag territory.
 ### Encounter: Currentbreaker Ambush (Hard)
 
 If the party spends too long or fails descent checks:
-- 2 Hunter Sharks
-- 4 enthralled sea elf scouts (use Scout statistics with swim 40 ft.)
+- **Printed Stat Blocks (MM 2024):** 2 Hunter Sharks, 4 Scouts (swim 40 ft. for enthralled sea elves)
 
 Goal is to pressure resources before village entry without overshadowing the main arc.
 
@@ -150,6 +172,13 @@ Goal is to pressure resources before village entry without overshadowing the mai
 ### Entering the Village
 
 > *The tunnel widens into a cavern so vast its ceiling disappears into darkness. Living coral in blues and sea-greens paints the settlement in soft, ghostly light. Streets of mother-of-pearl stand silent, but silence here feels watched.*
+
+### Interactive Environment Beats
+
+- **Coral Chime Lines:** Characters can trigger suspended shell-chimes to lure patrols away from survivors.
+- **Flooded Archive Slates:** Old records reveal links between Coral Veil and inland Loamvale trade families.
+- **Collapsed Reef Gate:** Reopening it with teamwork creates a tactical shortcut between middle and inner rings.
+- **Ancestor Mural Fragments:** Studying murals can produce house-specific memory flashes that reinforce personal stakes.
 
 ### Alert Clock (Escalation System)
 
@@ -165,12 +194,12 @@ Start at **Alert 1**. Increase by 1 for loud fights, failed stealth, or long res
 Each completed objective weakens the final encounter or improves survivor outcomes.
 
 1. **Stabilize the Healing House**
-- Defeat or calm Healer Orin.
+- Defeat or calm @UUID[Compendium.heirs-of-their-ways.heirs-actors.CoVeHealerOrin01]{Healer Orin}.
 - Secure potions and anti-psychic supplies.
 - Benefit: party gains 1 additional short-rest-equivalent rally before boss fight (10 minutes, spend hit dice).
 
 2. **Rescue the School Survivors**
-- Protect Ripple and 2 hidden children while avoiding patrol interception.
+- Protect @UUID[Compendium.heirs-of-their-ways.heirs-actors.CoVeRippleChild1]{Ripple} and 2 hidden children while avoiding patrol interception.
 - Benefit: reveals maintenance tunnel plus a safer retreat route.
 
 3. **Rearm the Resistance**
@@ -179,8 +208,8 @@ Each completed objective weakens the final encounter or improves survivor outcom
 
 ### Recommended Village Encounters (Strong Party)
 
-- **Patrol Alpha (Medium-Hard):** 6 enthralled guards + Sergeant Kelvar.
-- **Patrol Beta (Hard):** 4 enthralled guards + 1 enthralled veteran + giant octopus.
+- **Patrol Alpha (Medium-Hard):** 6 Guards (MM 2024, enthralled sea elves) + @UUID[Compendium.heirs-of-their-ways.heirs-actors.CoVeSgtKelvar01X]{Sergeant Kelvar}.
+- **Patrol Beta (Hard):** 4 Guards + 1 Veteran + 1 Giant Octopus (MM 2024, reflavored as enthralled defenders).
 - **Psychic Pulse Event (Setpiece):** At Alert 3+, all creatures in middle ring make [[/save INT 14]] or lose reactions for 1 round.
 
 ---
@@ -203,9 +232,9 @@ Each completed objective weakens the final encounter or improves survivor outcom
 
 #### Phase 1: Orb Defenders
 
-- Pearlescent Wavecrest (enhanced veteran)
-- 2 Hunter Sharks
-- 6 enthralled sea elf guards (minus any removed by objective success)
+- @UUID[Compendium.heirs-of-their-ways.heirs-actors.CoVePearlescent1X]{Pearlescent Wavecrest} (enhanced veteran profile)
+- 2 Hunter Sharks (MM 2024)
+- 6 Guards (MM 2024, enthralled sea elves; minus any removed by objective success)
 
 Trigger to Phase 2:
 - After 2 rounds, or immediately if the orb is disturbed.
@@ -213,6 +242,7 @@ Trigger to Phase 2:
 #### Phase 2: Veth'sora Unleashed
 
 **Veth'sora, Strong-Party Baseline:**
+- @UUID[Compendium.heirs-of-their-ways.heirs-actors.CoVeVethsora001X]{Veth'sora} (custom actor; use adjusted values below)
 - HP 210
 - Legendary Actions: 3/round
 - Orb Aura: Regain 15 HP at start of turn within 30 ft. of orb

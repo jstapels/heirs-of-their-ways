@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Echo Blade
+_id: ShHrEchoBlade001
 img: icons/svg/mystery-man.svg
 system:
   type: npc

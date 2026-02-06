@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Murkmaw
+_id: CoVeMurkmaw0001X
 img: icons/svg/mystery-man.svg
 system:
   type: npc

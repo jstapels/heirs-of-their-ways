@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Chrono-Mage Adept
+_id: ShHrChronMageA01
 img: icons/svg/mystery-man.svg
 system:
   type: npc
@@ -55,3 +56,9 @@ An arcane operative studying leaked time magic in the temple's upper reaches.
 **Suggested Spells:** *Misty Step, Hold Person, Magic Missile, Mirror Image, Slow.*
 
 **Fractured Casting.** Once per short rest, when the adept casts a spell of 1st level or higher, it can teleport up to 15 feet to an unoccupied space it can see.
+
+### Actions
+
+**Temporal Bolt.** *Ranged Spell Attack:* +5 to hit, range 90 ft., one target. *Hit:* [[/damage 2d8 force]].
+
+**Chronal Snare (Recharge 5-6).** One creature within 60 feet must make a [[/save WIS 13]]{DC 13 Wisdom save}. On a failure, the creature's speed becomes 0 and it can't take reactions until the end of its next turn.

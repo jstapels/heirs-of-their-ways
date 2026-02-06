@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Chrono-Drifter
+_id: ShHrChronDrift01
 img: ../assets/chrono-drifter.svg
 system:
   type: npc

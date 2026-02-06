@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Healer Orin
+_id: CoVeHealerOrin01
 img: icons/svg/mystery-man.svg
 system:
   type: npc

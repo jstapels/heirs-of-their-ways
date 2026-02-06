@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Weeping Nell
+_id: CoVeWeepingNell1
 img: icons/svg/mystery-man.svg
 system:
   type: npc

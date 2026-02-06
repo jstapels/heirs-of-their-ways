@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Ripple's Father
+_id: CoVeRipplesFath1
 img: icons/svg/mystery-man.svg
 system:
   type: npc

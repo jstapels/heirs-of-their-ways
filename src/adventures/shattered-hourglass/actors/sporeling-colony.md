@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Sporeling Colony
+_id: ShHrSporeColny01
 img: ../assets/sporeling-colony.svg
 system:
   type: npc

@@ -12,7 +12,15 @@ type: journal
 
 ## Boss
 
-- **Serpent of Moments (Chrono-Hydra)**
+- @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrChronHydra01]{Serpent of Moments (Chrono-Hydra)}
+
+This is a custom creature with full stats in the linked actor.
+
+## Interactive Features
+
+- **Ancestor Dais:** Four cracked plinths bear symbols matching the party bloodlines. Activating a plinth (action, [[/check Religion 14]]) grants one ally advantage on the next save vs fear/charm.
+- **Broken Monolith Lens:** A character can angle fractured crystal to expose weak points. On [[/check Arcana 15]], next attack against the hydra gains +2 to hit.
+- **Terrace Floodgates:** Opening one gate redirects water current, forcing creatures in a lane to make [[/save STR 14]] or be pushed 10 feet.
 
 ## Lair Traits
 

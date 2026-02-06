@@ -57,9 +57,11 @@ Creatures once mundane have been warped into temporal predators: **Flickerswarms
 ## Combat Encounter: The Scavenger Pack
 
 **Enemies (Strong Party Baseline):**
-- **Chrono-Drifter** (1) - alpha predator
-- **Flickerswarm** (3) - temporally warped vermin
-- **Sporeling Colony** (1) - fungal mass feeding on temporal residue
+- @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrChronDrift01]{Chrono-Drifter} (1) - alpha predator
+- @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrFlickerSw01X]{Flickerswarm} (3) - temporally warped vermin
+- @UUID[Compendium.heirs-of-their-ways.heirs-actors.ShHrSporeColny01]{Sporeling Colony} (1) - fungal mass feeding on temporal residue
+
+All three are custom creatures with full actor stats in this adventure.
 
 ### Tactics
 
@@ -124,6 +126,15 @@ As a bonus action, a character with a bloodline connection can touch their famil
 - **Apple (Ilizar):** Ilizar becomes invisible until the end of his next turn or until he attacks or casts a spell
 
 Each symbol can be activated once per short rest.
+
+### House Memory Touchpoints
+
+Use these to deepen character connection while exploring:
+
+- **Threk / House Shadowtusk:** A cracked shield motif shows Torvath interposing against three constructs at once. On [[/check Religion 13]], Threk feels a brief pulse of protective resolve.
+- **Mishko / House Wolansk:** A carved wave-line includes Vaelith's refrain. On [[/check Performance 13]], the echo harmonizes with Mishko and reveals one safe tile cluster.
+- **Mats / House Torvaldr:** Rabbit-foot carvings overlap boot-scuffs in old dust trails. On [[/check Survival 13]], Mats identifies a flanking lane across unstable ground.
+- **Ilizar / House Escrinos:** The apple sigil hides etched trade ciphers used by old Loamvale merchants. On [[/check Investigation 14]], Ilizar decodes a shortcut clue to the far door.
 
 ### The Standing Pillars
 

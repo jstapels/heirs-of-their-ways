@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Thalindra Wavecrest
+_id: CoVeThalindra01X
 img: icons/svg/mystery-man.svg
 system:
   type: npc

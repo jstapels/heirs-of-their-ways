@@ -1,6 +1,7 @@
 ---
 type: actor
 name: Kestrel Vane
+_id: ShHrKestrelVan01
 img: icons/svg/mystery-man.svg
 system:
   type: npc
