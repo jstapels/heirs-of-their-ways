@@ -28,6 +28,21 @@ system:
     size: med
     languages:
       value: []
+    dr:
+      value:
+        - bludgeoning
+        - piercing
+        - slashing
+    ci:
+      value:
+        - charmed
+        - frightened
+        - grappled
+        - paralyzed
+        - petrified
+        - prone
+        - restrained
+        - stunned
   abilities:
     str:
       value: 6
@@ -49,9 +64,6 @@ system:
 A skittering tide of rats and moths stuttering between moments, leaving trails of amber dust that shimmer in the air.
 
 ## Biography {.system.details.biography.value}
-- **Damage Resistances:** bludgeoning, piercing, slashing
-- **Condition Immunities:** charmed, frightened, grappled, paralyzed, petrified, prone, restrained, stunned
-
 **Swarm.** The swarm can occupy another creature's space and vice versa, and the swarm can move through any opening large enough for a Tiny creature. The swarm cannot regain hit points or gain temporary hit points.
 
 **Temporal Scatter.** When the swarm takes damage, it can use its reaction to split into two spaces within 15 feet of its current location. The damage is applied, then the swarm reforms in one of those spaces (its choice).

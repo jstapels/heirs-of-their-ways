@@ -28,6 +28,14 @@ system:
     size: huge
     languages:
       value: []
+    dr:
+      value:
+        - force
+        - psychic
+    ci:
+      value:
+        - charmed
+        - frightened
   abilities:
     str:
       value: 20
@@ -35,12 +43,17 @@ system:
       value: 14
     con:
       value: 20
+      proficient: 1
     int:
       value: 6
     wis:
       value: 14
+      proficient: 1
     cha:
       value: 10
+  skills:
+    prc:
+      value: 2
 ---
 
 # Serpent of Moments (Chrono-Hydra)
@@ -49,11 +62,6 @@ system:
 A hydra warped by failed temporal bindings. Each head moves to a different rhythm: one predicts, one lags, one snaps in brutal stutter-steps.
 
 ## Biography {.system.details.biography.value}
-- **Saving Throws:** Con +9, Wis +6
-- **Damage Resistances:** force, psychic
-- **Condition Immunities:** charmed, frightened
-- **Skills:** Perception +10
-
 **Reactive Heads.** The hydra starts with 5 heads. While it has more than 1 head, it has advantage on saving throws against being blinded, charmed, deafened, frightened, stunned, and knocked unconscious.
 
 **Many-Headed.** The hydra gets one reaction per round for each head beyond one.

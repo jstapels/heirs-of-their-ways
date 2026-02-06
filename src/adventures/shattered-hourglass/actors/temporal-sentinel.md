@@ -27,6 +27,16 @@ system:
     size: lg
     languages:
       value: []
+    dr:
+      value:
+        - force
+        - lightning
+    ci:
+      value:
+        - charmed
+        - frightened
+        - paralyzed
+        - poisoned
   abilities:
     str:
       value: 18
@@ -48,9 +58,6 @@ system:
 A bronze guardian rebuilt from obsolete warding machinery and humming with unstable chronal charge.
 
 ## Biography {.system.details.biography.value}
-- **Damage Resistances:** force, lightning
-- **Condition Immunities:** charmed, frightened, paralyzed, poisoned
-
 **Anchor Stride.** The sentinel ignores difficult terrain caused by magical effects.
 
 ### Actions

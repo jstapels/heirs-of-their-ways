@@ -42,6 +42,15 @@ system:
       value: 12
     cha:
       value: 14
+  skills:
+    ath:
+      value: 1
+    ins:
+      value: 1
+    prc:
+      value: 1
+    per:
+      value: 1
 ---
 
 # Kestrel Vane
@@ -50,8 +59,6 @@ system:
 A pragmatic recovery captain leading a rival team in the lower temple. Kestrel negotiates when profitable and fights surgically when cornered.
 
 ## Biography {.system.details.biography.value}
-- **Skills:** Athletics +6, Insight +4, Perception +4, Persuasion +5
-
 **Tactical Commander.** As a bonus action, Kestrel chooses one ally that can hear her. That ally can move up to half speed without provoking opportunity attacks.
 
 ### Actions

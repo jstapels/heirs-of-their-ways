@@ -27,6 +27,19 @@ system:
     size: lg
     languages:
       value: []
+    dr:
+      value:
+        - cold
+        - fire
+    di:
+      value:
+        - poison
+    ci:
+      value:
+        - blinded
+        - deafened
+        - exhaustion
+        - poisoned
   abilities:
     str:
       value: 16
@@ -48,10 +61,6 @@ system:
 A dense fungal mass that grows and shrinks in slow pulses, its spores leaking time itself.
 
 ## Biography {.system.details.biography.value}
-- **Damage Resistances:** cold, fire
-- **Damage Immunities:** poison
-- **Condition Immunities:** blinded, deafened, exhaustion, poisoned
-
 **Rooted.** The colony cannot be knocked prone or moved against its will.
 
 **Temporal Spores.** Any creature that starts its turn within 10 feet of the colony must succeed on a [[/save con dc 13]]{DC 13 Constitution save} or be affected by one of the following (roll 1d4):

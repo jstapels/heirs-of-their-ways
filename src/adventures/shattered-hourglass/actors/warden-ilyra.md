@@ -31,6 +31,14 @@ system:
         - common
         - elvish
       custom: telepathy 60 ft.
+    dr:
+      value:
+        - necrotic
+        - psychic
+    ci:
+      value:
+        - charmed
+        - frightened
   abilities:
     str:
       value: 12
@@ -44,6 +52,15 @@ system:
       value: 15
     cha:
       value: 14
+  skills:
+    ins:
+      value: 1
+      bonus: 1
+    prc:
+      value: 1
+      bonus: 1
+    rel:
+      value: 1
 ---
 
 # Warden Ilyra
@@ -52,10 +69,6 @@ system:
 A translucent guardian whose features flicker across multiple life stages. Ilyra can be an ally, a gatekeeper, or a miniboss depending on party choices.
 
 ## Biography {.system.details.biography.value}
-- **Damage Resistances:** necrotic, psychic
-- **Condition Immunities:** charmed, frightened
-- **Skills:** Insight +6, Perception +6, Religion +5
-
 **Custodian's Oath.** Ilyra cannot willingly leave the lower temple, and prioritizes containment over personal survival.
 
 **Temporal Rebuke (Reaction).** When a creature within 30 feet succeeds on an attack against Ilyra, that creature makes a [[/save WIS 14]]{DC 14 Wisdom save} or suffers disadvantage on its next attack roll before the end of its next turn.

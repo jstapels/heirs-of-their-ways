@@ -164,6 +164,7 @@ Note: For non-journal documents, H2 sections without a mapping or explicit path 
 - **Industry standard** - Same approach as official dnd5e system
 
 See [docs/DND5E-YAML-STRUCTURE.md](DND5E-YAML-STRUCTURE.md) for complete YAML documentation.
+For practical automation patterns and copy/paste templates, see [docs/ACTOR-ITEM-AUTOMATION.md](ACTOR-ITEM-AUTOMATION.md).
 
 ---
 

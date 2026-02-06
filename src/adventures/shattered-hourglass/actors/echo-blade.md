@@ -28,6 +28,9 @@ system:
     languages:
       value:
         - common
+    dr:
+      value:
+        - necrotic
   abilities:
     str:
       value: 11
@@ -41,6 +44,11 @@ system:
       value: 12
     cha:
       value: 9
+  skills:
+    acr:
+      value: 1
+    ste:
+      value: 1
 ---
 
 # Echo Blade
@@ -49,9 +57,6 @@ system:
 A repeating assassin imprint trapped in the temple's archive, striking in the same lethal patterns across different moments.
 
 ## Biography {.system.details.biography.value}
-- **Skills:** Acrobatics +5, Stealth +5
-- **Damage Resistances:** necrotic
-
 **Phase Slip (Reaction).** When hit by an attack, the echo blade can halve the attack's damage.
 
 ### Actions

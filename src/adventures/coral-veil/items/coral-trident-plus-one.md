@@ -6,6 +6,9 @@ system:
   type:
     value: weapon
     baseItem: trident
+  properties:
+    - mgc
+  magicalBonus: 1
   rarity: uncommon
   attunement: false
 ---

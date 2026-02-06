@@ -28,6 +28,17 @@ system:
     size: lg
     languages:
       value: []
+    dr:
+      value:
+        - acid
+        - force
+    ci:
+      value:
+        - blinded
+        - charmed
+        - deafened
+        - frightened
+        - prone
   abilities:
     str:
       value: 17
@@ -49,9 +60,6 @@ system:
 A gelatinous organism infused with fractured temporal runoff. It engulfs targets and spits them back out of sync.
 
 ## Biography {.system.details.biography.value}
-- **Damage Resistances:** acid, force
-- **Condition Immunities:** blinded, charmed, deafened, frightened, prone
-
 **Time Smear.** A creature hit by the ooze's pseudopod makes a [[/save CON 13]]{DC 13 Constitution save} or has its speed reduced by 10 feet until the end of its next turn.
 
 ### Actions

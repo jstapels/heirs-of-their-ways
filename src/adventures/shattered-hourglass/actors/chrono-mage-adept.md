@@ -14,6 +14,7 @@ system:
   attributes:
     movement:
       walk: 30
+    spellcasting: int
     senses:
       darkvision: 60
     ac:
@@ -42,6 +43,11 @@ system:
       value: 13
     cha:
       value: 11
+  skills:
+    arc:
+      value: 1
+    his:
+      value: 1
 ---
 
 # Chrono-Mage Adept
@@ -50,9 +56,6 @@ system:
 An arcane operative studying leaked time magic in the temple's upper reaches.
 
 ## Biography {.system.details.biography.value}
-- **Skills:** Arcana +5, History +5
-- **Spell Save DC:** 13, **Spell Attack:** +5
-
 **Suggested Spells:** *Misty Step, Hold Person, Magic Missile, Mirror Image, Slow.*
 
 **Fractured Casting.** Once per short rest, when the adept casts a spell of 1st level or higher, it can teleport up to 15 feet to an unoccupied space it can see.

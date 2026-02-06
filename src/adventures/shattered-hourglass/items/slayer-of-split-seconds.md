@@ -6,6 +6,9 @@ system:
   type:
     value: weapon
     baseItem: longsword
+  properties:
+    - mgc
+  magicalBonus: 1
   rarity: rare
   attunement: required
 ---

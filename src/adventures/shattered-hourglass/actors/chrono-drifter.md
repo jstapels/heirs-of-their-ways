@@ -27,6 +27,13 @@ system:
     size: lg
     languages:
       value: []
+    dr:
+      value:
+        - necrotic
+        - radiant
+    ci:
+      value:
+        - exhaustion
   abilities:
     str:
       value: 17
@@ -40,6 +47,11 @@ system:
       value: 12
     cha:
       value: 6
+  skills:
+    prc:
+      value: 1
+    ste:
+      value: 1
 ---
 
 # Chrono-Drifter
@@ -48,10 +60,6 @@ system:
 A wolf-like predator stitched together from different ages, its front half ancient and skeletal while its hindquarters remain vital and powerful. Its head blurs between puppy and elder as it snarls through multiple moments at once.
 
 ## Biography {.system.details.biography.value}
-- **Damage Resistances:** necrotic, radiant
-- **Condition Immunities:** exhaustion
-- **Skills:** Perception +4, Stealth +5
-
 **Temporal Flux.** At the start of each of its turns, roll 1d4:
 - 1-2: Moves as normal.
 - 3: Can take two Move actions this turn.
