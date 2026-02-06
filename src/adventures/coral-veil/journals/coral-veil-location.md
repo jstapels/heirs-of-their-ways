@@ -4,169 +4,111 @@ type: journal
 
 # Coral Veil
 
-*Location: Underwater cavern system beneath the watering hole north of the Bottomless Goat*
+*Location: Underwater cavern settlement beneath the watering hole north of the Bottomless Goat*
 
-An ancient sea elf settlement that has existed in quiet isolation for centuries, now threatened by an aboleth drawn by an Aether Orb.
+Ancient sea elf sanctuary turned war zone after the arrival of the Water Aether Orb and the aboleth Veth'sora.
 
 ## Overview
 
-Coral Veil was founded by sea elves who fled coastal wars of ages past, seeking refuge in this unlikely inland location—a vast underwater cavern system fed by deep aquifers connected to distant seas. For generations, they lived peacefully, their presence unknown to surface dwellers.
+Coral Veil is a hidden sea elf settlement carved into a quarter-mile underwater cavern fed by deep aquifers. The community survived in isolation for generations until Veth'sora seized the Pearlheart Chamber and began enthralling villagers.
+
+This location is written for a strong level 7 party with Hard-to-Deadly pressure and objective-based alternatives to pure attrition combat.
 
 ## Access
 
 ### The Watering Hole
 
-A massive body of water north of the Bottomless Goat:
-- Approximately 200 feet deep before opening into cavern system
-- Surface appears calm and deceptively normal
-- Sunlight penetrates only the first 30 feet
-- Previous visitors: Mishko encountered sharks and sea hags, couldn't explore deeper
+- Roughly 200 feet deep before opening into cavern tunnels
+- Calm on the surface, dark and high-pressure below
+- Sea hags operate in descent territory around 80 feet
 
-### The Descent
+### Descent Conditions
 
-The 200-foot water column presents challenges:
-- Navigation through current channels
-- Sea hag territory at approximately 80 feet depth
-- Darkness increases with depth
-- Opens into vast cavern system at bottom
+- Narrow current channels and low-visibility pockets
+- Hag toll zone and patrol interception risk
+- Long descents can trigger aboleth-aligned ambushes
 
-## The Village
+## Village Structure
 
-### Geography
+> *Bioluminescent coral paints the settlement in sea-green twilight while empty streets of mother-of-pearl stand silent, watched by unseen eyes.*
 
-> *A vast cavern stretches before you, easily a quarter mile across, its ceiling lost in darkness above. Bioluminescent coral in soft blues, greens, and purples clings to every surface, casting the space in an ethereal twilight.*
+| Ring | Function | Current State |
+|------|----------|---------------|
+| **Outer Ring** | Homes and family alcoves | Damaged, lightly patrolled |
+| **Middle Ring** | School, healing house, armory | Contest zone with survivor pockets |
+| **Inner Ring** | Leadership chambers and shrine paths | Heavily controlled by thralls |
+| **Pearlheart Chamber** | Sacred orb sanctuary | Veth'sora's lair |
 
-**Notable Features:**
-- Quarter-mile wide main cavern
-- Bioluminescent coral illumination (blues, greens, purples)
-- Structures carved from living coral and mother-of-pearl
-- Concentric ring layout around central sacred chamber
-- Stagnant pools and aquifer connections
+## Alert Clock (Escalation)
 
-### Layout
+Track village response as the party acts.
 
-| Ring | Purpose | Current State |
-|------|---------|---------------|
-| **Outer Ring** | Residential homes | Abandoned, signs of struggle |
-| **Middle Ring** | Communal spaces | Some survivors hiding |
-| **Inner Ring** | Administrative | Under aboleth control |
-| **Pearlheart Chamber** | Sacred center | Corrupted, aboleth lair |
+- **Alert 1:** Sparse patrols; survivors can move safely
+- **Alert 2:** Patrol groups gain 2 additional thralls
+- **Alert 3:** Psychic surges in the inner ring ([[/save WIS 14]] or [[/damage 1d6 psychic]])
+- **Alert 4:** Veth'sora begins the boss fight pre-buffed and calls faster reinforcements
 
-### Key Locations
+## Key Mission Objectives
 
-#### The Healing House
-Dome-shaped structure of pale pink coral. Beds of woven kelp, shelves of medicinal vials and pots. Some damaged from conflict.
+Complete at least 2 objectives to improve final outcomes.
 
-#### The School
-Small carved stone desks in neat rows with slate tablets. Murals depicting sea elf history—their flight from war, discovery of the cavern, generations of peace. Newest mural (incomplete) shows a three-eyed dark shape looming over the village.
+1. **Stabilize Healing House**
+- Secure supplies, confront Healer Orin, and establish triage
+- Benefit: one 10-minute rally to spend hit dice before boss fight
 
-#### The Armory
-Bears marks of fierce struggle—doors torn off, walls cracked, dark stains. Most weapon racks empty.
+2. **Rescue School Survivors**
+- Protect Ripple and hidden children, avoid patrol interception
+- Benefit: unlock safer maintenance tunnel route
 
-#### The Pearlheart Chamber
+3. **Rearm Resistance**
+- Retake armory under pressure
+- Benefit: resistance removes 2 enthralled guards from final chamber defense
 
-The sacred center of Coral Veil:
+## Factions and Threats
 
-> *A dome of living coral rises a hundred feet overhead, every surface covered in luminescent organisms that pulse in a slow, hypnotic rhythm. At the center, a great altar of mother-of-pearl cradles the Aether Orb.*
+### Resistance Cell
 
-**Current State (Corrupted):**
-- Tendrils of dark mucus web the chamber
-- Walls glisten with oily residue
-- Aboleth Veth'sora coiled around the altar
-- Water Aether Orb embedded in central altar
-
-## Population
-
-### Before the Crisis
-- Approximately 60 sea elves
-- Peaceful, isolated community
-- Led by spiritual elders
-- Traders with deep-sea communities via aquifer connections
-
-### Current Status
-- ~30 villagers enthralled by aboleth
-- ~20 survivors hiding in outer tunnels
-- Led by Elder Coralline Wavecrest
-- Under psychic siege
-
-## History
-
-### Founding
-Sea elves fled coastal wars generations ago, discovering the underwater cavern system. They built Coral Veil as a hidden sanctuary, using bioluminescent coral and mother-of-pearl construction.
-
-### The Crisis (Three Weeks Ago)
-1. Water Aether Orb drifted into territory via deep currents
-2. Orb's elemental resonance attracted the aboleth Veth'sora
-3. Aboleth claimed the orb, began psychic domination
-4. Sea hags arrived in its wake, opportunistic predators
-5. Village divided between enthralled and free survivors
-
-## Current Threats
-
-### Veth'sora, the Eternal Dreamer
-An ancient aboleth that has claimed the Aether Orb:
-- Resides in Pearlheart Chamber
-- Psychic reach throughout village
-- Controls ~30 enthralled villagers
-- Served by dominated sharks
-- Claims to be "reclaiming what was always theirs"
-
-### Sea Hag Coven
-Three hags established territory in the descent shaft:
-- **Murkmaw** (leader): Calculating, speaks in riddles
-- **Scabrine**: Impulsive, violent
-- **Weeping Nell**: Melancholic, fixated on lost beauty
-- Prey on fleeing sea elves
-- Not allied with aboleth—opportunists
+Led by Elder Coralline Wavecrest, operating from outer tunnels.
 
 ### Enthralled Villagers
-Former residents now under aboleth control:
-- Patrol inner rings
-- Fight to capture, not kill (aboleth wants more thralls)
-- Can be freed if kept alive and away from water
-- Include warriors, healers, and civilians
 
-## Notable Inhabitants
+Former residents under aboleth domination. Non-lethal resolution is possible if they are subdued and treated after Veth'sora's hold is broken.
 
-### Elder Coralline Wavecrest
-Village spiritual leader, Thalindra's grandmother. Leads the resistance from hiding.
+### Hag Coven
 
-### Thalindra Wavecrest
-Messenger sent to seek help. Cannot survive long out of water.
+Murkmaw, Scabrine, and Weeping Nell control the descent shaft and trade in leverage, debts, and desperation.
 
-### Pearlescent Wavecrest
-Thalindra's mother, among the first enthralled. Serves as aboleth's "voice" and lieutenant.
+### Veth'sora
 
-### Ripple
-Young survivor (~10 years old) hiding in the school. Knows secret maintenance tunnel to Pearlheart Chamber.
+Aboleth tyrant anchored to the Water Orb in the Pearlheart Chamber. Uses psychic control, minion screens, and battlefield control to prevent orb removal.
 
-### Healer Orin
-Village healer, now enthralled. Retains some medical knowledge even corrupted.
+## Rich Location Beats
 
-## Resources
+### Healing House
 
-### Village Treasures
-- Pearls of Water Breathing (village-crafted)
-- Coral and pearl jewelry
-- Medicinal supplies
-- Magical weapons (tridents, nets)
-- Ancient texts on sea elf history
+> *Cracked ceramic vials drift in milky clouds while a healer's prayer wheel turns slowly on its own in the current.*
 
-### The Water Aether Orb
-The crisis catalyst—a fey artifact pulsing with elemental water magic, now claimed by the aboleth.
+### School
 
-## Adventure Significance
+> *Half-finished murals show a peaceful history interrupted by a dark three-eyed shape painted in quick, frightened strokes.*
 
-- **Connection to Campaign**: Located near party's home base
-- **Aether Orb**: Second orb the party can acquire
-- **Alliance Potential**: Rescued village offers underwater sanctuary and information
-- **Varrick's Interest**: Another orb will draw his attention
+### Armory
 
-## Future Potential
+> *Racks of coral-forged weapons stand mostly empty, with blood-dark stains in the seams where defenders made their last stand.*
 
-If the village is saved:
-- Trade relationship with surface
-- Information about underwater passages
-- Ancient texts on Aether Orb origins
-- Permanent underwater sanctuary for the party
-- Sea elf allies for future conflicts
+### Pearlheart Chamber
+
+> *A cathedral dome of living coral pulses with sick rhythm as dark mucus webs cling to altar stone around the Water Orb.*
+
+## Rewards and Strategic Value
+
+- Recovery of the **Water Aether Orb**
+- Coral Veil sanctuary access for future arcs
+- Underwater intelligence routes and deep-aquifer passage leads
+- Mid-tier treasure and selected magic rewards from Veth'sora's hoard
+
+## Aftermath Possibilities
+
+- **High rescue outcome:** strong alliance and recurring aid
+- **Mixed outcome:** political fractures and trauma-focused side quests
+- **Heavy losses:** alliance still possible, but under grief and mistrust
