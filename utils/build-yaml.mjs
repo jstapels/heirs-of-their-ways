@@ -69,6 +69,11 @@ function toPosixPath(value) {
 }
 
 function mapAssetOutputPath(sourcePath) {
+    const relToAssetsRoot = path.relative(ASSET_OUTPUT_ROOT, sourcePath);
+    if (!relToAssetsRoot.startsWith("..") && relToAssetsRoot !== "") {
+        return relToAssetsRoot;
+    }
+
     const relToSrc = path.relative(SRC_ROOT, sourcePath);
     if (relToSrc.startsWith("..")) {
         return null;
@@ -92,10 +97,28 @@ function mapAssetOutputPath(sourcePath) {
     return null;
 }
 
+function resolveExistingAssetPath(rawPath, fileDir) {
+    const directPath = path.resolve(fileDir, rawPath);
+    if (fs.existsSync(directPath)) {
+        return directPath;
+    }
+
+    const normalizedRaw = toPosixPath(rawPath).replace(/^\.\//, "");
+    const legacyRootRelative = normalizedRaw.replace(/^(\.\.\/)+/, "");
+    if (legacyRootRelative && legacyRootRelative.startsWith(`${ASSET_OUTPUT_ROOT}/`)) {
+        const fromRootAssets = path.resolve(legacyRootRelative);
+        if (fs.existsSync(fromRootAssets)) {
+            return fromRootAssets;
+        }
+    }
+
+    return null;
+}
+
 function rewriteAssetPath(rawPath, fileDir) {
     if (!isRelativeAssetPath(rawPath)) return rawPath;
-    const resolved = path.resolve(fileDir, rawPath);
-    if (!fs.existsSync(resolved)) {
+    const resolved = resolveExistingAssetPath(rawPath, fileDir);
+    if (!resolved) {
         log.warn(`Asset not found: ${rawPath} (from ${fileDir})`);
         return rawPath;
     }

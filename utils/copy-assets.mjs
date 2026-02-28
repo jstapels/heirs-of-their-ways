@@ -64,7 +64,19 @@ async function copyAdventureAssets() {
 }
 
 async function main() {
-    await removeDir(OUTPUT_ROOT);
+    const hasModuleAssets = fs.existsSync(path.join(SRC_ROOT, "module", "assets"));
+    const adventuresRoot = path.join(SRC_ROOT, "adventures");
+    const hasAdventureAssets = fs.existsSync(adventuresRoot)
+        && (await fsp.readdir(adventuresRoot, { withFileTypes: true }))
+            .some((entry) => entry.isDirectory()
+                && fs.existsSync(path.join(adventuresRoot, entry.name, "assets")));
+
+    if (hasModuleAssets || hasAdventureAssets) {
+        await removeDir(OUTPUT_ROOT);
+    } else {
+        log.info("No source assets found under src/**/assets; keeping existing assets/");
+        return;
+    }
 
     const moduleCount = await copyModuleAssets();
     const adventureCount = await copyAdventureAssets();
