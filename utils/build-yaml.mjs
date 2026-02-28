@@ -279,6 +279,35 @@ function validateId(id, name, prefix = "") {
     return generateId(name, prefix);
 }
 
+function withNumericSuffix(id, index) {
+    const suffix = String(index).padStart(2, "0");
+    return `${id.slice(0, ID_LENGTH - suffix.length)}${suffix}`;
+}
+
+function reserveDocumentId({ idRegistry, pack, desiredId, relativePath, name }) {
+    if (!pack) return desiredId;
+
+    const usedIds = idRegistry[pack] || (idRegistry[pack] = new Map());
+    const existing = usedIds.get(desiredId);
+    if (!existing) {
+        usedIds.set(desiredId, relativePath);
+        return desiredId;
+    }
+
+    let index = 1;
+    let candidate = desiredId;
+    while (usedIds.has(candidate)) {
+        candidate = withNumericSuffix(desiredId, index);
+        index += 1;
+    }
+
+    log.warn(
+        `Duplicate _id '${desiredId}' for '${name}' at ${relativePath}; reassigned to '${candidate}' (already used by ${existing})`,
+    );
+    usedIds.set(candidate, relativePath);
+    return candidate;
+}
+
 function shouldSkip(relativePath) {
     return SKIP_PATTERNS.some((pattern) => pattern.test(relativePath));
 }
@@ -880,7 +909,7 @@ async function deriveAdventureMetadata(adventureFile) {
     };
 }
 
-async function processFile(filePath, relativePath, folderRegistry) {
+async function processFile(filePath, relativePath, folderRegistry, idRegistry) {
     const content = await fsp.readFile(filePath, "utf-8");
     const { frontmatter, body } = parseFrontmatter(content);
     if (
@@ -905,6 +934,16 @@ async function processFile(filePath, relativePath, folderRegistry) {
     const name =
         effectiveFrontmatter.name || title || path.basename(filePath, ".md");
     const now = Date.now();
+    const pack = effectiveFrontmatter.pack || cfg.pack;
+    const desiredId = validateId(effectiveFrontmatter._id, name, cfg.idPrefix);
+    const reservedId = reserveDocumentId({
+        idRegistry,
+        pack,
+        desiredId,
+        relativePath,
+        name,
+    });
+    effectiveFrontmatter._id = reservedId;
 
     // Strip redundant H1 heading when name is defined in frontmatter
     let processedBody = body;
@@ -948,7 +987,6 @@ async function processFile(filePath, relativePath, folderRegistry) {
     }
 
     const outputName = slugifyOutputName(relativePath);
-    const pack = effectiveFrontmatter.pack || cfg.pack;
 
     if (folderName && effectiveFrontmatter.folder === folderId && pack) {
         const packFolders = folderRegistry[pack] || (folderRegistry[pack] = {});
@@ -1013,6 +1051,7 @@ async function buildNotes(specificFile = null) {
     log.info(`Processing ${files.length} markdown file(s)...`);
     let successCount = 0;
     const folderRegistry = {};
+    const idRegistry = {};
 
     for (const file of files) {
         const relativePath = path.relative(SRC_ROOT, file);
@@ -1022,6 +1061,7 @@ async function buildNotes(specificFile = null) {
                 file,
                 relativePath,
                 folderRegistry,
+                idRegistry,
             );
             if (!result) continue;
 
