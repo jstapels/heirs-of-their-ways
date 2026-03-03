@@ -325,6 +325,33 @@ function titleCase(str) {
         .join(" ");
 }
 
+function folderIdFromPath(folderPath) {
+    return validateId(null, `folder-${folderPath.replace(/[\\/]+/g, "-")}`, "Fldr");
+}
+
+function registerFolderPath(folderRegistry, pack, folderPath, type) {
+    if (!pack || !folderPath) return;
+    const packFolders = folderRegistry[pack] || (folderRegistry[pack] = {});
+    const segments = folderPath.split("/").map((s) => s.trim()).filter(Boolean);
+    let parentId = null;
+    let currentPath = "";
+
+    for (const segment of segments) {
+        currentPath = currentPath ? `${currentPath}/${segment}` : segment;
+        const folderId = folderIdFromPath(currentPath);
+
+        if (!packFolders[folderId]) {
+            packFolders[folderId] = {
+                name: segment,
+                type,
+                parent: parentId,
+            };
+        }
+
+        parentId = folderId;
+    }
+}
+
 function deriveContext(relativePath, frontmatter) {
     const segments = relativePath.split(path.sep);
     const isUnderModule = segments[0] === "module";
@@ -333,15 +360,15 @@ function deriveContext(relativePath, frontmatter) {
 
     // Determine document type and folder based on location
     let docType;
-    let folderName;
+    let folderPath;
     let folderId;
 
     if (isUnderAdventures && segments.length >= 2) {
         // Files under adventures/<adventure-name>/
         // Adventure folder name becomes the folder for all content
         const adventureName = segments[1]; // e.g., "coral-veil"
-        folderName = frontmatter.folderName || titleCase(adventureName);
-        folderId = frontmatter.folder || validateId(adventureName, "");
+        folderPath = frontmatter.folderName || `Adventures/${titleCase(adventureName)}`;
+        folderId = frontmatter.folder || folderIdFromPath(folderPath);
 
         if (frontmatterType) {
             // Explicit type in frontmatter determines the pack
@@ -368,9 +395,9 @@ function deriveContext(relativePath, frontmatter) {
         }
 
         const folderSegment = segments.length >= 4 ? segments[segments.length - 2] : null;
-        folderName = frontmatter.folderName || titleFromSegment(folderSegment);
-        folderId = !frontmatter.folder && folderName
-            ? validateId(folderName, "")
+        folderPath = frontmatter.folderName || titleFromSegment(folderSegment);
+        folderId = !frontmatter.folder && folderPath
+            ? folderIdFromPath(folderPath)
             : frontmatter.folder || null;
     } else {
         // Top-level directories (actors/, items/, journals/, features/, etc.)
@@ -378,13 +405,13 @@ function deriveContext(relativePath, frontmatter) {
         docType = frontmatterType ? normalizeDocType(frontmatterType) : "journal";
 
         const folderSegment = segments[1];
-        folderName = frontmatter.folderName || titleFromSegment(folderSegment);
-        folderId = !frontmatter.folder && folderName
-            ? validateId(folderName, "")
+        folderPath = frontmatter.folderName || titleFromSegment(folderSegment);
+        folderId = !frontmatter.folder && folderPath
+            ? folderIdFromPath(folderPath)
             : frontmatter.folder || null;
     }
 
-    return { docType, folderName, folderId };
+    return { docType, folderPath, folderId };
 }
 
 function parseFrontmatter(content) {
@@ -919,7 +946,7 @@ async function processFile(filePath, relativePath, folderRegistry, idRegistry) {
     ) {
         return null;
     }
-    const { docType, folderName, folderId } = deriveContext(
+    const { docType, folderPath, folderId } = deriveContext(
         relativePath,
         frontmatter,
     );
@@ -988,11 +1015,8 @@ async function processFile(filePath, relativePath, folderRegistry, idRegistry) {
 
     const outputName = slugifyOutputName(relativePath);
 
-    if (folderName && effectiveFrontmatter.folder === folderId && pack) {
-        const packFolders = folderRegistry[pack] || (folderRegistry[pack] = {});
-        if (!packFolders[folderId]) {
-            packFolders[folderId] = { name: folderName, type: cfg.document };
-        }
+    if (folderPath && effectiveFrontmatter.folder === folderId && pack) {
+        registerFolderPath(folderRegistry, pack, folderPath, cfg.document);
     }
 
     return { document, outputName, pack };
@@ -1008,7 +1032,7 @@ async function writeFolders(folderRegistry) {
                 type: meta.type,
                 _id: folderId,
                 description: "",
-                folder: null,
+                folder: meta.parent ?? null,
                 sorting: "a",
                 sort: 100000,
                 color: meta.color ?? null,
