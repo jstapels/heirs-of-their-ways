@@ -1,7 +1,7 @@
 {
   "id": "heirs-of-their-ways",
   "title": "Heirs Of Their Ways",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "compatibility": {
     "minimum": "13",
     "verified": "14"
@@ -136,5 +136,5 @@
     ]
   },
   "manifest": "https://github.com/jstapels/heirs-of-their-ways/releases/latest/download/module.json",
-  "download": "https://github.com/jstapels/heirs-of-their-ways/releases/download/v1.0.32/heirs-of-their-ways.zip"
+  "download": "https://github.com/jstapels/heirs-of-their-ways/releases/download/v1.0.33/heirs-of-their-ways.zip"
 }
