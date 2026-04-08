@@ -8,7 +8,7 @@ Quick setup guide for the Heirs of Their Ways campaign module.
 
 - **Node.js** v18+ ([Download](https://nodejs.org/))
 - **Git** ([Download](https://git-scm.com/))
-- **FoundryVTT** v13+ with DnD5e v5.2+
+- **FoundryVTT** v13+ minimum, with validation recommended on v14, plus DnD5e v5.2+
 
 ### Installation
 

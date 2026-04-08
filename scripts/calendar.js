@@ -1,18 +1,23 @@
+const MODULE_ID = "heirs-of-their-ways";
+const AEVIR_CALENDAR_ID = "aevir";
+
 /**
  * Aevir Calendar Configuration
- * Registers the custom Aevir calendar with the DnD5e system
+ * Registers the custom Aevir calendar with the DnD5e system.
  */
-
-Hooks.on('dnd5e.setupCalendar', () => {
-  // Verify CONFIG.DND5E.calendar exists
-  if (!CONFIG?.DND5E?.calendar?.calendars) {
-    console.error("Heirs of Their Ways | DnD5e calendar configuration not found");
+Hooks.once("dnd5e.setupCalendar", () => {
+  const calendars = CONFIG?.DND5E?.calendar?.calendars;
+  if (!Array.isArray(calendars)) {
+    console.warn(`${MODULE_ID} | DnD5e calendar configuration was not available during setup`);
     return;
   }
 
-  // Add the Aevir calendar to the DnD5e calendar configuration
-  CONFIG.DND5E.calendar.calendars.push({
-    value: "aevir",
+  if (calendars.some((calendar) => calendar?.value === AEVIR_CALENDAR_ID)) {
+    return;
+  }
+
+  calendars.push({
+    value: AEVIR_CALENDAR_ID,
     label: "Calendar of Aevir",
     config: {
       name: "Calendar of Aevir",
@@ -195,5 +200,5 @@ Hooks.on('dnd5e.setupCalendar', () => {
     }
   });
 
-  console.log("Heirs of Their Ways | Aevir calendar registered");
+  console.info(`${MODULE_ID} | Registered the Aevir calendar`);
 });

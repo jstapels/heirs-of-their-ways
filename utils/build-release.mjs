@@ -185,8 +185,8 @@ Or download the module.zip file below and extract to your modules directory.
 
 ## Requirements
 
-- FoundryVTT v13+
-- D&D 5e System v5.2+
+- FoundryVTT v13 minimum, v14 verified
+- D&D 5e System v5.3.0+
 
 ---
 

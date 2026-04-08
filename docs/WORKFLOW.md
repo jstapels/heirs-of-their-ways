@@ -469,7 +469,7 @@ Use the extracted YAML as a reference, then migrate changes into `src/`.
 
 ### Build Fails
 - **Check Syntax:** Validate YAML/frontmatter formatting
-- **Check Version:** Ensure compatible with Foundry v13 / DnD5e v5.2
+- **Check Version:** Ensure compatible with Foundry v14 / DnD5e v5.3.0
 - **Check Paths:** Verify file paths for images/assets
 - **Check UUIDs:** Ensure referenced UUIDs exist
 
@@ -498,7 +498,7 @@ Use the extracted YAML as a reference, then migrate changes into `src/`.
 - [FoundryVTT Module Development](https://foundryvtt.com/article/module-development/)
 - [FoundryVTT Compendium Packs](https://foundryvtt.com/article/compendium/)
 - [DnD5e System Wiki](https://github.com/foundryvtt/dnd5e/wiki)
-- [FoundryVTT v13 API](https://foundryvtt.com/api/v13/)
+- [FoundryVTT v14 API](https://foundryvtt.com/api/v14/)
 
 ---
 
