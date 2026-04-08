@@ -46,6 +46,9 @@ function loadModuleId() {
 }
 
 const MODULE_ID = loadModuleId();
+const GENERATED_SYSTEM_ID = "dnd5e";
+const GENERATED_SYSTEM_VERSION = "5.3.0";
+const GENERATED_CORE_VERSION = "14.0.0";
 
 const ABSOLUTE_PREFIXES = [
     "modules/",
@@ -145,6 +148,16 @@ function rewriteAssetPaths(value, fileDir) {
         value[key] = rewriteAssetPaths(val, fileDir);
     }
     return value;
+}
+
+function normalizeAdvancement(value) {
+    if (!Array.isArray(value)) return value;
+
+    return value.reduce((acc, entry, index) => {
+        const key = entry?._id || `advancement${index}`;
+        acc[key] = entry;
+        return acc;
+    }, {});
 }
 
 /**
@@ -739,9 +752,9 @@ function buildJournalDocument(cfg, frontmatter, body, name, now, fileDir) {
             };
         }),
         _stats: {
-            systemId: "dnd5e",
-            systemVersion: "5.0.0",
-            coreVersion: "13.344",
+            systemId: GENERATED_SYSTEM_ID,
+            systemVersion: GENERATED_SYSTEM_VERSION,
+            coreVersion: GENERATED_CORE_VERSION,
             createdTime: now,
             modifiedTime: now,
             lastModifiedBy: "notes-builder",
@@ -769,9 +782,9 @@ function buildNonJournalDocument(cfg, frontmatter, body, name, now, fileDir) {
         flags: frontmatter.flags || {},
         system: {},
         _stats: {
-            systemId: "dnd5e",
-            systemVersion: "5.0.0",
-            coreVersion: "13.344",
+            systemId: GENERATED_SYSTEM_ID,
+            systemVersion: GENERATED_SYSTEM_VERSION,
+            coreVersion: GENERATED_CORE_VERSION,
             createdTime: now,
             modifiedTime: now,
             lastModifiedBy: "notes-builder",
@@ -780,6 +793,7 @@ function buildNonJournalDocument(cfg, frontmatter, body, name, now, fileDir) {
     };
 
     const system = deepMerge({}, frontmatter.system || {});
+    system.advancement = normalizeAdvancement(system.advancement);
     if (html) {
         if (cfg.document === "Actor") {
             if (!system.details?.biography?.value) {

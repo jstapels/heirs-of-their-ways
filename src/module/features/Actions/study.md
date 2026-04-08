@@ -11,7 +11,7 @@ system:
     spent: 0
     recovery: []
     max: ""
-  advancement: []
+  advancement: {}
   prerequisites:
     items: []
     repeatable: false

@@ -5,7 +5,7 @@ Contributor cheat sheet for keeping the Heirs of Their Ways module healthy and s
 ## Project Overview
 - **Module ID**: `heirs-of-their-ways`
 - **System**: D&D 5e (dnd5e)
-- **Foundry Compatibility**: v13+
+- **Foundry Compatibility**: v13+ minimum, v14 verified
 - **Author**: Jason Stapels (jstapels@gmail.com)
 - **Version**: See `module.json`
 
@@ -54,7 +54,7 @@ heirs-of-their-ways/
 - `module.json` is the module manifest that Foundry reads. Changes affect how the module loads, what packs exist, and compatibility.
 
 ## Documentation References
-- `docs/ENRICHERS.md` for FoundryVTT v13 + DnD5e v5.2 enrichers.
+- `docs/ENRICHERS.md` for FoundryVTT v14 + DnD5e v5.2 enrichers.
 - `docs/WORKFLOW.md` for the development workflow and examples.
 - `src/README.md` for campaign note conventions.
 - `docs/DND5E-YAML-STRUCTURE.md` for DnD5e field references.
@@ -101,7 +101,7 @@ npm test                   # Build checks
 
 ## Testing Guidelines
 - Run `npm run build` before commits.
-- Spot-check in FoundryVTT v13+ with dnd5e 5.2: ensure enrichers roll, assets resolve, packs load.
+- Spot-check in FoundryVTT v14 with dnd5e 5.2; v13 remains the minimum supported core version: ensure enrichers roll, assets resolve, packs load.
 - For Foundry-edited content: `npm run extract:packs`, migrate changes into `src/`, then rebuild.
 
 ## Commit & Pull Request Guidelines

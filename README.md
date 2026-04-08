@@ -4,7 +4,7 @@ A FoundryVTT module for the **Heirs of Their Ways** D&D 5e campaign.
 
 ## Overview
 
-This module packages campaign-specific content for use with Foundry Virtual Tabletop v13+ and the D&D 5e system v5.2+. It includes adventures, NPCs, custom items, scenes, and campaign lore.
+This module packages campaign-specific content for use with Foundry Virtual Tabletop v13+ with verified v14 support and the D&D 5e system v5.3.0+. It includes adventures, NPCs, custom items, scenes, and campaign lore.
 
 ## Features
 
@@ -146,13 +146,13 @@ See [docs/RELEASE.md](docs/RELEASE.md) for complete release process documentatio
 
 ## Requirements
 
-- **FoundryVTT** - Version 13 or higher
-- **D&D 5e System** - Version 5.2 or higher
+- **FoundryVTT** - Version 13 minimum, version 14 verified
+- **D&D 5e System** - Version 5.3.0 or higher
 
 ## Compatibility
 
-- FoundryVTT v13+
-- D&D 5e system v5.2+
+- FoundryVTT v13+ minimum, v14 verified
+- D&D 5e system v5.3.0+
 - Tested on latest stable releases
 
 ## License

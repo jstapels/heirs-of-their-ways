@@ -4,7 +4,7 @@
 
 Text enrichers transform special syntax in journal entries, actor descriptions, and item descriptions into interactive, clickable elements with proper formatting and dice rolling capabilities.
 
-This guide covers enrichers available in **FoundryVTT v13** with the **DnD5e system v5.2**.
+This guide covers enrichers available in **FoundryVTT v14** with the **DnD5e system v5.3.0**.
 
 ## Core FoundryVTT Enrichers
 
@@ -408,9 +408,9 @@ with [[lookup @abilities.str.value]] Strength.
 
 - [FoundryVTT Enrichers Wiki](https://foundryvtt.wiki/en/development/guides/enrichers)
 - [DnD5e Enrichers Documentation](https://github.com/foundryvtt/dnd5e/wiki/Enrichers)
-- [FoundryVTT v13 API - TextEditor](https://foundryvtt.com/api/v13/variables/CONFIG.TextEditor.html)
+- [FoundryVTT v14 API - TextEditor](https://foundryvtt.com/api/v14/variables/CONFIG.TextEditor.html)
 - [DnD5e Text Enrichment Guide](https://deepwiki.com/foundryvtt/dnd5e/5.1-text-enrichment-and-journaling)
 
 ---
 
-*Last updated for FoundryVTT v13 and DnD5e v5.2*
+*Last updated for FoundryVTT v14 and DnD5e v5.3.0*

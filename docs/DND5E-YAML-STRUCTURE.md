@@ -37,8 +37,8 @@ flags: {}                # Module-specific flags
 effects: []              # Active effects array
 _stats:                  # Metadata (auto-generated)
   systemId: dnd5e
-  systemVersion: 4.0.0
-  coreVersion: '13.344'
+  systemVersion: 5.3.0
+  coreVersion: '14.0.0'
   createdTime: 1725037083672
   modifiedTime: 1725992478305
   lastModifiedBy: dnd5ebuilder0000
@@ -83,8 +83,8 @@ flags: {}
 _key: '!folders!UniqueFolderID16'  # REQUIRED
 _stats:
   systemId: dnd5e
-  systemVersion: 4.0.0
-  coreVersion: '13.344'
+  systemVersion: 5.3.0
+  coreVersion: '14.0.0'
   createdTime: 1701908182383
   modifiedTime: 1701908224846
   lastModifiedBy: dnd5ebuilder0000
@@ -916,7 +916,8 @@ system:
   # Advancement (what the background grants)
   advancement:
     # Skill proficiencies
-    - _id: UniqueAdvID001
+    UniqueAdvID001:
+      _id: UniqueAdvID001
       type: Trait
       configuration:
         mode: default
@@ -931,7 +932,8 @@ system:
         chosen: []
 
     # Language choices
-    - _id: UniqueAdvID002
+    UniqueAdvID002:
+      _id: UniqueAdvID002
       type: Trait
       configuration:
         mode: default
@@ -947,7 +949,8 @@ system:
         chosen: []
 
     # Feature grant
-    - _id: UniqueAdvID003
+    UniqueAdvID003:
+      _id: UniqueAdvID003
       type: ItemGrant
       configuration:
         items:
@@ -1110,6 +1113,6 @@ _key: '!items!UniqueID16Chars'
 
 ---
 
-**Reference Source:** [dnd5e system v5.2.x](https://github.com/foundryvtt/dnd5e/tree/5.2.x/packs/_source)
+**Reference Source:** [dnd5e system v5.3.0](https://github.com/foundryvtt/dnd5e/tree/release-5.3.0/packs/_source)
 
 **Last Updated:** 2025-11-29
